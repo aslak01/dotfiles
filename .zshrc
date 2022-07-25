@@ -1,3 +1,7 @@
+# dotfiles repo --bare strat based on
+# https://stackoverflow.com/a/64548852
+# https://engineeringwith.kalkayan.io/series/developer-experience/storing-dotfiles-with-git-this-is-the-way/
+# https://github.com/kalkayan/dotfiles
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
@@ -38,12 +42,6 @@ plugins=()
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
-#
-# Plugin manager?????????????
-if [[ ! -f ~/.zpm/zpm.zsh ]]; then
-  git clone --recursive https://github.com/zpm-zsh/zpm ~/.zpm
-fi
-source ~/.zpm/zpm.zsh
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -57,15 +55,6 @@ else
   export EDITOR='nvim'
 fi
 
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-alias zshconfig="vim ~/.zshrc"
-alias ohmyzsh="vim ~/.oh-my-zsh"
 source ~/powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
@@ -85,58 +74,11 @@ export PNPM_HOME="/Users/aslakbakkeland/Library/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 # pnpm end
 
-# config 
-
-bindkey -v
-export KEYTIMEOUT=1
-
-# Change cursor shape for different vi modes.
-function zle-keymap-select {
-  if [[ ${KEYMAP} == vicmd ]] ||
-     [[ $1 = 'block' ]]; then
-    echo -ne '\e[1 q'
-  elif [[ ${KEYMAP} == main ]] ||
-       [[ ${KEYMAP} == viins ]] ||
-       [[ ${KEYMAP} = '' ]] ||
-       [[ $1 = 'beam' ]]; then
-    echo -ne '\e[5 q'
-  fi
-}
-zle -N zle-keymap-select
-zle-line-init() {
-    zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
-    echo -ne "\e[5 q"
-}
-zle -N zle-line-init
-echo -ne '\e[5 q' # Use beam shape cursor on startup.
-preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
 # Aliases
 
 alias ll="exa -l --icons -F --color auto -h"
 alias ls="exa -a --icons -F"
-# alias vim="nvim"
-
-# Homebrewed functions
-
-function slugit() {
-  for file in *."$1"; do
-    filename=${file%.*}
-    test=$(slugify $filename | sed -e 's/\r//g')
-    newname="$test.$1"
-    mv "$file" "$newname"
-  done
-}
-function optimiseit() {
-  for i in *; do
-    slugged=$(slugify ${i%.*} | sed -e 's/\r//g')
-    if [ "$i" != "$slugged" ]
-    then
-      convert $i -resize 1920x1080 -quality 90 $slugged.jpg
-      rm $i
-    fi
-  done
-}
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
