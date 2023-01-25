@@ -3,16 +3,12 @@
 HISTSIZE=1000000
 SAVEHIST=1000000
 export EDITOR="nvim"
-export TERMINAL="iterm2"
+export TERMINAL="wezterm"
 export BROWSER="safari"
 
-
-# Brew
-export PATH=/opt/homebrew/sbin:$PATH
-export PATH=/opt/homebrew/bin:$PATH
-
-# PNPM
-export PATH=$HOME/Library/pnpm:$PATH
+# pnpm
+export PNPM_HOME="$HOME/Library/pnpm/"
+export PATH=$PNPM_HOME:$PATH
 
 # bun
 export PATH="$HOME/.bun/bin:$PATH"
