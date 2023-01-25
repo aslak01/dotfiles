@@ -1,2 +1,2 @@
 -- theme
-vim.cmd([[colorscheme rose-pine]])
+vim.cmd('colorscheme base16-default-dark')

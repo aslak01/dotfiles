@@ -8,11 +8,11 @@ export BROWSER="safari"
 
 
 # Brew
-export PATH=/opt/homebrew/sbin/:$PATH
+export PATH=/opt/homebrew/sbin:$PATH
 export PATH=/opt/homebrew/bin:$PATH
 
 # PNPM
-export PATH=$HOME/Library/pnpm/:$PATH
+export PATH=$HOME/Library/pnpm:$PATH
 
 # bun
 export PATH="$HOME/.bun/bin:$PATH"

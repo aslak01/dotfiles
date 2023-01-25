@@ -7,6 +7,8 @@ alias nvimrc='nvim ~/.config/nvim/'
 # alias ls="exa --icons -F"
 # alias ll="exa -l --icons -F --color auto .h"
 # alias la="exa -a --icons -F"
+alias ls="exa -a --icons"
+alias lss="exa --icons"
 
 # confirm before overwriting something
 alias cp="cp -i"
@@ -21,8 +23,8 @@ alias df='df -h'     # human-readable sizes
 alias tldrf='tldr --list | fzf --preview "tldr {1} --color=always" --preview-window=right,70% | xargs tldr'
 
 alias ~="cd ~"
-alias .="cd .."
-alias ..="cd ../.."
-alias ...="cd ../../.."
-alias ....="cd ../../../.."
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
 alias cd..="cd .." # Typo addressed.

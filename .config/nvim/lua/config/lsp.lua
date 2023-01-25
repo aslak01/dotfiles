@@ -30,7 +30,6 @@ lsp.ensure_installed({
 	"stylelint_lsp",
 	"eslint",
 	"denols",
-
 	"bashls",
 	"sumneko_lua",
 })

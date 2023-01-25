@@ -2,7 +2,7 @@ local M = {}
 
 local wezterm = require("wezterm")
 
-local catppuccin = {
+M.catppuccin = {
   dark = {
     rosewater = "#F5E0DC",
     flamingo = "#F2CDCD",
@@ -65,90 +65,8 @@ local catppuccin = {
   },
 }
 
-local colors = catppuccin.dark
+M.colors = M.catppuccin.dark
 
-function M.get_process(tab)
-  local process_icons = {
-    ["docker"] = {
-      { Foreground = { Color = colors.blue } },
-      { Text = wezterm.nerdfonts.linux_docker },
-    },
-    ["docker-compose"] = {
-      { Foreground = { Color = colors.blue } },
-      { Text = wezterm.nerdfonts.linux_docker },
-    },
-    ["nvim"] = {
-      { Foreground = { Color = colors.green } },
-      { Text = wezterm.nerdfonts.custom_vim },
-    },
-    ["vim"] = {
-      { Foreground = { Color = colors.green } },
-      { Text = wezterm.nerdfonts.dev_vim },
-    },
-    ["node"] = {
-      { Foreground = { Color = colors.green } },
-      { Text = wezterm.nerdfonts.mdi_hexagon },
-    },
-    ["zsh"] = {
-      { Foreground = { Color = colors.peach } },
-      { Text = wezterm.nerdfonts.dev_terminal },
-    },
-    ["bash"] = {
-      { Foreground = { Color = colors.subtext0 } },
-      { Text = wezterm.nerdfonts.cod_terminal_bash },
-    },
-    ["paru"] = {
-      { Foreground = { Color = colors.lavender } },
-      { Text = wezterm.nerdfonts.linux_archlinux },
-    },
-    ["htop"] = {
-      { Foreground = { Color = colors.yellow } },
-      { Text = wezterm.nerdfonts.mdi_chart_donut_variant },
-    },
-    ["cargo"] = {
-      { Foreground = { Color = colors.peach } },
-      { Text = wezterm.nerdfonts.dev_rust },
-    },
-    ["go"] = {
-      { Foreground = { Color = colors.sapphire } },
-      { Text = wezterm.nerdfonts.mdi_language_go },
-    },
-    ["lazydocker"] = {
-      { Foreground = { Color = colors.blue } },
-      { Text = wezterm.nerdfonts.linux_docker },
-    },
-    ["git"] = {
-      { Foreground = { Color = colors.peach } },
-      { Text = wezterm.nerdfonts.dev_git },
-    },
-    ["lazygit"] = {
-      { Foreground = { Color = colors.peach } },
-      { Text = wezterm.nerdfonts.dev_git },
-    },
-    ["lua"] = {
-      { Foreground = { Color = colors.blue } },
-      { Text = wezterm.nerdfonts.seti_lua },
-    },
-    ["wget"] = {
-      { Foreground = { Color = colors.yellow } },
-      { Text = wezterm.nerdfonts.mdi_arrow_down_box },
-    },
-    ["curl"] = {
-      { Foreground = { Color = colors.yellow } },
-      { Text = wezterm.nerdfonts.mdi_flattr },
-    },
-    ["gh"] = {
-      { Foreground = { Color = colors.mauve } },
-      { Text = wezterm.nerdfonts.dev_github_badge },
-    },
-  }
 
-  local process_name = string.gsub(tab.active_pane.foreground_process_name, "(.*[/\\])(.*)", "%2")
-
-  return wezterm.format(
-    process_icons[process_name]
-    or { { Foreground = { Color = colors.sky } }, { Text = string.format("[%s]", process_name) } }
-  )
-end
 
 return M

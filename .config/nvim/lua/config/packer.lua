@@ -47,13 +47,15 @@ require("packer").startup(function(use)
 	})
 
 	-- UI plugins
-	use({
-		"rose-pine/neovim",
-		as = "rose-pine",
-		config = function()
-			vim.cmd("colorscheme rose-pine")
-		end,
-	})
+	-- use({
+	-- 	"rose-pine/neovim",
+	-- 	as = "rose-pine",
+	-- 	config = function()
+	-- 		vim.cmd("colorscheme rose-pine")
+	-- 	end,
+	-- })
+	use("RRethy/nvim-base16")
+	require('base16-colorscheme')
 	use("mhinz/vim-startify") --  Custom start screen
 	use("nvim-lualine/lualine.nvim") --  Fancy statusline
 	use("lewis6991/gitsigns.nvim") --  Git signs
