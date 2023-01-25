@@ -157,6 +157,7 @@ return {
   tab_max_width = 50,
   hide_tab_bar_if_only_one_tab = true,
   disable_default_key_bindings = false,
+  send_composed_key_when_left_alt_is_pressed = true, -- alt keybindings
   front_end = "WebGpu",
   -- keys = {
   --   {
