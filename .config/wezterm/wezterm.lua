@@ -1,8 +1,8 @@
 local wezterm = require("wezterm")
+local keymaps = require("keys")
 -- local colors = require "colors"
 -- local is_dark = wezterm.gui.get_appearance():find("Dark")
 local is_dark = true
-
 -- local function is_vi_process(pane)
 --   return pane:get_foreground_process_name():find("n?vim") ~= nil
 -- end
@@ -133,7 +133,7 @@ return {
   warn_about_missing_glyphs = false,
   show_update_window = false,
   check_for_updates = false,
-  line_height = 1.5,
+  line_height = 1.1,
   window_decorations = "RESIZE",
   window_close_confirmation = "NeverPrompt",
   audible_bell = "Disabled",
@@ -156,8 +156,12 @@ return {
   window_background_opacity = 1.0,
   tab_max_width = 50,
   hide_tab_bar_if_only_one_tab = true,
-  disable_default_key_bindings = false,
+  disable_default_key_bindings = true,
+  keys = keymaps.keys,
   send_composed_key_when_left_alt_is_pressed = true, -- alt keybindings
+  use_ime = false,
+  use_dead_keys = true,
+  debug_key_events = false,
   front_end = "WebGpu",
   -- keys = {
   --   {
