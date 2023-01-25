@@ -1,2 +1,2 @@
 -- theme
-vim.cmd('colorscheme base16-default-dark')
+vim.cmd('colorscheme base16-ashes')
