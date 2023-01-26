@@ -56,10 +56,14 @@ echo "========================================================================"
 brew cleanup
 
 echo "========================================================================"
-echo "Setting up Zsh"
+echo "Installing non brewed binaries"
 echo "========================================================================"
 
+# Zip Zsh plugin manager
 zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh)
+
+# Deno (updated too frequently to want to manage it with brew)
+curl -fsSL https://deno.land/x/install/install.sh | sh
 
 echo "========================================================================"
 echo "Adding assorted preference files"
@@ -81,7 +85,7 @@ echo "========================================================================"
 ssh-keygen -t rsa -b 4096 -C ${YOUR_EMAIL} -f ~/.ssh/id_rsa
 eval "$(ssh-agent -s)"
 ssh-add -K ~/.ssh/id_rsa
-cp -f ./assets/config ~/.ssh/config
+# cp -f ./assets/config ~/.ssh/config
 
 echo "========================================================================"
 echo "Making hosts file"

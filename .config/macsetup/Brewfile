@@ -41,6 +41,7 @@ brew 'sqlite'
 brew 'neofetch'
 brew 'neovim'
 brew 'n'
+brew 'mas'
 
 # multimedia
 brew 'silicon' # code screenshots
