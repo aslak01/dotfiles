@@ -1,27 +1,7 @@
 #!/usr/bin/env bash
+echo "Mac Setup"
 
-echo ""
-echo "  \xE2\x96\x85\xE2\x96\x85\xE2\x96\x85\xE2\x96\x85\xE2\x96\x85\xE2\x96\x85\xE2\x96\x85\xE2\x96\x85\xE2\x96\x85\xE2\x96\x85\xE2\x96\x85\xE2\x96\x85\xE2\x96\x85\xE2\x96\x85\xE2\x96\x85\xE2\x96\x85\xE2\x96\x85\xE2\x96\x85\xE2\x96\x85\xE2\x96\x85";
-echo " \xE2\x96\x88                    \xE2\x96\x88";
-echo "\xE2\x96\x8B      \xE2\x96\x84\xE2\x96\x84\xE2\x96\x84\xE2\x96\x84\xE2\x96\x84\xE2\x96\x84\xE2\x96\x84\xE2\x96\x84\xE2\x96\x84\xE2\x96\x84\xE2\x96\x84\xE2\x96\x84\xE2\x96\x84\xE2\x96\x84\xE2\x96\x84\xE2\x96\x84   \xE2\x96\x8B";
-echo "\xE2\x96\x8B  \xE2\x96\x88                \xE2\x96\x88  \xE2\x96\x8B";
-echo "\xE2\x96\x8B  \xE2\x96\x88    \xE2\x96\x88   \xE2\x96\x88  \xE2\x96\x88    \xE2\x96\x88  \xE2\x96\x8B";
-echo "\xE2\x96\x8B  \xE2\x96\x88        \xE2\x96\x88       \xE2\x96\x88  \xE2\x96\x8B";
-echo "\xE2\x96\x8B  \xE2\x96\x88       \xE2\x96\x80\xE2\x96\x80       \xE2\x96\x88  \xE2\x96\x8B       ,          _   _";
-echo "\xE2\x96\x8B  \xE2\x96\x88     \xE2\x96\x80\xE2\x96\x85\xE2\x96\x85\xE2\x96\x85\xE2\x96\x85\xE2\x96\x80     \xE2\x96\x88  \xE2\x96\x8B      /|   |     | | | |";
-echo "\xE2\x96\x8B  \xE2\x96\x88                \xE2\x96\x88  \xE2\x96\x8B       |___|  _  | | | |  __";
-echo "\xE2\x96\x8B   \xE2\x96\x80\xE2\x96\x80\xE2\x96\x80\xE2\x96\x80\xE2\x96\x80\xE2\x96\x80\xE2\x96\x80\xE2\x96\x80\xE2\x96\x80\xE2\x96\x80\xE2\x96\x80\xE2\x96\x80\xE2\x96\x80\xE2\x96\x80\xE2\x96\x80\xE2\x96\x80   \xE2\x96\x8B       |   |\x5C|/  |/  |/  /  \x5C_";
-echo "\xE2\x96\x8B                      \xE2\x96\x8B       |   |/|__/|__/|__/\x5C__/";
-echo "\xE2\x96\x8B  \xE2\x96\x85\xE2\x96\x85\xE2\x96\x85        \xE2\x96\x85\xE2\x96\x85\xE2\x96\x85\xE2\x96\x85\xE2\x96\x85\xE2\x96\x85\xE2\x96\x85  \xE2\x96\x8B";
-echo "\xE2\x96\x8B                      \xE2\x96\x8B";
-echo "\xE2\x96\x8B                      \xE2\x96\x8B";
-echo " \xE2\x96\x84\xE2\x96\x84\xE2\x96\x84\xE2\x96\x84\xE2\x96\x84\xE2\x96\x84\xE2\x96\x84\xE2\x96\x84\xE2\x96\x84\xE2\x96\x84\xE2\x96\x84\xE2\x96\x84\xE2\x96\x84\xE2\x96\x84\xE2\x96\x84\xE2\x96\x84\xE2\x96\x84\xE2\x96\x84\xE2\x96\x84\xE2\x96\x84\xE2\x96\x84\xE2\x96\x84";
-echo " \xE2\x96\x88                    \xE2\x96\x88";
-echo " \xE2\x96\x84\xE2\x96\x84\xE2\x96\x84\xE2\x96\x84\xE2\x96\x84\xE2\x96\x84\xE2\x96\x84\xE2\x96\x84\xE2\x96\x84\xE2\x96\x84\xE2\x96\x84\xE2\x96\x84\xE2\x96\x84\xE2\x96\x84\xE2\x96\x84\xE2\x96\x84\xE2\x96\x84\xE2\x96\x84\xE2\x96\x84\xE2\x96\x84\xE2\x96\x84\xE2\x96\x84";
-echo ""
-echo "========================================================================"
-echo ""
-echo "Congratulations on your new mac. Let's get everything set up!"
+# from https://raw.githubusercontent.com/jlom/macsetup/master/setup.sh
 
 # Ask for sudo pwd up front
 sudo -v
@@ -35,11 +15,11 @@ read COMPUTER_NAME
 
 echo "========================================================================"
 echo "SET YOUR LOCK SCREEN, GITHUB and SSH INFORMATION"
-echo "Your name?"
+echo "Your name:"
 read YOUR_NAME
-echo "Your email?"
+echo "Your email:"
 read YOUR_EMAIL
-echo "Your phone number?"
+echo "Your phone number:"
 read YOUR_PHONE
 echo "========================================================================"
 echo "SIGN IN TO THE MAC APP STORE"
@@ -52,9 +32,9 @@ echo "========================================================================"
 xcode-select --install
 
 # Check for Homebrew, install if we don't have it
-if test ! $(which brew); then
+if test ! "$(which brew)"; then
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
+    echo "eval '$(/opt/homebrew/bin/brew shellenv)'" >> ~/.zprofile
     eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
@@ -64,183 +44,10 @@ brew analytics off
 echo "========================================================================"
 echo "Installing brew packages"
 echo "========================================================================"
-# Update homebrew recipes
+
 brew update
 
-# Install GNU core utilities (those that come with OS X are outdated)
-brew install coreutils
-brew install gnu-sed
-brew install gnu-tar
-brew install gnu-indent
-brew install gnu-which
-
-# Install Bash 4
-brew install bash
-
-# Install Node, NPM, and NVM
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
-echo '# This loads nvm' >>! $HOME/.zshrc
-echo 'export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"' >>! $HOME/.zshrc
-source ~/.nvm/nvm.sh
-nvm install --lts
-
-# Install brew packages
-brew tap passy/givegif
-brew tap passy/givegif
-PACKAGES=(
-    catimg
-    cowsay
-    diff-so-fancy
-    exa
-    ffmpeg
-    git
-    givegif
-    hub
-    imagemagick
-    lynx
-    markdown
-    mas
-    openssl
-    python
-    python3
-    sass/sass/sass
-    svn
-    telnet
-    thefuck
-    tree
-    watch
-    wget
-    zsh
-    yarn
-)
-for ((i=0; i<${#PACKAGES[@]}; ++i)); do
-    brew install ${PACKAGES[i]}
-done
-
-echo "========================================================================"
-echo "Installing brew casks"
-echo "========================================================================"
-brew tap homebrew/cask-versions
-
-# Install cask apps
-CASKS=(
-    1password
-    aerial
-    alfred
-    atext
-    backblaze
-    blockblock
-    brave-browser
-    carbon-copy-cloner
-    google-chrome
-    google-chrome-canary
-    discord
-    divvy
-    finicky
-    firefox
-    gpg-suite
-    iterm2
-    knockknock
-    monodraw
-    noun-project
-    ogdesign-eagle
-    setapp
-    sketch
-    slack
-    soulver
-    spotify
-    suspicious-package
-    tor-browser
-    tower
-    visual-studio-code
-    vlc
-    qgis
-)
-for ((i=0; i<${#CASKS[@]}; ++i)); do
-    brew install ${CASKS[i]} --appdir=/Applications
-done
-
-echo "========================================================================"
-echo "Installing Mac App Store apps"
-echo "========================================================================"
-# Install Mac App Store apps
-# Cinch
-mas install 412529613
-# Tweetbot
-mas install 1384080005
-# Better Blocker
-mas install 1121192229
-# Fantastical
-mas install 975937182
-# Deliveries
-mas install 924726344
-# OmniFocus
-mas install 1346203938
-# Drafts
-mas install 1435957248
-# Kaleidoscope
-mas install 587512244
-# Amphetamine
-mas install 937984704
-# Keynote
-mas install 409183694
-# Pages
-mas install 409201541
-# ReadKit
-mas install 588726889
-# Numbers
-mas install 409203825
-# TableFlip
-mas install 1462643128
-# Contrast
-mas install 1254981365
-# Tadam
-mas install 531349534
-
-echo "========================================================================"
-echo "Installing typefaces"
-echo "========================================================================"
-# Install fonts
-brew tap homebrew/cask-fonts
-FONTS=(
-    font-fira-code
-    font-source-sans-pro
-    font-inter
-    font-roboto
-)
-for ((i=0; i<${#FONTS[@]}; ++i)); do
-    brew install ${FONTS[i]} || true
-done
-
-echo "========================================================================"
-echo "Installing QuickLook plugins"
-echo "========================================================================"
-QLPLUGINS=(
-    qlstephen
-    qlmarkdown
-    quicklook-json
-    qlprettypatch
-    quicklook-csv
-    qlimagesize
-    webpquicklook
-    suspicious-package
-    quicklookase
-    qlvideo
-)
-for ((i=0; i<${#QLPLUGINS[@]}; ++i)); do
-    brew install ${QLPLUGINS[i]}
-done
-
-# Install Droid Sans Mono Awesome
-cp -f ./assets/DroidSansMonoAwesome.ttf /Library/Fonts/DroidSansMonoAwesome.ttf
-
-echo "========================================================================"
-echo "Installing NPM global packages, etc."
-echo "========================================================================"
-# Install global NPM packages
-npm i -g grunt-cli spoof tldr caniuse-cmd pageres-cli rename-cli
-
+brew bundle --file=./Brewfile
 
 echo "========================================================================"
 echo "Cleaning up"
@@ -251,29 +58,12 @@ brew cleanup
 echo "========================================================================"
 echo "Setting up Zsh"
 echo "========================================================================"
-# Install OhMyZsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
-# Zsh autocompletion
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-
-# Powerlevel 9K
-git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
-
-# zsh-syntax-highlighting
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-
-# zsh iTerm Touchbar
-git clone https://github.com/iam4x/zsh-iterm-touchbar.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins
-
-# Add .zshrc
-cp -f ./assets/.zshrc ~/.zshrc
+zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh)
 
 echo "========================================================================"
 echo "Adding assorted preference files"
 echo "========================================================================"
-# Add finicky rc
-cp -f ./assets/.finicky.js ~/.finicky.js
 
 # Add diff-so-fancy config
 git config --global core.pager "diff-so-fancy | less --tabs=4 -RFX"
@@ -292,7 +82,6 @@ ssh-keygen -t rsa -b 4096 -C ${YOUR_EMAIL} -f ~/.ssh/id_rsa
 eval "$(ssh-agent -s)"
 ssh-add -K ~/.ssh/id_rsa
 cp -f ./assets/config ~/.ssh/config
-
 
 echo "========================================================================"
 echo "Making hosts file"
@@ -318,7 +107,7 @@ then
     pbcopy < echo ${FW_PWD}
     echo "Prompt for FW password when booting from a different volume"
     echo "If you need to set a new Firmware password, may I suggest:"
-    echo ${FW_PWD}
+    echo "${FW_PWD}"
     echo "Randomly generated by openssl - SAVE THIS SOMEWHERE SAFE!!!!"
     echo "(The suggested password is on the pasteboard as well)"
     sudo firmwarepasswd -setpasswd -setmode command
@@ -347,7 +136,7 @@ echo "========================================================================"
 # Turn on the firewall, and enable logging and stealth mode
 sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setglobalstate on
 sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setloggingmode on
-sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setstealthmode on
+# sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setstealthmode on
 
 echo "========================================================================"
 echo "Creating a new admin user"
@@ -376,7 +165,7 @@ echo "========================================================================"
 echo "Configuring macOS"
 echo "========================================================================"
 # Always boot in verbose mode
-sudo nvram boot-args="-v"
+# sudo nvram boot-args="-v"
 
 # Setup lock screen message
 sudo defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText "If found call ${YOUR_PHONE} or email ${YOUR_EMAIL}"
@@ -390,13 +179,13 @@ defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool
 defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 
 # Set fast key repeat rate
-defaults write NSGlobalDomain KeyRepeat -int 0
+# defaults write NSGlobalDomain KeyRepeat -int 0
 
 # Set graphite appearance
-defaults write NSGlobalDomain AppleAquaColorVariant -int 6
+# defaults write NSGlobalDomain AppleAquaColorVariant -int 6
 
 # Show battery percentage
-defaults write com.apple.menuextra.battery ShowPercent -bool true
+# defaults write com.apple.menuextra.battery ShowPercent -bool true
 
 # Check for software updates daily, not just once per week
 defaults write com.apple.SoftwareUpdate ScheduleFrequency -int 1
@@ -410,11 +199,11 @@ defaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true
 defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
 
 ## TOP RIGHT SCREEN CORNER → START SCREEN SAVER
-defaults write com.apple.dock wvous-tr-corner -int 5
-defaults write com.apple.dock wvous-tr-modifier -int 0
+# defaults write com.apple.dock wvous-tr-corner -int 5
+# defaults write com.apple.dock wvous-tr-modifier -int 0
 
 # Disable press-and-hold for keys in favor of key repeat
-defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
+# defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 
 # Enable full keyboard access for all controls
 # (e.g. enable Tab in modal dialogs)
@@ -426,7 +215,7 @@ defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
 defaults write -g NSToolbarTitleViewRolloverDelay -float 0
 
 # Wide alerts
-defaults write -g NSAlertMetricsGatheringEnabled -bool false
+# defaults write -g NSAlertMetricsGatheringEnabled -bool false
 
 # Show filename extensions by default
 defaults write NSGlobalDomain AppleShowAllExtensions -bool true
@@ -544,8 +333,11 @@ defaults write com.apple.mail AddressesIncludeNameOnPasteboard -bool false
 defaults write com.apple.Dock autohide -bool true
 defaults write com.apple.dock tilesize -int 24
 
+# instant dock show/hide
+defaults write com.apple.Dock autohide-delay -float 0.0001
+
 # Disable autocorrect
-defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
+# defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 
 # Kill all affected apps and services
 for app in "Activity Monitor" "Address Book" "Calendar" "Contacts" "cfprefsd" \
