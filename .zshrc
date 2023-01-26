@@ -3,6 +3,7 @@
 
 # history
 HISTFILE=~/.zsh_history
+HISTORY_IGNORE="(ls|pwd|cd ..|yt_dlp *)"
 
 # source
 plug "$HOME/.config/zsh/exports.zsh"
