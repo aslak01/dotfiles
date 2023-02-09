@@ -104,11 +104,6 @@ _G.packer_plugins = {
     path = "/Users/aslakbakkeland/.local/share/nvim/site/pack/packer/start/cmp_luasnip",
     url = "https://github.com/saadparwaiz1/cmp_luasnip"
   },
-  delimitmate = {
-    loaded = true,
-    path = "/Users/aslakbakkeland/.local/share/nvim/site/pack/packer/start/delimitmate",
-    url = "https://github.com/raimondi/delimitmate"
-  },
   ["fidget.nvim"] = {
     loaded = true,
     path = "/Users/aslakbakkeland/.local/share/nvim/site/pack/packer/start/fidget.nvim",
@@ -123,11 +118,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/aslakbakkeland/.local/share/nvim/site/pack/packer/start/gitsigns.nvim",
     url = "https://github.com/lewis6991/gitsigns.nvim"
-  },
-  ["gv.vim"] = {
-    loaded = true,
-    path = "/Users/aslakbakkeland/.local/share/nvim/site/pack/packer/start/gv.vim",
-    url = "https://github.com/junegunn/gv.vim"
   },
   harpoon = {
     loaded = true,
@@ -200,11 +190,6 @@ _G.packer_plugins = {
     path = "/Users/aslakbakkeland/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
   },
-  ["quick-scope"] = {
-    loaded = true,
-    path = "/Users/aslakbakkeland/.local/share/nvim/site/pack/packer/start/quick-scope",
-    url = "https://github.com/unblevable/quick-scope"
-  },
   ["targets.vim"] = {
     loaded = true,
     path = "/Users/aslakbakkeland/.local/share/nvim/site/pack/packer/start/targets.vim",
@@ -235,55 +220,15 @@ _G.packer_plugins = {
     path = "/Users/aslakbakkeland/.local/share/nvim/site/pack/packer/start/vim-easy-align",
     url = "https://github.com/junegunn/vim-easy-align"
   },
-  ["vim-easymotion"] = {
-    loaded = true,
-    path = "/Users/aslakbakkeland/.local/share/nvim/site/pack/packer/start/vim-easymotion",
-    url = "https://github.com/easymotion/vim-easymotion"
-  },
-  ["vim-floaterm"] = {
-    loaded = true,
-    path = "/Users/aslakbakkeland/.local/share/nvim/site/pack/packer/start/vim-floaterm",
-    url = "https://github.com/voldikss/vim-floaterm"
-  },
-  ["vim-fugitive"] = {
-    loaded = true,
-    path = "/Users/aslakbakkeland/.local/share/nvim/site/pack/packer/start/vim-fugitive",
-    url = "https://github.com/tpope/vim-fugitive"
-  },
-  ["vim-gh-line"] = {
-    loaded = true,
-    path = "/Users/aslakbakkeland/.local/share/nvim/site/pack/packer/start/vim-gh-line",
-    url = "https://github.com/ruanyl/vim-gh-line"
-  },
-  ["vim-highlightedyank"] = {
-    loaded = true,
-    path = "/Users/aslakbakkeland/.local/share/nvim/site/pack/packer/start/vim-highlightedyank",
-    url = "https://github.com/machakann/vim-highlightedyank"
-  },
-  ["vim-peekaboo"] = {
-    loaded = true,
-    path = "/Users/aslakbakkeland/.local/share/nvim/site/pack/packer/start/vim-peekaboo",
-    url = "https://github.com/junegunn/vim-peekaboo"
-  },
   ["vim-repeat"] = {
     loaded = true,
     path = "/Users/aslakbakkeland/.local/share/nvim/site/pack/packer/start/vim-repeat",
     url = "https://github.com/tpope/vim-repeat"
   },
-  ["vim-ripgrep"] = {
-    loaded = true,
-    path = "/Users/aslakbakkeland/.local/share/nvim/site/pack/packer/start/vim-ripgrep",
-    url = "https://github.com/jremmen/vim-ripgrep"
-  },
   ["vim-sleuth"] = {
     loaded = true,
     path = "/Users/aslakbakkeland/.local/share/nvim/site/pack/packer/start/vim-sleuth",
     url = "https://github.com/tpope/vim-sleuth"
-  },
-  ["vim-startify"] = {
-    loaded = true,
-    path = "/Users/aslakbakkeland/.local/share/nvim/site/pack/packer/start/vim-startify",
-    url = "https://github.com/mhinz/vim-startify"
   },
   ["vim-surround"] = {
     loaded = true,
@@ -294,21 +239,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/aslakbakkeland/.local/share/nvim/site/pack/packer/start/vim-test",
     url = "https://github.com/janko-m/vim-test"
-  },
-  ["vim-unimpaired"] = {
-    loaded = true,
-    path = "/Users/aslakbakkeland/.local/share/nvim/site/pack/packer/start/vim-unimpaired",
-    url = "https://github.com/tpope/vim-unimpaired"
-  },
-  ["vim-vinegar"] = {
-    loaded = true,
-    path = "/Users/aslakbakkeland/.local/share/nvim/site/pack/packer/start/vim-vinegar",
-    url = "https://github.com/tpope/vim-vinegar"
-  },
-  ["vim-visual-multi"] = {
-    loaded = true,
-    path = "/Users/aslakbakkeland/.local/share/nvim/site/pack/packer/start/vim-visual-multi",
-    url = "https://github.com/mg979/vim-visual-multi"
   }
 }
 

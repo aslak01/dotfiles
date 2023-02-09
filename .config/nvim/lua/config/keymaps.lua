@@ -3,9 +3,9 @@ local keyset = vim.keymap.set
 
 keyset("n", "<down>", "}")
 keyset("n", "<up>", "{")
-keyset("n", "<leader>q", ":bd<cr>")
+-- keyset("n", "<leader>q", ":bd<cr>")
 keyset("n", "<leader>w", ":w<cr>")
-keyset("n", "<C-space>", "/")
+-- keyset("n", "<C-space>", "/")
 keyset("n", "<leader>d", vim.diagnostic.open_float)
 keyset("n", "<leader>hh", vim.diagnostic.goto_prev)
 keyset("n", "<leader>ll", vim.diagnostic.goto_next)
@@ -15,8 +15,8 @@ keyset("n", "<leader>fn", ":Telescope file_browser<CR>")
 keyset("n", "<leader>rg", ":Rg<space>")
 
 -- commentary
-keyset("n", "<C-/>", ":Commentary<cr>")
-keyset("v", "<C-/>", ":Commentary<cr>")
+-- keyset("n", "<C-/>", ":Commentary<cr>")
+-- keyset("v", "<C-/>", ":Commentary<cr>")
 
 -- vim-test
 keyset("n", "<leader>tn", ":TestNearest<cr>", { silent = true })
@@ -42,6 +42,7 @@ keyset("n", "<leader>fb", require("telescope.builtin").buffers, { desc = "[F]ind
 keyset("n", "<leader>fw", require("telescope.builtin").grep_string, { desc = "[F]ind [W]ord" })
 keyset("n", "<leader>fd", require("telescope.builtin").diagnostics, { desc = "[F]ind [D]iagnostics" })
 keyset("n", "<leader>fc", require("telescope.builtin").commands, { desc = "[F]ind [C]ommands" })
+keyset("n", "<leader>km", require("telescope.builtin").keymaps, { desc = "[K]ey[m]aps" })
 
 -- harpoon
 keyset("n", "<leader>m", require("harpoon.mark").add_file)

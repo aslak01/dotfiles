@@ -12,30 +12,30 @@ require("packer").startup(function(use)
 	use("wbthomason/packer.nvim")
 
 	-- Coding plugins
-	use("janko-m/vim-test") --  Run tests quickly
+	-- use("janko-m/vim-test") --  Run tests quickly
 
 	-- Git plugins
-	use("tpope/vim-fugitive") --  Git wrapper
-	use("ruanyl/vim-gh-line") --  Open GitHub file at line
-	use("junegunn/gv.vim") --  Git commit browser
+	-- use("tpope/vim-fugitive") --  Git wrapper
+	-- use("ruanyl/vim-gh-line") --  Open GitHub file at line
+	-- use("junegunn/gv.vim") --  Git commit browser
 
 	-- Utility plugins
-	use("jremmen/vim-ripgrep") --  Grep on steroids
+	-- use("jremmen/vim-ripgrep") --  Grep on steroids
 	use("ThePrimeagen/harpoon") --  Bookmark management
-	use("junegunn/vim-peekaboo") --  Preview registers
-	use("machakann/vim-highlightedyank") --  Highlight yanked text
-	use("easymotion/vim-easymotion") --  Move fast
+	-- use("junegunn/vim-peekaboo") --  Preview registers
+	-- use("machakann/vim-highlightedyank") --  Highlight yanked text
+	-- use("easymotion/vim-easymotion") --  Move fast
 
 	-- Text manipulation plugins
 	use("tpope/vim-surround") --  Surround text objects
 	use("wellle/targets.vim") --  Additional text objects
-	use("mg979/vim-visual-multi") --  Multiple cursors
+	-- use("mg979/vim-visual-multi") --  Multiple cursors
 	use("tpope/vim-commentary") --  Comment out code
 	use("tpope/vim-repeat") --  Repeat commands
 	use("tpope/vim-sleuth") --  Detect indentation
-	use("tpope/vim-unimpaired") --  Pairs of handy bracket mappings
+	-- use("tpope/vim-unimpaired") --  Pairs of handy bracket mappings
 	use("junegunn/vim-easy-align") --  Align text
-	use("raimondi/delimitmate") --  Auto closing quotes, brackets, etc
+	-- use("raimondi/delimitmate") --  Auto closing quotes, brackets, etc
 	use({
 		"lukas-reineke/indent-blankline.nvim",
 		confing = function()
@@ -56,7 +56,7 @@ require("packer").startup(function(use)
 	-- })
 	use("RRethy/nvim-base16")
 	require('base16-colorscheme')
-	use("mhinz/vim-startify") --  Custom start screen
+	-- use("mhinz/vim-startify") --  Custom start screen
 	use("nvim-lualine/lualine.nvim") --  Fancy statusline
 	use("lewis6991/gitsigns.nvim") --  Git signs
 	use({
@@ -70,9 +70,9 @@ require("packer").startup(function(use)
 	use({ "nagy135/typebreak.nvim", requires = "nvim-lua/plenary.nvim" })
 
 	-- File explorer plugins
-	use("tpope/vim-vinegar")
-	use("unblevable/quick-scope") --  Netrw extension
-	use("voldikss/vim-floaterm") --  Floating terminal
+	-- use("tpope/vim-vinegar")
+	-- use("unblevable/quick-scope") --  Netrw extension
+	-- use("voldikss/vim-floaterm") --  Floating terminal
 	use({
 		"nvim-telescope/telescope.nvim",
 		tag = "0.1.0", --  Fuzzy finder
@@ -112,10 +112,10 @@ require("packer").startup(function(use)
 
 			-- Snippets
 			{ "L3MON4D3/LuaSnip" },
-			{ "rafamadriz/friendly-snippets" },
+			-- { "rafamadriz/friendly-snippets" },
 
 			-- UI
-			{ "j-hui/fidget.nvim" },
+			-- { "j-hui/fidget.nvim" },
 		},
 	})
 
