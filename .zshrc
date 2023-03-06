@@ -38,4 +38,5 @@ if command -v bat &> /dev/null; then
 fi
 
 
-
+# bun completions
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
