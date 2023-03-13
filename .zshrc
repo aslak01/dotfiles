@@ -16,10 +16,14 @@ plug "hlissner/zsh-autopair"
 plug "zap-zsh/supercharge"
 plug "zap-zsh/vim"
 # plug "zap-zsh/zap-prompt"
-plug "zettlrobert/simple-prompt"
+# plug "zettlrobert/simple-prompt"
+# plug "wintermi/zsh-starship"
 plug "zap-zsh/fzf"
 # plug "zap-zsh/exa"
 plug "zsh-users/zsh-syntax-highlighting"
+
+# starship prompt
+eval "$(starship init zsh)"
 
 plug "$HOME/.config/zsh/aliases.zsh"
 
