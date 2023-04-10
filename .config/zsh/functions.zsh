@@ -37,3 +37,10 @@ function 8mbvid() {
   ffmpeg -i "$input" -c:a aac -aac_coder twoloop -b:a ${bitrateAudio}k -c:v libx264 -b:v ${bitrateVid}k -preset fast -pass 2 "$output"
 
 }
+
+function gif2mp4() {
+  # https://unix.stackexchange.com/a/294892
+  input=$1
+  output=$2
+  ffmpeg -i "$input" -movflags faststart -pix_fmt yuv420p -vf "scale=trunc(iw/2)*2:trunc(ih/2)*2" "$output"
+}
