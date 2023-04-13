@@ -8,6 +8,7 @@ HISTORY_IGNORE="(ls|pwd|cd ..|yt_dlp *)"
 # source
 plug "$HOME/.config/zsh/exports.zsh"
 plug "$HOME/.config/zsh/functions.zsh"
+plug "$HOME/.config/zsh/zsh_api_keys.zsh"
 
 # plugins
 plug "wintermi/zsh-brew"
