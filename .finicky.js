@@ -3,6 +3,8 @@ module.exports = {
 	handlers: [
 		{
 			match: [
+				"*.circleci.com/*",
+				"circleci.com/*",
 				"*.outlook.com/*",
 				"*.labdevs.com/*",
 				"trello.com/*",
