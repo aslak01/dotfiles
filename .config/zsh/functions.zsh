@@ -1,4 +1,16 @@
+#!/bin/zsh
 # Homebrewed scripts
+
+function slugify {
+  local input="$(echo -e "${1}" | iconv -f utf-8 -t ascii//TRANSLIT)"  # Convert non-ASCII characters to closest ASCII equivalent
+  input="$(echo -e "${input}" | sed -E 's/^\s+|\s+$//g')"  # Trim excess whitespace at beginning and end
+  input="$(echo -e "${input}" | tr '[:upper:]' '[:lower:]')"  # Convert to lowercase
+  input="$(echo -e "${input}" | tr '[:space:]' '-')"  # Convert spaces to dashes
+  input="$(echo -e "${input}" | sed 's/[^-[:alnum:]]//g')"  # Remove non-alphanumeric characters except dashes
+  input="$(echo -e "${input}" | sed 's/-\{2,\}/-/g')"  # Remove multiple dashes in a row
+  input="$(echo -e "${input}" | sed 's/^-//g; s/-$//g')"  # Remove leading/trailing dashes
+  echo "${input}"
+}
 
 function slugit() {
   for file in *."$1"; do
@@ -43,4 +55,47 @@ function gif2mp4() {
   input=$1
   output=$2
   ffmpeg -i "$input" -movflags faststart -pix_fmt yuv420p -vf "scale=trunc(iw/2)*2:trunc(ih/2)*2" "$output"
+}
+
+
+
+function compressInTriplicate() {
+IMAGE_DIR="$1"
+
+# Shift the positional parameters to remove the image directory
+shift
+
+# Define the three default dimensions to which the images should be compressed
+DIMENSIONS=(800x600 640x480 320x240)
+
+# If optional dimensions are provided, use those instead
+if [[ $# -gt 0 ]]; then
+  DIMENSIONS=("$@")
+fi
+
+# Create the compressed directory if it doesn't exist
+mkdir -p ${IMAGE_DIR}/compressed
+
+# Loop through the dimensions and compress the images
+for SIZE in "${DIMENSIONS[@]}"
+do
+  # Loop through the images in the directory
+  for FILE in "${IMAGE_DIR}"/*.*
+  do
+    # Get the file extension
+    EXTENSION="${FILE##*.}"
+
+    # Check if the file is an image
+    if [[ "$EXTENSION" =~ ^(jpg|jpeg|png|gif)$ ]]; then
+      # Get the file name without the extension
+      FILENAME="${FILE%.*}"
+
+      # Convert the file name to a slug
+      SLUG="$(slugify "$(basename "${FILENAME}")")"
+
+      # Use ImageMagick to resize the image to the specified dimensions and save it to the compressed directory
+      convert "${FILE}" -resize "${SIZE}^" -gravity center -extent "${SIZE}" "${IMAGE_DIR}/compressed/${SLUG}_${SIZE}.${EXTENSION}"
+    fi
+  done
+done
 }
