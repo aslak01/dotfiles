@@ -66,22 +66,29 @@ IMAGE_DIR="$1"
 shift
 
 # Define the three default dimensions to which the images should be compressed
-DIMENSIONS=(800x600 640x480 320x240)
+SMALL_DIMENSIONS=(800x600 640x480 320x240)
+MEDIUM_DIMENSIONS=(1024x768 800x600 640x480)
+LARGE_DIMENSIONS=(1600x1200 1280x960 1024x768)
 
-# If optional dimensions are provided, use those instead
-if [[ $# -gt 0 ]]; then
-  DIMENSIONS=("$@")
+# Check if the user has specified small, medium, or large images
+if [[ "$2" == "small" ]]; then
+  DIMENSIONS=("${SMALL_DIMENSIONS[@]}")
+elif [[ "$2" == "medium" ]]; then
+  DIMENSIONS=("${MEDIUM_DIMENSIONS[@]}")
+elif [[ "$2" == "large" ]]; then
+  DIMENSIONS=("${LARGE_DIMENSIONS[@]}")
+else
+  # Use the default dimensions if no optional parameter is specified
+  DIMENSIONS=("${MEDIUM_DIMENSIONS[@]}")
 fi
 
 # Create the compressed directory if it doesn't exist
 mkdir -p ${IMAGE_DIR}/compressed
 
 # Loop through the dimensions and compress the images
-for SIZE in "${DIMENSIONS[@]}"
-do
+for SIZE in "${DIMENSIONS[@]}"; do
   # Loop through the images in the directory
-  for FILE in "${IMAGE_DIR}"/*.*
-  do
+  for FILE in "${IMAGE_DIR}"/*.*; do
     # Get the file extension
     EXTENSION="${FILE##*.}"
 
@@ -92,10 +99,24 @@ do
 
       # Convert the file name to a slug
       SLUG="$(slugify "$(basename "${FILENAME}")")"
+      DIMENSIONINDEX=0
+      for I in "${DIMENSIONS[@]}"; do
+         if [[ "${I}" == "${SIZE}" ]]; then
+           if [[ "${DIMENSIONINDEX}" == "0" ]]; then
+             LABEL="lg"
+            elif [[ "${DIMENSIONINDEX}" == "1" ]]; then
+              LABEL="md"
+            else 
+              LABEL="sm"
+            fi
+         fi
+         (( DIMENSIONINDEX++ ))
+      done
 
       # Use ImageMagick to resize the image to the specified dimensions and save it to the compressed directory
-      convert "${FILE}" -resize "${SIZE}^" -gravity center -extent "${SIZE}" "${IMAGE_DIR}/compressed/${SLUG}_${SIZE}.${EXTENSION}"
+      convert "${FILE}" -resize "${SIZE}^" -gravity center -extent "${SIZE}" "${IMAGE_DIR}/compressed/${SLUG}_${LABEL}.${EXTENSION}"
     fi
   done
 done
+
 }
