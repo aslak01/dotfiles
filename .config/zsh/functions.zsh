@@ -62,9 +62,6 @@ function gif2mp4() {
 function compressInTriplicate() {
 IMAGE_DIR="$1"
 
-# Shift the positional parameters to remove the image directory
-shift
-
 # Define the three default dimensions to which the images should be compressed
 SMALL_DIMENSIONS=(800x600 640x480 320x240)
 MEDIUM_DIMENSIONS=(1024x768 800x600 640x480)
@@ -114,7 +111,7 @@ for SIZE in "${DIMENSIONS[@]}"; do
       done
 
       # Use ImageMagick to resize the image to the specified dimensions and save it to the compressed directory
-      convert "${FILE}" -resize "${SIZE}^" -gravity center -extent "${SIZE}" "${IMAGE_DIR}/compressed/${SLUG}_${LABEL}.${EXTENSION}"
+      convert "${FILE}" -resize "${SIZE}^" -quality 90 -gravity center -extent "${SIZE}" "${IMAGE_DIR}/compressed/${SLUG}_${LABEL}.${EXTENSION}"
     fi
   done
 done
