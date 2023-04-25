@@ -79,6 +79,13 @@ else
   DIMENSIONS=("${MEDIUM_DIMENSIONS[@]}")
 fi
 
+# quality setting
+if [ -n "$3" ] && [ "$3" -eq "$3" ] 2>/dev/null; then
+  QUAL=$3
+else
+  echo QUAL=90
+fi
+
 # Create the compressed directory if it doesn't exist
 mkdir -p ${IMAGE_DIR}/compressed
 
@@ -111,7 +118,7 @@ for SIZE in "${DIMENSIONS[@]}"; do
       done
 
       # Use ImageMagick to resize the image to the specified dimensions and save it to the compressed directory
-      convert "${FILE}" -resize "${SIZE}^" -quality 90 -gravity center -extent "${SIZE}" "${IMAGE_DIR}/compressed/${SLUG}_${LABEL}.${EXTENSION}"
+      convert "${FILE}" -resize "${SIZE}^" -quality ${QUAL} -gravity center -extent "${SIZE}" "${IMAGE_DIR}/compressed/${SLUG}_${LABEL}.${EXTENSION}"
     fi
   done
 done
