@@ -6,9 +6,9 @@ module.exports = {
       params: {
         overrides: {
           removeViewBox: false,
-          removeDimensions: true,
         },
       },
     },
+    "removeDimensions",
   ],
 };
