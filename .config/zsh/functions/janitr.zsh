@@ -3,18 +3,24 @@
 function janitrStageBanChannel() {
     REQ="$1"
 
-    URL="$JANITR_STAGE_URL"
-    AUTH="$JANITR_STAGE_TOKEN"
+    BASE_URL="$JANITR_STAGE_URL"
+    AUTH="'Authorization: Basic' "$JANITR_STAGE_TOKEN""
 
-    curl --location -g "$URL"'/ban?keys[]='"$REQ" \
-        --header 'Authorization: Basic ' "$TOKEN"
+    URL="$BASE_URL"ban?keys[]="$REQ"
+
+    # echo "--location -g $URL --header "$AUTH""
+
+    curl --location -g $URL --header "$AUTH"
+
 }
 
 function janitrStageBanUrl() {
     REQ="$1"
-    URL="$JANITR_STAGE_URL"
-    AUTH="$JANITR_STAGE_TOKEN"
+    BASE_URL="$JANITR_STAGE_URL"
+    AUTH="'Authorization: Basic' "$JANITR_STAGE_TOKEN""
+    URL="$BASE_URL"ban/$REQ
 
-    curl --location -g "$URL"'/ban/'"$REQ" \
-        --header 'Authorization: Basic ' "$TOKEN"
+    # echo "--location -g $URL --header "$AUTH""
+
+    curl --location -g $URL --header "$AUTH"
 }
