@@ -16,8 +16,6 @@ plug "zsh-users/zsh-autosuggestions"
 plug "hlissner/zsh-autopair"
 plug "zap-zsh/supercharge"
 plug "zap-zsh/vim"
-# plug "zap-zsh/zap-prompt"
-# plug "zettlrobert/simple-prompt"
 # plug "wintermi/zsh-starship"
 plug "zap-zsh/fzf"
 # plug "zap-zsh/exa"
@@ -38,10 +36,9 @@ ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 
 if command -v bat &> /dev/null; then
-  alias cat="bat -pp --theme \"Visual Studio Dark+\"" 
-  alias catt="bat --theme \"Visual Studio Dark+\"" 
+    alias cat="bat -pp --theme \"Visual Studio Dark+\""
+    alias catt="bat --theme \"Visual Studio Dark+\""
 fi
-
 
 # bun completions
 [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
