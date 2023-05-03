@@ -1,5 +1,5 @@
 #!/bin/zsh
 # Homebrewed scripts
-source "./functions/strings.zsh"
-source "./functions/compressions.zsh"
-source "./functions/janitr.zsh"
+source "$HOME/.config/zsh/functions/strings.zsh"
+source "$HOME/.config/zsh/functions/compressions.zsh"
+source "$HOME/.config/zsh/functions/janitr.zsh"
