@@ -66,6 +66,21 @@ wezterm.on("update-right-status", function(window)
 	}))
 end)
 
+local function get_appearance()
+	if wezterm.gui then
+		return wezterm.gui.get_appearance()
+	end
+	return "Dark"
+end
+
+local function scheme_for_appearance(appearance)
+	if appearance:find("Dark") then
+		return "carbonfox"
+	else
+		return "dayfox"
+	end
+end
+
 return {
 	font = wezterm.font_with_fallback({
 		"Liga SFMono Nerd Font",
@@ -73,7 +88,8 @@ return {
 	}),
 	font_size = 15,
 	max_fps = 120,
-	color_scheme = "Default Dark (base16)",
+	-- color_scheme = "Default Dark (base16)",
+	color_scheme = scheme_for_appearance(get_appearance()),
 	enable_wayland = false,
 	pane_focus_follows_mouse = false,
 	warn_about_missing_glyphs = false,
