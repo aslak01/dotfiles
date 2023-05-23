@@ -38,8 +38,6 @@ local function get_process(tab)
 	return wezterm.format(process_icons.icons[process_name] or { { Text = string.format("[%s]", process_name) } })
 end
 
-local is_dark = true
-
 local function get_current_working_dir(tab)
 	local current_dir = tab.active_pane.current_working_dir
 	local HOME_DIR = string.format("file://%s", os.getenv("HOME"))
@@ -75,9 +73,11 @@ end
 
 local function scheme_for_appearance(appearance)
 	if appearance:find("Dark") then
-		return "carbonfox"
+		-- return "carbonfox"
+		return "iceberg-dark"
 	else
-		return "dayfox"
+		-- return "dayfox"
+		return "iceberg-light"
 	end
 end
 
@@ -88,7 +88,6 @@ return {
 	}),
 	font_size = 15,
 	max_fps = 120,
-	-- color_scheme = "Default Dark (base16)",
 	color_scheme = scheme_for_appearance(get_appearance()),
 	enable_wayland = false,
 	pane_focus_follows_mouse = false,
@@ -100,16 +99,16 @@ return {
 	window_close_confirmation = "NeverPrompt",
 	audible_bell = "Disabled",
 	window_padding = {
-		left = 0,
-		right = 0,
-		top = 5,
-		bottom = 0,
+		left = "1cell",
+		right = "1cell",
+		top = "0.5cell",
+		bottom = "0.5cell",
 	},
 	initial_cols = 110,
 	initial_rows = 25,
 	inactive_pane_hsb = {
-		saturation = 1.0,
-		brightness = is_dark and 0.85 or 0.95,
+		saturation = 0.8,
+		brightness = 0.5,
 	},
 	enable_scroll_bar = false,
 	tab_bar_at_bottom = true,

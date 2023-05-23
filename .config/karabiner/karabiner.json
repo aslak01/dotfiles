@@ -16,7 +16,28 @@
           "basic.to_if_held_down_threshold_milliseconds": 500,
           "mouse_motion_to_scroll.speed": 100
         },
-        "rules": []
+        "rules": [
+          {
+            "description": "Eject to Lock Screen (macOS 10.13+)",
+            "manipulators": [
+              {
+                "from": {
+                  "consumer_key_code": "eject"
+                },
+                "to": [
+                  {
+                    "key_code": "q",
+                    "modifiers": [
+                      "left_control",
+                      "left_command"
+                    ]
+                  }
+                ],
+                "type": "basic"
+              }
+            ]
+          }
+        ]
       },
       "devices": [
         {

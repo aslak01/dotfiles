@@ -29,3 +29,8 @@ alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
 alias cd..="cd .." # Typo addressed.
+
+alias vimrc="$EDITOR $HOME/.config/nvim/lua/user/init.lua"
+alias zshrc="$EDITOR $HOME/dotfiles/.zshrc"
+alias zali="$EDITOR $HOME/dotfiles/.config/zsh/aliases.zsh"
+alias zfunc="$EDITOR $HOME/dotfiles/.config/zsh/functions.zsh"
