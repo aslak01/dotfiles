@@ -1,5 +1,9 @@
 #!/bin/zsh
 
+function compPdf() {
+    gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/screen -dNOPAUSE -dBATCH -sOutputFile=out"${$1}".pdf "${$1}"
+}
+
 function svgocp {
     input=$1
     svgo --config=""${HOME}"/.config/svgo.config.js" -i "${input}" -o - | pbcopy
