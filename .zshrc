@@ -3,7 +3,7 @@
 
 # history
 HISTFILE=~/.zsh_history
-HISTORY_IGNORE="(ls|pwd|cd ..|yt_dlp *)"
+HISTORY_IGNORE="(ls|pwd|cd ..|yt-dlp *)"
 
 # source
 plug "$HOME/.config/zsh/exports.zsh"
@@ -42,3 +42,5 @@ fi
 
 # bun completions
 [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
+
+
