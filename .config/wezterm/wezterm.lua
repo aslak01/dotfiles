@@ -73,10 +73,8 @@ end
 
 local function scheme_for_appearance(appearance)
 	if appearance:find("Dark") then
-		-- return "carbonfox"
 		return "iceberg-dark"
 	else
-		-- return "dayfox"
 		return "iceberg-light"
 	end
 end
@@ -107,8 +105,8 @@ return {
 	initial_cols = 110,
 	initial_rows = 25,
 	inactive_pane_hsb = {
-		saturation = 0.8,
-		brightness = 0.5,
+		saturation = 0.5,
+		brightness = 0.7,
 	},
 	enable_scroll_bar = false,
 	tab_bar_at_bottom = true,
