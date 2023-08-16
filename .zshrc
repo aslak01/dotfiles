@@ -45,3 +45,7 @@ fi
 
 # z
 eval "$(zoxide init zsh)"
+
+#deno
+export DENO_INSTALL="$HOME/.deno"
+export PATH="$DENO_INSTALL/bin:$PATH"
