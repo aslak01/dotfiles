@@ -15,7 +15,7 @@ M.keys = {
 	{ key = "j", mods = "ALT", action = wezterm.action.EmitEvent("ActivatePaneDirection-down") },
 	{ key = "k", mods = "ALT", action = wezterm.action.EmitEvent("ActivatePaneDirection-up") },
 	{ key = "l", mods = "ALT", action = wezterm.action.EmitEvent("ActivatePaneDirection-right") },
-	{ key = "z", mods = "ALT|CTRL", action = act.TogglePaneZoomState },
+	{ key = "Enter", mods = "ALT|CTRL", action = act.TogglePaneZoomState },
 	{ key = "Enter", mods = "ALT", action = act.ToggleFullScreen },
 	{ key = "+", mods = "CTRL", action = act.IncreaseFontSize },
 	{ key = "-", mods = "CTRL", action = act.DecreaseFontSize },
