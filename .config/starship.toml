@@ -1,6 +1,9 @@
 [battery]
 disabled = true
 
+[gcloud]
+disabled = true
+
 [aws]
 symbol = "  "
 
