@@ -34,3 +34,5 @@ alias vimrc="$EDITOR $HOME/.config/nvim/lua/user/init.lua"
 alias zshrc="$EDITOR $HOME/dotfiles/.zshrc"
 alias zali="$EDITOR $HOME/dotfiles/.config/zsh/aliases.zsh"
 alias zfunc="$EDITOR $HOME/dotfiles/.config/zsh/functions.zsh"
+
+alias corschrome="open -a Google\ Chrome --args --disable-web-security --user-data-dir='/tmp'"
