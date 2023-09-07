@@ -1,5 +1,6 @@
 module.exports = {
-  multipass: true, // boolean. false by default
+  // optimise until optimisations no longer decrease size
+  multipass: true,
   plugins: [
     {
       name: "preset-default",
@@ -10,5 +11,23 @@ module.exports = {
       },
     },
     "removeDimensions",
+    "sortAttrs",
+    "convertStyleToAttrs",
+    "removeScriptElement",
+    // {
+    //   ...autocrop,
+    //
+    //   params: {
+    //     autocrop: true,
+    //     includeWidthAndHeightAttributes: false, // Same as enabling 'removeDimensions' plugin (and disabling 'removeViewBox' plugin).
+    //
+    //     removeClass: true, // Remove 'class' attribute if encountered.
+    //     removeStyle: true, // Remove 'style'/'font-family' attribute if encountered.
+    //     removeDeprecated: true, // Remove deprecated attributes - like <svg version/baseProfile>/etc.
+    //
+    //     setColor: "currentColor", // Replace any colors encountered with 'currentColor'.
+    //     setColorIssue: "fail", // Fail if more than one color encountered.
+    //   },
+    // },
   ],
 };
