@@ -36,4 +36,5 @@ alias zali="$EDITOR $HOME/dotfiles/.config/zsh/aliases.zsh"
 alias zfunc="$EDITOR $HOME/dotfiles/.config/zsh/functions.zsh"
 
 alias nocorschrome="open -a Google\ Chrome --args --disable-web-security --user-data-dir='/tmp'"
-alias lslatest="ls -snew | tail"
+alias lsnew="ls -snew | tail"
+alias nrs="open -a Numbers"
