@@ -8,8 +8,11 @@ alias nvimrc='nvim ~/.config/nvim/'
 # alias ls="exa --icons -F"
 # alias ll="exa -l --icons -F --color auto .h"
 # alias la="exa -a --icons -F"
-alias ls="exa -a --icons"
-alias lss="exa --icons"
+alias ls="eza -a --icons"
+alias lss="eza --icons"
+alias lsl="eza -l --icons"
+
+alias cat="bat"
 
 # confirm before overwriting something
 alias cp="cp -i"
