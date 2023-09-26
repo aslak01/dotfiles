@@ -47,3 +47,5 @@ export PATH="$DENO_INSTALL/bin:$PATH"
 
 # bun completions
 [ -s "/Users/aslakbakkeland/.bun/_bun" ] && source "/Users/aslakbakkeland/.bun/_bun"
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
