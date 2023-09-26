@@ -12,7 +12,7 @@ alias ls="eza -a --icons"
 alias lss="eza --icons"
 alias lsl="eza -l --icons"
 
-alias cat="bat"
+alias cat='bat --style=plain'
 
 # confirm before overwriting something
 alias cp="cp -i"

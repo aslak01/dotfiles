@@ -35,11 +35,6 @@ bindkey '^@' autosuggest-accept
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 
-if command -v bat &> /dev/null; then
-    alias cat="bat -pp --theme \"Visual Studio Dark+\""
-    alias catt="bat --theme \"Visual Studio Dark+\""
-fi
-
 # bun completions
 [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
