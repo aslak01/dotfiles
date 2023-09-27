@@ -3,21 +3,16 @@ alias g='lazygit'
 alias v="vim ."
 alias zsh-update-plugins="find "$ZDOTDIR/plugins" -type d -exec test -e '{}/.git' ';' -print0 | xargs -I {} -0 git -C {} pull -q"
 alias nvimrc='nvim ~/.config/nvim/'
-# alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
-# alias ls="exa --icons -F"
-# alias ll="exa -l --icons -F --color auto .h"
-# alias la="exa -a --icons -F"
 alias ls="eza -a --icons"
-alias lss="eza --icons"
-alias lsl="eza -l --icons"
+alias ll="eza -l --icons --color auto"
+alias lsnew="eza -l -snew | tail"
 
 alias cat='bat --style=plain'
 
 # confirm before overwriting something
 alias cp="cp -i"
 alias mv='mv -i'
-# alias rm='rm -i'
 
 # easier to read disk
 alias df='df -h'     # human-readable sizes
@@ -39,5 +34,4 @@ alias zali="$EDITOR $HOME/dotfiles/.config/zsh/aliases.zsh"
 alias zfunc="$EDITOR $HOME/dotfiles/.config/zsh/functions.zsh"
 
 alias nocorschrome="open -a Google\ Chrome --args --disable-web-security --user-data-dir='/tmp'"
-alias lsnew="ls -snew | tail"
 alias nrs="open -a Numbers"
