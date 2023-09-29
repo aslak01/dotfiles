@@ -1,1 +1,0 @@
-.config/svgo.config.js
