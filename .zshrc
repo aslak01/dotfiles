@@ -47,3 +47,9 @@ export PATH="$DENO_INSTALL/bin:$PATH"
 [ -s "/Users/aslakbakkeland/.bun/_bun" ] && source "/Users/aslakbakkeland/.bun/_bun"
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+export PATH="$HOME/.local/share/bob/nvim-bin:$PATH"
+
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
