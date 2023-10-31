@@ -19,7 +19,7 @@ alias df='df -h'     # human-readable sizes
 
 # fzf available commands
 # https://www.reddit.com/r/commandline/comments/yjg1fb/examplebased_cheat_sheets_from_the_command_line/iunks9b/
-alias tldrf='tldr --list | fzf --preview "tldr {1} --color=always" --preview-window=right,70% | xargs tldr'
+alias tldrf='tldr --list | fzf --preview "tldr {1}" --preview-window=right,70% | xargs tldr'
 
 alias ~="cd ~"
 alias ..="cd .."
