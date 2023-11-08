@@ -1,0 +1,45 @@
+set header_cache = ~/.cache/mutt
+set message_cachedir = "~/.cache/mutt"
+unset imap_passive
+set imap_keepalive = 300
+set mail_check = 120
+set ssl_force_tls = yes
+
+
+set mailcap_path 	= ~/.config/neomutt/mailcap
+
+
+source ./migadu.cfg
+
+# set imap_check_subscribed 
+# set imap_authenticators = plain
+
+# set my_imap_done = true
+
+# Vim Bindings
+bind index g noop
+bind editor <space> noop
+bind pager,index ] noop
+bind pager,index [ noop
+bind pager,index d noop
+bind index j next-entry
+bind index k previous-entry
+bind index l display-message
+bind index G last-entry
+bind index gg first-entry
+bind attach,browser,pager,index \Cd half-down
+bind attach,browser,pager,index \Cu half-up
+bind pager,index dd delete-message
+bind pager,index dT delete-thread
+bind pager,index dt delete-subthread
+bind pager,index ]t next-thread
+bind pager,index [t previous-thread
+bind index F search
+bind index R group-reply
+bind index L limit
+bind pager j next-line
+bind pager k previous-line
+bind pager l view-attachments
+bind attach <return> view-mailcap
+bind attach l view-mailcap
+bind pager,index = save-message
