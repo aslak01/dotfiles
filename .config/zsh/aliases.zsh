@@ -35,3 +35,5 @@ alias zfunc="$EDITOR $HOME/dotfiles/.config/zsh/functions.zsh"
 
 alias nocorschrome="open -a Google\ Chrome --args --disable-web-security --user-data-dir='/tmp'"
 alias nrs="open -a Numbers"
+
+alias mutt="neomutt"
