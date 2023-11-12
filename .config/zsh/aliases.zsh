@@ -37,3 +37,5 @@ alias nocorschrome="open -a Google\ Chrome --args --disable-web-security --user-
 alias nrs="open -a Numbers"
 
 alias mutt="neomutt"
+
+alias sd="cd \$(fd . -t d | fzf)"
