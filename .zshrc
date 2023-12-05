@@ -50,3 +50,6 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH="$HOME/.local/share/bob/nvim-bin:$PATH"
 
 
+
+# bun completions
+[ -s "/Users/aslak.bakkeland/.bun/_bun" ] && source "/Users/aslak.bakkeland/.bun/_bun"
