@@ -73,9 +73,11 @@ end
 
 local function scheme_for_appearance(appearance)
 	if appearance:find("Dark") then
-		return "iceberg-dark"
+		return "Zenwritten_dark"
+		-- return "iceberg-dark"
 	else
-		return "iceberg-light"
+		return "Zenwritten_light"
+		-- return "iceberg-light"
 	end
 end
 
