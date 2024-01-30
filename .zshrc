@@ -55,3 +55,4 @@ export PATH="$HOME/.local/share/bob/nvim-bin:$PATH"
 
 # bun completions
 [ -s "/Users/aslak.bakkeland/.bun/_bun" ] && source "/Users/aslak.bakkeland/.bun/_bun"
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
