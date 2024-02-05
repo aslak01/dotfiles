@@ -1,0 +1,5 @@
+[user]
+  name = Aslak
+  email = hei@asla.cc
+[includeIf "gitdir:~/w/db/**"]
+  path = ~/.config/git/aller
