@@ -39,7 +39,7 @@ M.keys = {
 	{ key = "K", mods = "CTRL", action = act.ClearScrollback("ScrollbackOnly") },
 	{ key = "K", mods = "SHIFT|CTRL", action = act.ClearScrollback("ScrollbackOnly") },
 	-- { key = "L", mods = "CTRL", action = act.ShowDebugOverlay },
-	-- { key = "L", mods = "SHIFT|CTRL", action = act.ShowDebugOverlay },
+	{ key = "L", mods = "SHIFT|CTRL", action = act.ShowDebugOverlay },
 	{ key = "M", mods = "CTRL", action = act.Hide },
 	{ key = "M", mods = "SHIFT|CTRL", action = act.Hide },
 	{ key = "N", mods = "CTRL", action = act.SpawnWindow },

@@ -1,87 +1,37 @@
 -- wezterm config inspired by https://github.com/thanhvule0310/dotfiles
 local wezterm = require("wezterm")
-local keymaps = require("keys")
-local process_icons = require("process_icons")
+local keys = require("keys")
+-- local process_icons = require("process_icons")
+local tab = require("tab")
+local font = require("font")
+local theme = require("theme")
 
-local function is_vi_process(pane)
-	return pane:get_foreground_process_name():find("n?vim") ~= nil
-end
+-- local function is_vi_process(pane)
+-- 	return pane:get_foreground_process_name():find("n?vim") ~= nil
+-- end
+--
+-- local function conditional_activate_pane(window, pane, pane_direction, vim_direction)
+-- 	if is_vi_process(pane) then
+-- 		window:perform_action(wezterm.action.SendKey({ key = vim_direction, mods = "ALT" }), pane)
+-- 	else
+-- 		window:perform_action(wezterm.action.ActivatePaneDirection(pane_direction), pane)
+-- 	end
+-- end
 
-local function conditional_activate_pane(window, pane, pane_direction, vim_direction)
-	if is_vi_process(pane) then
-		window:perform_action(wezterm.action.SendKey({ key = vim_direction, mods = "ALT" }), pane)
-	else
-		window:perform_action(wezterm.action.ActivatePaneDirection(pane_direction), pane)
-	end
-end
+-- wezterm.on("ActivatePaneDirection-right", function(window, pane)
+-- 	conditional_activate_pane(window, pane, "Right", "l")
+-- end)
+-- wezterm.on("ActivatePaneDirection-left", function(window, pane)
+-- 	conditional_activate_pane(window, pane, "Left", "h")
+-- end)
+-- wezterm.on("ActivatePaneDirection-up", function(window, pane)
+-- 	conditional_activate_pane(window, pane, "Up", "k")
+-- end)
+-- wezterm.on("ActivatePaneDirection-down", function(window, pane)
+-- 	conditional_activate_pane(window, pane, "Down", "j")
+-- end)
 
-wezterm.on("ActivatePaneDirection-right", function(window, pane)
-	conditional_activate_pane(window, pane, "Right", "l")
-end)
-wezterm.on("ActivatePaneDirection-left", function(window, pane)
-	conditional_activate_pane(window, pane, "Left", "h")
-end)
-wezterm.on("ActivatePaneDirection-up", function(window, pane)
-	conditional_activate_pane(window, pane, "Up", "k")
-end)
-wezterm.on("ActivatePaneDirection-down", function(window, pane)
-	conditional_activate_pane(window, pane, "Down", "j")
-end)
-
-local function get_process(tab)
-	local process_name = string.gsub(tab.active_pane.foreground_process_name, "(.*[/\\])(.*)", "%2")
-
-	if process_name == "" then
-		process_name = "zsh"
-	end
-
-	return wezterm.format(process_icons.icons[process_name] or { { Text = string.format("[%s]", process_name) } })
-end
-
-local function get_current_working_dir(tab)
-	local current_dir = tab.active_pane.current_working_dir
-	local HOME_DIR = string.format("file://%s", os.getenv("HOME"))
-
-	return current_dir == HOME_DIR and "~" or string.format("%s", string.gsub(current_dir, "(.*[/\\])(.*)", "%2"))
-end
-
-wezterm.on("format-tab-title", function(tab)
-	return wezterm.format({
-		{ Attribute = { Intensity = "Half" } },
-		{ Text = string.format(" %s ", tab.tab_index + 1) },
-		"ResetAttributes",
-		{ Text = get_process(tab) },
-		{ Text = " " },
-		{ Text = get_current_working_dir(tab) },
-		{ Text = "▕" },
-	})
-end)
-
-wezterm.on("update-right-status", function(window)
-	window:set_right_status(wezterm.format({
-		{ Attribute = { Intensity = "Normal" } },
-		{ Text = wezterm.strftime(" %A, %d %B %Y %-H:%M ") },
-	}))
-end)
-
-local function get_appearance()
-	if wezterm.gui then
-		return wezterm.gui.get_appearance()
-	end
-	return "Dark"
-end
-
-local function scheme_for_appearance(appearance)
-	if appearance:find("Dark") then
-		return "Zenwritten_dark"
-		-- return "iceberg-dark"
-	else
-		return "Zenwritten_light"
-		-- return "iceberg-light"
-	end
-end
-
-return {
+local config = {
 	font = wezterm.font_with_fallback({
 		"Liga SFMono Nerd Font",
 		"Apple Color Emoji",
@@ -89,7 +39,6 @@ return {
 	-- font = wezterm.font("JetBrains Mono", { weight = "Bold" }),
 	font_size = 16,
 	max_fps = 120,
-	color_scheme = scheme_for_appearance(get_appearance()),
 	enable_wayland = false,
 	pane_focus_follows_mouse = false,
 	warn_about_missing_glyphs = false,
@@ -119,7 +68,6 @@ return {
 	tab_max_width = 50,
 	hide_tab_bar_if_only_one_tab = true,
 	disable_default_key_bindings = true,
-	keys = keymaps.keys,
 	send_composed_key_when_left_alt_is_pressed = true, -- alt keybindings
 	use_ime = false,
 	use_dead_keys = true,
@@ -152,3 +100,8 @@ return {
 		},
 	},
 }
+
+font.setup(config)
+theme.setup(config)
+keys.setup(config)
+tab.setup(config)
