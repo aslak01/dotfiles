@@ -105,3 +105,5 @@ font.setup(config)
 theme.setup(config)
 keys.setup(config)
 tab.setup(config)
+
+return config
