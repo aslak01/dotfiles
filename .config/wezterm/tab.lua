@@ -4,7 +4,7 @@ local colors = require("theme").colors
 
 local Tab = {}
 
-local function get_process(tab)
+local function get_process(s)
 	local PROCESS_ICONS = {
 		["docker"] = {
 			{ Foreground = { Color = colors.blue } },
@@ -100,7 +100,7 @@ local function get_process(tab)
 		},
 	}
 
-	local process_name = string.gsub(tab.active_pane.foreground_process_name, "(.*[/\\])(.*)", "%2")
+	local process_name = string.gsub(s, "(.*[/\\])(.*)", "%2")
 
 	if PROCESS_ICONS[process_name] then
 		return wezterm.format(PROCESS_ICONS[process_name])
@@ -117,52 +117,85 @@ local function get_process(tab)
 	end
 end
 
-local function get_current_working_dir(tab)
-	local cwd_uri = tab.active_pane.current_working_dir
+-- local function get_current_working_dir(tab)
+-- 	local cwd_uri = tab.active_pane.current_working_dir
+--
+-- 	if cwd_uri then
+-- 		local cwd = ""
+-- 		local fp = "file_path"
+-- 		if type(cwd_uri) == "userdata" then
+-- 			cwd = cwd_uri.file_path
+-- 		else
+-- 			cwd_uri = cwd_uri:sub(8)
+-- 			local slash = cwd_uri:find("/")
+-- 			if slash then
+-- 				cwd = cwd_uri:sub(slash):gsub("%%(%x%x)", function(hex)
+-- 					return string.char(tonumber(hex, 16))
+-- 				end)
+-- 			end
+-- 		end
+--
+-- 		if cwd == os.getenv("HOME") then
+-- 			return "~"
+-- 		end
+--
+-- 		return string.format("%s", string.match(cwd, "[^/]+$"))
+-- 	end
+-- end
 
-	if cwd_uri then
-		local cwd = ""
-		-- if type(cwd_uri) == "userdata" then
-		-- 	cwd = cwd_uri.file_path
-		-- else
-		cwd_uri = cwd_uri:sub(8)
-		local slash = cwd_uri:find("/")
-		if slash then
-			cwd = cwd_uri:sub(slash):gsub("%%(%x%x)", function(hex)
-				return string.char(tonumber(hex, 16))
-			end)
-			-- end
-		end
+-- local function basename(s)
+-- 	if s == nil then
+-- 		return " "
+-- 	end
+--
+-- 	return string.gsub(s, "(.*[/\\])(.*)", "%2")
+-- end
 
-		if cwd == os.getenv("HOME") then
-			return "~"
-		end
-
-		return string.format("%s", string.match(cwd, "[^/]+$"))
+local function tab_title(tab_info)
+	local title = tab_info.tab_title
+	-- if the tab title is explicitly set, take that
+	if title and #title > 0 then
+		return title
 	end
+	-- Otherwise, use the title from the active pane
+	-- in that tab
+	return tab_info.active_pane.title
 end
 
 function Tab.setup(config)
+	local tab_width = 30
 	config.tab_bar_at_bottom = true
 	config.use_fancy_tab_bar = false
 	config.show_new_tab_button_in_tab_bar = false
-	config.tab_max_width = 50
+	config.tab_max_width = tab_width
 	config.hide_tab_bar_if_only_one_tab = true
-
 	wezterm.on("format-tab-title", function(tab)
+		local pane = tab.active_pane
+		local title = tab_title(tab)
+		-- local title = get_current_working_dir(tab)
+		local titleFmt = wezterm.truncate_right(title, tab_width - 2)
+		local process = pane.foreground_process_name
 		return wezterm.format({
-			{ Text = "  " },
 			{ Attribute = { Intensity = "Half" } },
-			{ Text = string.format("%s", tab.tab_index + 1) },
+			{ Text = " " .. string.format("%s", tab.tab_index + 1) },
 			"ResetAttributes",
-			{ Text = " " },
-			{ Text = get_process(tab) },
-			{ Text = " " },
-			{ Text = get_current_working_dir(tab) },
-			{ Foreground = { Color = colors.base } },
-			{ Text = " ▕" },
+			{ Text = " " .. get_process(process) .. " " .. titleFmt .. " " },
 		})
 	end)
 end
+
+-- 	return wezterm.format({
+-- 		{ Text = "  " },
+-- 		{ Attribute = { Intensity = "Half" } },
+-- 		{ Text = string.format("%s", tab.tab_index + 1) },
+-- 		"ResetAttributes",
+-- 		{ Text = " " },
+-- 		{ Text = get_process(tab) },
+-- 		{ Text = " " },
+-- 		{ Text = get_current_working_dir(tab) },
+-- 		{ Foreground = { Color = colors.base } },
+-- 		{ Text = " ▕" },
+-- 	})
+-- end)
 
 return Tab

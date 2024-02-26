@@ -1,7 +1,7 @@
 -- wezterm config inspired by https://github.com/thanhvule0310/dotfiles
-local wezterm = require("wezterm")
-local keys = require("keys")
+-- local wezterm = require("wezterm")
 -- local process_icons = require("process_icons")
+local keys = require("keys")
 local tab = require("tab")
 local font = require("font")
 local theme = require("theme")
@@ -32,46 +32,27 @@ local theme = require("theme")
 -- end)
 
 local config = {
-	font = wezterm.font_with_fallback({
-		"Liga SFMono Nerd Font",
-		"Apple Color Emoji",
-	}),
-	-- font = wezterm.font("JetBrains Mono", { weight = "Bold" }),
-	font_size = 16,
-	max_fps = 120,
 	enable_wayland = false,
 	pane_focus_follows_mouse = false,
 	warn_about_missing_glyphs = false,
 	show_update_window = false,
 	check_for_updates = false,
-	line_height = 1.1,
 	window_decorations = "RESIZE",
+	adjust_window_size_when_changing_font_size = true,
 	window_close_confirmation = "NeverPrompt",
-	audible_bell = "Disabled",
 	window_padding = {
-		left = "1cell",
-		right = "1cell",
-		top = "0.5cell",
-		bottom = "0.5cell",
+		left = 0,
+		right = 0,
+		top = 0,
+		bottom = 0,
 	},
-	initial_cols = 110,
-	initial_rows = 25,
+	-- initial_cols = 80,
+	-- initial_rows = 25,
 	inactive_pane_hsb = {
 		saturation = 0.5,
 		brightness = 0.7,
 	},
-	enable_scroll_bar = false,
-	tab_bar_at_bottom = true,
-	use_fancy_tab_bar = false,
-	show_new_tab_button_in_tab_bar = false,
 	window_background_opacity = 1.0,
-	tab_max_width = 50,
-	hide_tab_bar_if_only_one_tab = true,
-	disable_default_key_bindings = true,
-	send_composed_key_when_left_alt_is_pressed = true, -- alt keybindings
-	use_ime = false,
-	use_dead_keys = true,
-	debug_key_events = false,
 	front_end = "WebGpu",
 	hyperlink_rules = {
 		{
