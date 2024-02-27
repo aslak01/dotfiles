@@ -26,26 +26,17 @@ eval "$(starship init zsh)"
 
 plug "$HOME/.config/zsh/aliases.zsh"
 
-export PATH="$HOME/.local/bin":$PATH
-
 # zsh-autosuggestions
 # keybinds
 bindkey '^@' autosuggest-accept
+
 # configs
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 
-# bun completions
-[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
-
 # z
 eval "$(zoxide init zsh)"
 
-#deno
-export DENO_INSTALL="$HOME/.deno"
-export PATH="$DENO_INSTALL/bin:$PATH"
 
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-export PATH="$HOME/.local/share/bob/nvim-bin:$PATH"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
