@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-function janitrStageBanChannel() {
+function janbanchanS() {
     REQ="$1"
     BASE_URL="$JANITR_STAGE_URL"
     AUTH="'Authorization: Basic' "$JANITR_STAGE_TOKEN""
@@ -9,7 +9,7 @@ function janitrStageBanChannel() {
     curl --location -g $URL --header "$AUTH"
 }
 
-function janitrStageBanUrl() {
+function janbanurlS() {
     REQ="$1"
     BASE_URL="$JANITR_STAGE_URL"
     AUTH="'Authorization: Basic' "$JANITR_STAGE_TOKEN""
@@ -18,7 +18,7 @@ function janitrStageBanUrl() {
     curl --location -g $URL --header "$AUTH"
 }
 
-function janitrProdBanChannel() {
+function janbanchanP() {
     REQ="$1"
     BASE_URL="$JANITR_URL"
     AUTH="'Authorization: Basic' "$JANITR_TOKEN""
