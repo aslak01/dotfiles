@@ -15,7 +15,6 @@ return {
   { import = "astrocommunity.pack.bash" },
   { import = "astrocommunity.pack.rust" },
   { import = "astrocommunity.pack.go" },
-  { import = "astrocommunity.pack.gleam" },
   { import = "astrocommunity.pack.markdown" },
   { import = "astrocommunity.markdown-and-latex.vimtex" },
 
