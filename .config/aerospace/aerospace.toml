@@ -60,7 +60,7 @@ PATH = '/opt/homebrew/bin:/opt/homebrew/sbin:${PATH}'
 [mode.main.binding]
 cmd-h = []
 
-alt-enter = 'exec-and-forget open -n /Applications/WezTerm.app'
+alt-t = 'exec-and-forget open -n /Applications/WezTerm.app'
 
 alt-b = '''exec-and-forget osascript <<EOF
 tell application "Safari"
@@ -86,8 +86,8 @@ alt-shift-k = 'move up'
 alt-shift-l = 'move right'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#resize
-alt-shift-9 = 'resize smart -50'
-alt-shift-0 = 'resize smart +50'
+cmd-shift-h = 'resize smart -50'
+cmd-shift-l = 'resize smart +50'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
 ctrl-1 = 'workspace 1'
