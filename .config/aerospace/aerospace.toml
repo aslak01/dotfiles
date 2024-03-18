@@ -75,6 +75,18 @@ tell application "Safari"
 end tell
 EOF'''
 
+alt-shift-b = '''exec-and-forget osascript <<EOF
+tell application "Google Chrome"
+    activate
+end tell
+EOF'''
+
+alt-ctrl-b = '''exec-and-forget osascript <<EOF
+tell application "Firefox Developer Edition"
+    activate
+end tell
+EOF'''
+
 # See: https://nikitabobko.github.io/AeroSpace/commands#layout
 ctrl-period = 'layout tiles horizontal vertical'
 ctrl-comma = 'layout accordion horizontal vertical'
@@ -106,7 +118,6 @@ ctrl-w = 'workspace W'
 ctrl-e = 'workspace E'
 ctrl-a = 'workspace A'
 ctrl-s = 'workspace S'
-ctrl-d = 'workspace D'
 
 cmd-ctrl-1 = 'move-node-to-workspace 1'
 cmd-ctrl-2 = 'move-node-to-workspace 2'
@@ -118,7 +129,6 @@ cmd-ctrl-w = 'move-node-to-workspace W'
 cmd-ctrl-e = 'move-node-to-workspace E'
 cmd-ctrl-a = 'move-node-to-workspace A'
 cmd-ctrl-s = 'move-node-to-workspace S'
-cmd-ctrl-d = 'move-node-to-workspace D'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
 alt-tab = 'workspace-back-and-forth'
