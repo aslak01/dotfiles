@@ -17,8 +17,8 @@ start-at-login = true
 after-login-command = []
 after-startup-command = [
   '''exec-and-forget /opt/homebrew/opt/borders/bin/borders \
-    active_color=0xff58e4e \
-    inactive_color=0xf494d64 \
+    active_color=0xfff79c1b \
+    inactive_color=0xff494d64 \
     hidpi=true \
     width=5.0''',
 ]
@@ -48,12 +48,12 @@ indent-for-nested-containers-with-the-same-orientation = 30
 #                 Monitor pattern is the same as for 'workspace-to-monitor-force-assignment'.
 #                 See: https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 [gaps]
-inner.horizontal = 4
-inner.vertical = 4
-outer.left = 4
-outer.bottom = 4
-outer.top = 4
-outer.right = 4
+inner.horizontal = 10
+inner.vertical = 10
+outer.left = 10
+outer.bottom = 10
+outer.top = 10
+outer.right = 10
 
 # See https://nikitabobko.github.io/AeroSpace/guide#exec-env-vars
 [exec]
