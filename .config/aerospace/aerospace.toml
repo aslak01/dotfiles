@@ -64,7 +64,7 @@ PATH = '/opt/homebrew/bin:/opt/homebrew/sbin:${PATH}'
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
 # 'main' binding mode must be always presented
 [mode.main.binding]
-cmd-h = []
+# cmd-h = []
 
 alt-t = 'exec-and-forget open -n /Applications/WezTerm.app'
 
@@ -80,20 +80,20 @@ ctrl-period = 'layout tiles horizontal vertical'
 ctrl-comma = 'layout accordion horizontal vertical'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#focus
-ctrl-h = 'focus left'
-ctrl-j = 'focus down'
-ctrl-k = 'focus up'
-ctrl-l = 'focus right'
+cmd-h = 'focus left'
+cmd-j = 'focus down'
+cmd-k = 'focus up'
+cmd-l = 'focus right'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move
-ctrl-shift-h = 'move left'
-ctrl-shift-j = 'move down'
-ctrl-shift-k = 'move up'
-ctrl-shift-l = 'move right'
+cmd-shift-h = 'move left'
+cmd-shift-j = 'move down'
+cmd-shift-k = 'move up'
+cmd-shift-l = 'move right'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#resize
-cmd-shift-h = 'resize smart -50'
-cmd-shift-l = 'resize smart +50'
+cmd-alt-h = 'resize smart -50'
+cmd-alt-l = 'resize smart +50'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
 ctrl-1 = 'workspace 1'
@@ -104,7 +104,10 @@ ctrl-5 = 'workspace 5'
 ctrl-q = 'workspace Q'
 ctrl-w = 'workspace W'
 ctrl-e = 'workspace E'
-ctrl-r = 'workspace R'
+ctrl-a = 'workspace A'
+ctrl-s = 'workspace S'
+ctrl-d = 'workspace D'
+
 cmd-ctrl-1 = 'move-node-to-workspace 1'
 cmd-ctrl-2 = 'move-node-to-workspace 2'
 cmd-ctrl-3 = 'move-node-to-workspace 3'
@@ -113,7 +116,9 @@ cmd-ctrl-5 = 'move-node-to-workspace 5'
 cmd-ctrl-q = 'move-node-to-workspace Q'
 cmd-ctrl-w = 'move-node-to-workspace W'
 cmd-ctrl-e = 'move-node-to-workspace E'
-cmd-ctrl-r = 'move-node-to-workspace R'
+cmd-ctrl-a = 'move-node-to-workspace A'
+cmd-ctrl-s = 'move-node-to-workspace S'
+cmd-ctrl-d = 'move-node-to-workspace D'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
 alt-tab = 'workspace-back-and-forth'
