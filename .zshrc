@@ -37,6 +37,6 @@ ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 # z
 eval "$(zoxide init zsh)"
 
-
-
+# fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
