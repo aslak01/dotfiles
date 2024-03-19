@@ -8,7 +8,7 @@ return {
   { "rktjmp/lush.nvim" },
   { "mcchrish/zenbones.nvim" },
   {
-    "aslak01/typebreak.nvim",
+    dir = "~/w/pers/typebreak.nvim",
     requires = "nvim-lua/plenary.nvim",
     keys = {
       {
