@@ -15,13 +15,12 @@
 start-at-login = true
 # Available commands: https://nikitabobko.github.io/AeroSpace/commands
 after-login-command = []
-after-startup-command = [
-  '''exec-and-forget /opt/homebrew/opt/borders/bin/borders \
+after-startup-command = ['''exec-and-forget /opt/homebrew/bin/borders \
+    style=round \
     active_color=0xfff79c1b \
     inactive_color=0xff494d64 \
-    hidpi=true \
-    width=5.0''',
-]
+    hidpi=on \
+    width=5.0''']
 
 # Normalizations. See: https://nikitabobko.github.io/AeroSpace/guide#normalization
 enable-normalization-flatten-containers = true
@@ -77,6 +76,12 @@ EOF'''
 
 alt-shift-b = '''exec-and-forget osascript <<EOF
 tell application "Google Chrome"
+    if (count of windows) is 0 then
+        make new window
+    else
+        set newWindow to make new window
+        set index of newWindow to 1 -- Makes the new window the front window
+    end if
     activate
 end tell
 EOF'''
@@ -145,8 +150,8 @@ alt-shift-slash = 'mode join'
 r = ['flatten-workspace-tree', 'mode main'] # reset layout
 #s = ['layout sticky tiling', 'mode main'] # sticky is not yet supported https://github.com/nikitabobko/AeroSpace/issues/2
 f = [
-  'layout floating tiling',
-  'mode main',
+    'layout floating tiling',
+    'mode main',
 ] # Toggle between floating and tiling layout
 backspace = ['close-all-windows-but-current', 'mode main']
 esc = ['reload-config', 'mode main']
