@@ -15,12 +15,9 @@
 start-at-login = true
 # Available commands: https://nikitabobko.github.io/AeroSpace/commands
 after-login-command = []
-after-startup-command = ['''exec-and-forget /opt/homebrew/bin/borders \
-    style=round \
-    active_color=0xfff79c1b \
-    inactive_color=0xff494d64 \
-    hidpi=on \
-    width=5.0''']
+after-startup-command = [
+    # 'exec-and-forget /opt/homebrew/opt/borders/bin/borders',
+]
 
 # Normalizations. See: https://nikitabobko.github.io/AeroSpace/guide#normalization
 enable-normalization-flatten-containers = true
