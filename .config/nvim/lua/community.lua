@@ -22,6 +22,7 @@ return {
   { import = "astrocommunity.lsp.lsp-signature-nvim" },
   { import = "astrocommunity.lsp.inc-rename-nvim" },
   { import = "astrocommunity.project.nvim-spectre" },
+  { import = "astrocommunity.editing-support.conform-nvim" },
 
   -- orchestration
   { import = "astrocommunity.code-runner.overseer-nvim" },
