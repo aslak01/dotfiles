@@ -92,6 +92,7 @@ EOF'''
 # See: https://nikitabobko.github.io/AeroSpace/commands#layout
 ctrl-period = 'layout tiles horizontal vertical'
 ctrl-comma = 'layout accordion horizontal vertical'
+alt-shift-space = 'layout accordion tiles'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#focus
 cmd-h = 'focus left'
@@ -106,8 +107,8 @@ cmd-shift-k = 'move up'
 cmd-shift-l = 'move right'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#resize
-cmd-alt-h = 'resize smart -50'
-cmd-alt-l = 'resize smart +50'
+alt-shift-h = 'resize smart -50'
+alt-shift-l = 'resize smart +50'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
 ctrl-1 = 'workspace 1'
