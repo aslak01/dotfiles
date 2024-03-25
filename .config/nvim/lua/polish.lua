@@ -6,6 +6,7 @@
 vim.filetype.add {
   extension = {
     mustache = "handlebars",
+    tmpl = "gotmpl",
   },
   filename = {
     -- ["Foofile"] = "fooscript",
