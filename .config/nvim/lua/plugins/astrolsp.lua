@@ -43,6 +43,10 @@ return {
     -- customize language server configuration options passed to `lspconfig`
     ---@diagnostic disable: missing-fields
     config = {
+      -- TODO: remove this when go.nvim corrects template filetypes
+      gopls = {
+        filetypes = { "go", "gomod", "gowork", "gotmpl", "gotexttmpl" },
+      },
       -- clangd = { capabilities = { offsetEncoding = "utf-8" } },
       vtsls = {
         settings = {
