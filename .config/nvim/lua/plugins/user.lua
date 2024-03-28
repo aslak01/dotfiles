@@ -8,17 +8,6 @@ return {
   { "rktjmp/lush.nvim" },
   { "mcchrish/zenbones.nvim" },
   {
-    dir = "~/w/pers/typebreak.nvim",
-    requires = "nvim-lua/plenary.nvim",
-    keys = {
-      {
-        "<leader>tb",
-        "<cmd>:lua require('typebreak').start(true)<cr>",
-        desc = "typebreak",
-      },
-    },
-  },
-  {
     "f-person/auto-dark-mode.nvim",
     config = function()
       require("auto-dark-mode").setup {
@@ -108,5 +97,5 @@ return {
       { "sn", desc = "Update `MiniSurround.config.n_lines`" },
     },
     opts = { n_lines = 200 },
-  }
+  },
 }
