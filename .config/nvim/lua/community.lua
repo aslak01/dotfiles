@@ -5,7 +5,7 @@
 ---@type LazySpec
 return {
   -- TODO: Remove branch v4 on release
-  { "AstroNvim/astrocommunity", branch = "v4" },
+  { "AstroNvim/astrocommunity" },
 
   -- lang specific lsp etc
   { import = "astrocommunity.pack.lua" },
@@ -19,7 +19,7 @@ return {
   { import = "astrocommunity.markdown-and-latex.vimtex" },
 
   -- general lsp
-  { import = "astrocommunity.lsp.lsp-signature-nvim" },
+  -- { import = "astrocommunity.lsp.lsp-signature-nvim" },
   { import = "astrocommunity.lsp.inc-rename-nvim" },
   { import = "astrocommunity.project.nvim-spectre" },
   { import = "astrocommunity.editing-support.conform-nvim" },
