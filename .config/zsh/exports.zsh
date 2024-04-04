@@ -33,3 +33,6 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 # bob (nvim)
 export PATH="$HOME/.local/share/bob/nvim-bin:$PATH"
+
+# go
+export PATH="$HOME/go/bin:$PATH"
