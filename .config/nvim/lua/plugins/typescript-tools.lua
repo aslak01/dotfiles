@@ -1,3 +1,4 @@
+-- https://github.com/pmizio/typescript-tools.nvim/issues/248
 return {
     "pmizio/typescript-tools.nvim",
     dependencies = {
