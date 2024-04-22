@@ -71,6 +71,8 @@ tell application "Safari"
 end tell
 EOF'''
 
+cmd-shift-b = 'exec-and-forget qutebrowser'
+
 alt-shift-b = '''exec-and-forget osascript <<EOF
 tell application "Google Chrome"
     if (count of windows) is 0 then
