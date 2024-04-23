@@ -13,7 +13,7 @@ config.load_autoconfig()
 import dracula
 dracula.blood(c, { 'font': { 'size': 11 } })
 
-config.set("colors.webpage.preferred_color_scheme", "auto")
+# config.set("colors.webpage.preferred_color_scheme", "auto")
 
 ## This is here so configs done via the GUI are still loaded.
 ## Remove it to not load settings done via the GUI.
@@ -1391,7 +1391,8 @@ c.scrolling.bar = 'when-searching'
 ##   - uk-UA: Ukrainian (Ukraine)
 ##   - vi-VN: Vietnamese (Viet Nam)
 # c.spellcheck.languages = []
-c.spellcheck.languages = ['en-US', 'de-DE', 'nb-NO']
+
+# c.spellcheck.languages = ['en-US', 'de-DE', 'nb-NO']
 
 ## Hide the statusbar unless a message is shown.
 ## Type: Bool
@@ -1759,11 +1760,10 @@ c.bindings.commands = {
         '<Ctrl-0>': 'zoom',
         '<Ctrl-e>': 'edit-text',
         '<Ctrl-i>': 'edit-text',
-        '<Ctrl-p>': 'hint --first inputs ;; spawn --userscript qute-lastpass',
-        '<Ctrl-Shift-p>': 'spawn --userscript qute-lastpass --password-only',
-        '<Ctrl-u>': 'spawn --userscript qute-lastpass --username-only',
-        '<Ctrl-Shift-u>': 'spawn --userscript qute-lastpass --username-only',
-        '<Ctrl-s>': 'jseval document.querySelectorAll("input[type=password]").forEach(i => { i.type = "text" })',
+        # '<Ctrl-Shift-p>': 'spawn --userscript qute-lastpass --password-only',
+        # '<Ctrl-u>': 'spawn --userscript qute-lastpass --username-only',
+        # '<Ctrl-Shift-u>': 'spawn --userscript qute-lastpass --username-only',
+        # '<Ctrl-s>': 'jseval document.querySelectorAll("input[type=password]").forEach(i => { i.type = "text" })',
         '<Escape>': 'mode-leave ;; jseval -q document.activeElement.blur()'
     }
 }
