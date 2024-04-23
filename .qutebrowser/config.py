@@ -33,7 +33,8 @@ c.aliases = {
     'mpv': 'spawn --detach /opt/homebrew/bin/mpv {url}',
     'o': 'open',
     'q': 'quit',
-    'qrcode': 'spawn st -e watch --color -t -x qrcode-terminal \"{url}\"'
+    'qrcode': 'spawn st -e watch --color -t -x qrcode-terminal \"{url}\"',
+    'json': 'spawn --userscript ~/.qutebrowser/userscripts/json_format'
 }
 
 ## Time interval (in milliseconds) between auto-saves of
