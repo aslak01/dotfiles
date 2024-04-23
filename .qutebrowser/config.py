@@ -1669,8 +1669,11 @@ c.url.open_base_url = True
 ## Type: Dict
 # c.url.searchengines = {'DEFAULT': 'https://duckduckgo.com/?q={}'}
 c.url.searchengines = {
-    '?': 'https://google.de/search?q={}',
-    '?amazon': 'https://www.amazon.de/s?k={}',
+    '?': 'https://google.com/search?q={}',
+    '?dbg': 'https://github.com/dbmedialab/{}',
+    '?dbr': 'https://github.com/search?q=org%3Adbmedialab+{}&type=repositories',
+    '?dbc': 'https://github.com/search?q=org%3Adbmedialab+{}&type=code',
+    '?amazon': 'https://www.amazon.com/s?k={}',
     '?aur': 'https://aur.archlinux.org/packages/?SB=p&SO=d&O=0&K={}',
     '?dd': 'https://duckduckgo.com/?q={}',
     '?giphy': 'https://giphy.com/search/{}',
@@ -1684,7 +1687,7 @@ c.url.searchengines = {
     '?purs': 'https://pursuit.purescript.org/search?q={}',
     '?youtube': 'https://www.youtube.com/results?search_query={}',
     '?yt': 'https://www.youtube.com/results?search_query={}',
-    'DEFAULT': 'https://google.de/search?q={}'
+    'DEFAULT': 'https://google.com/search?q={}'
 }
 
 ## Page(s) to open at the start.
@@ -1753,7 +1756,16 @@ c.bindings.commands = {
         '=': 'zoom',
         '?': 'set-cmd-text :open -t ?',
         'F': 'hint links tab-bg',
-        'gi': 'hint inputs'
+        'gi': 'hint inputs',
+        '<cmd-1>': 'tab-focus 1',
+        '<cmd-2>': 'tab-focus 2',
+        '<cmd-3>': 'tab-focus 3',
+        '<cmd-4>': 'tab-focus 4',
+        '<cmd-5>': 'tab-focus 5',
+        '<cmd-6>': 'tab-focus 6',
+        '<cmd-7>': 'tab-focus 7',
+        '<cmd-8>': 'tab-focus 8',
+        '<cmd-9>': 'tab-focus 9',
     },
     'insert': {
         '<Ctrl-+>': 'zoom-in',
