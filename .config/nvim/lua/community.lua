@@ -8,6 +8,7 @@ return {
 
   -- lang specific lsp etc
   { import = "astrocommunity.pack.lua" },
+
   { import = "astrocommunity.pack.html-css" },
   { import = "astrocommunity.pack.typescript-all-in-one" },
   { import = "astrocommunity.pack.svelte" },
@@ -19,7 +20,6 @@ return {
 
   -- general lsp
   -- { import = "astrocommunity.lsp.lsp-signature-nvim" },
-  { import = "astrocommunity.lsp.inc-rename-nvim" },
   { import = "astrocommunity.project.nvim-spectre" },
   { import = "astrocommunity.editing-support.conform-nvim" },
 
