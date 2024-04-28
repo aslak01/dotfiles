@@ -13,7 +13,9 @@ config.load_autoconfig()
 import dracula
 dracula.blood(c, { 'font': { 'size': 11 } })
 
-# config.set("colors.webpage.preferred_color_scheme", "auto")
+c.colors.webpage.preferred_color_scheme = "auto"
+
+c.colors.webpage.darkmode.enabled = False
 
 ## This is here so configs done via the GUI are still loaded.
 ## Remove it to not load settings done via the GUI.
@@ -966,7 +968,7 @@ c.editor.command = ["st", "-e", "vim", "{file}"]
 ## empty value, a system-specific monospace default is used.
 ## Type: List of Font, or Font
 # c.fonts.default_family = []
-c.fonts.default_family = ['Iosevka Nerd Font', 'Courier', 'Liberation Mono', 'monospace', 'Fixed', 'Consolas', 'Terminal']
+c.fonts.default_family = ['Inter']
 
 ## Default font size to use. Whenever "default_size" is used in a font
 ## setting, it's replaced with the size listed here. Valid values are
@@ -1692,7 +1694,7 @@ c.url.searchengines = {
 
 ## Page(s) to open at the start.
 ## Type: List of FuzzyUrl, or FuzzyUrl
-# c.url.start_pages = ['https://start.duckduckgo.com']
+c.url.start_pages = ['about:blank']
 # c.url.start_pages = ['~/dotfiles/qutebrowser/start.html']
 
 ## URL parameters to strip with `:yank url`.
