@@ -697,7 +697,7 @@ c.content.blocking.enabled = True
 ## from hostblocking.
 ## Type: List of UrlPattern
 # c.content.host_blocking.whitelist = []
-c.content.blocking.whitelist = ['www.googleadservices.com']
+c.content.blocking.whitelist = []
 
 ## Enable hyperlink auditing (`<a ping>`).
 ## Type: Bool
