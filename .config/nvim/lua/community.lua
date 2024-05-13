@@ -18,6 +18,8 @@ return {
   { import = "astrocommunity.pack.markdown" },
   { import = "astrocommunity.markdown-and-latex.vimtex" },
 
+  { import = "astrocommunity.editing-support.conform-nvim" },
+
   -- general lsp
   { import = "astrocommunity.lsp.lsp-signature-nvim" },
   { import = "astrocommunity.project.nvim-spectre" },
