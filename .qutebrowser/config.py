@@ -13,7 +13,8 @@ config.load_autoconfig()
 import dracula
 dracula.blood(c, { 'font': { 'size': 11 } })
 
-c.colors.webpage.preferred_color_scheme = "auto"
+# c.colors.webpage.preferred_color_scheme = "auto"
+c.colors.webpage.preferred_color_scheme = "dark"
 
 c.colors.webpage.darkmode.enabled = False
 

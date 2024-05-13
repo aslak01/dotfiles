@@ -160,6 +160,7 @@ alt-shift-k = ['join-with up', 'mode main']
 alt-shift-l = ['join-with right', 'mode main']
 esc = 'mode main'
 
+
 # Qutebrowser hack rule
 # https://github.com/nikitabobko/AeroSpace/issues/166
 [[on-window-detected]]
