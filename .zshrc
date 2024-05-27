@@ -73,3 +73,4 @@ eval "$(zoxide init zsh)"
 . "$HOME/.config/zsh/functions.zsh"
 . "$HOME/.config/zsh/zsh_api_keys.zsh"
 . "$HOME/.config/zsh/aliases.zsh"
+

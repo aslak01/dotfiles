@@ -38,3 +38,6 @@ export PATH="$HOME/.local/share/bob/nvim-bin:$PATH"
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 export PATH=$PATH:$(go env GOPATH)/bin
+
+# ocaml
+[[ ! -r $HOME/.opam/opam-init/init.zsh ]] || source $HOME/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
