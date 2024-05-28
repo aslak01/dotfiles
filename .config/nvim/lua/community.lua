@@ -19,11 +19,11 @@ return {
   { import = "astrocommunity.markdown-and-latex.vimtex" },
 
   { import = "astrocommunity.editing-support.conform-nvim" },
+  { import = "astrocommunity.lsp.nvim-lint" },
 
   -- general lsp
   { import = "astrocommunity.lsp.lsp-signature-nvim" },
   { import = "astrocommunity.project.nvim-spectre" },
-  { import = "astrocommunity.editing-support.conform-nvim" },
 
   -- orchestration
   { import = "astrocommunity.code-runner.overseer-nvim" },
@@ -37,6 +37,7 @@ return {
 
   -- color
   { import = "astrocommunity.color.ccc-nvim" },
+  { import = "astrocommunity.color.huez-nvim" },
 
   -- editor tweaks
   { import = "astrocommunity.editing-support.mini-splitjoin" },
