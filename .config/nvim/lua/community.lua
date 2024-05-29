@@ -23,6 +23,9 @@ return {
 
   -- general lsp
   { import = "astrocommunity.lsp.lsp-signature-nvim" },
+  { import = "astrocommunity.lsp.lspsaga-nvim" },
+
+  -- sed
   { import = "astrocommunity.project.nvim-spectre" },
 
   -- orchestration
