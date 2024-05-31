@@ -8,7 +8,6 @@ return {
 
   -- lang specific lsp etc
   { import = "astrocommunity.pack.lua" },
-
   { import = "astrocommunity.pack.html-css" },
   { import = "astrocommunity.pack.typescript-all-in-one" },
   { import = "astrocommunity.pack.svelte" },
@@ -18,10 +17,11 @@ return {
   { import = "astrocommunity.pack.markdown" },
   { import = "astrocommunity.markdown-and-latex.vimtex" },
 
+  -- fortmatting and linting 
   { import = "astrocommunity.editing-support.conform-nvim" },
   { import = "astrocommunity.lsp.nvim-lint" },
 
-  -- general lsp
+  -- misc lsp
   { import = "astrocommunity.lsp.lsp-signature-nvim" },
   { import = "astrocommunity.lsp.lspsaga-nvim" },
 
@@ -44,4 +44,11 @@ return {
 
   -- editor tweaks
   { import = "astrocommunity.editing-support.mini-splitjoin" },
+
+  -- motion
+  { import = "astrocommunity.motion.nvim-surround" },
+  { import = "astrocommunity.motion.before-nvim" },
+
+  -- game
+  { import = "astrocommunity.game.leetcode-nvim"}
 }
