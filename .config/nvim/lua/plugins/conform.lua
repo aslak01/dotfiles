@@ -3,8 +3,10 @@ return {
   "stevearc/conform.nvim",
   opts = {
     formatters_by_ft = {
-      handlebars = { "djlint" },
-      mustache = { "djlint" }
+      tmpl = { "prettier" },
+      gotexttmpl = { "prettier" },
+      handlebars = { "prettier" },
+      mustache = { "prettier" },
     },
   }
 }
