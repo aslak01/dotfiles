@@ -41,3 +41,10 @@ export PATH=$PATH:$(go env GOPATH)/bin
 
 # ocaml
 [[ ! -r $HOME/.opam/opam-init/init.zsh ]] || source $HOME/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
+
+# pnpm
+export PNPM_HOME="$HOME/Library/pnpm/"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
