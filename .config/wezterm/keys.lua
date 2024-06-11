@@ -12,11 +12,8 @@ function Keys.setup(config)
 	config.use_dead_keys = true
 	config.debug_key_events = false
 	config.keys = {
-		-- new split binds
-		{ key = "w",     mods = "ALT|CTRL",   action = wezterm.action.CloseCurrentPane({ confirm = true }) },
-		{ key = "v",     mods = "ALT|CTRL",   action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
-		{ key = "h",     mods = "ALT|CTRL",   action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
-		{ key = "p",     mods = "ALT|CTRL",   action = act.PaneSelect({ alphabet = "", mode = "Activate" }) },
+		{ key = "m",     mods = "CMD",        action = wezterm.action.DisableDefaultAssignment },
+		{ key = "h",     mods = "CMD",        action = wezterm.action.DisableDefaultAssignment },
 		{ key = "h",     mods = "ALT",        action = wezterm.action.EmitEvent("ActivatePaneDirection-left") },
 		{ key = "j",     mods = "ALT",        action = wezterm.action.EmitEvent("ActivatePaneDirection-down") },
 		{ key = "k",     mods = "ALT",        action = wezterm.action.EmitEvent("ActivatePaneDirection-up") },
@@ -40,14 +37,9 @@ function Keys.setup(config)
 		{ key = "C",     mods = "SHIFT|CTRL", action = act.CopyTo("Clipboard") },
 		{ key = "F",     mods = "CTRL",       action = act.Search("CurrentSelectionOrEmptyString") },
 		{ key = "F",     mods = "SHIFT|CTRL", action = act.Search("CurrentSelectionOrEmptyString") },
-		{ key = "H",     mods = "CTRL",       action = act.HideApplication },
-		{ key = "H",     mods = "SHIFT|CTRL", action = act.HideApplication },
 		{ key = "K",     mods = "CTRL",       action = act.ClearScrollback("ScrollbackOnly") },
 		{ key = "K",     mods = "SHIFT|CTRL", action = act.ClearScrollback("ScrollbackOnly") },
-		-- { key = "L", mods = "CTRL", action = act.ShowDebugOverlay },
 		{ key = "L",     mods = "SHIFT|CTRL", action = act.ShowDebugOverlay },
-		{ key = "M",     mods = "CTRL",       action = act.Hide },
-		{ key = "M",     mods = "SHIFT|CTRL", action = act.Hide },
 		{ key = "N",     mods = "CTRL",       action = act.SpawnWindow },
 		{ key = "N",     mods = "SHIFT|CTRL", action = act.SpawnWindow },
 		{ key = "Q",     mods = "CTRL",       action = act.QuitApplication },
@@ -83,13 +75,9 @@ function Keys.setup(config)
 		{ key = "c", mods = "SUPER",       action = act.CopyTo("Clipboard") },
 		{ key = "f", mods = "SHIFT|CTRL",  action = act.Search("CurrentSelectionOrEmptyString") },
 		{ key = "f", mods = "SUPER",       action = act.Search("CurrentSelectionOrEmptyString") },
-		{ key = "h", mods = "SHIFT|CTRL",  action = act.HideApplication },
-		{ key = "h", mods = "SUPER",       action = act.HideApplication },
 		{ key = "k", mods = "SHIFT|CTRL",  action = act.ClearScrollback("ScrollbackOnly") },
 		{ key = "k", mods = "SUPER",       action = act.ClearScrollback("ScrollbackOnly") },
 		-- { key = "l", mods = "SHIFT|CTRL", action = act.ShowDebugOverlay },
-		{ key = "m", mods = "SHIFT|CTRL",  action = act.Hide },
-		{ key = "m", mods = "SUPER",       action = act.Hide },
 		{ key = "n", mods = "SHIFT|CTRL",  action = act.SpawnWindow },
 		{ key = "n", mods = "SUPER",       action = act.SpawnWindow },
 		{ key = "p", mods = "CTRL",        action = act.PaneSelect({ alphabet = "", mode = "Activate" }) },
@@ -133,6 +121,23 @@ function Keys.setup(config)
 		{ key = "Insert",     mods = "CTRL",        action = act.CopyTo("PrimarySelection") },
 		{ key = "Copy",       mods = "NONE",        action = act.CopyTo("Clipboard") },
 		{ key = "Paste",      mods = "NONE",        action = act.PasteFrom("Clipboard") },
+
+		-- new split binds
+		{
+			key = "w",
+			mods = "CTRL|META|SHIFT|CMD",
+			action = wezterm.action.CloseCurrentPane({ confirm = true }),
+		},
+		{
+			key = "v",
+			mods = "CTRL|META|SHIFT|CMD",
+			action = act.SplitVertical({ domain = "CurrentPaneDomain" }),
+		},
+		{
+			key = "h",
+			mods = "CTRL|META|SHIFT|CMD",
+			action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }),
+		},
 	}
 
 	config.key_tables = {
