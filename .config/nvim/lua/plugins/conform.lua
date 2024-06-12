@@ -5,9 +5,10 @@ return {
     formatters_by_ft = {
       gotexttmpl = { "prettier" },
       mustache = { "prettier" },
+      yaml = { "yamlfix" },
     },
-  ext_parsers = {
-      mustache = "angular"
-    }
-  }
+    ext_parsers = {
+      mustache = "angular",
+    },
+  },
 }

@@ -4,9 +4,8 @@ return {
   opts = {
     linters_by_ft = {
       handlebars = { "djlint", "eslint-lsp" },
-      mustache = { "djlint", "eslint-lsp" }
+      mustache = { "djlint", "eslint-lsp" },
+      yaml = { "yamlfix" },
     },
-  }
+  },
 }
-
-
