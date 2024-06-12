@@ -17,7 +17,7 @@ return {
   { import = "astrocommunity.pack.markdown" },
   { import = "astrocommunity.markdown-and-latex.vimtex" },
 
-  -- fortmatting and linting 
+  -- fortmatting and linting
   { import = "astrocommunity.editing-support.conform-nvim" },
   { import = "astrocommunity.lsp.nvim-lint" },
 
@@ -27,6 +27,7 @@ return {
 
   -- sed
   { import = "astrocommunity.project.nvim-spectre" },
+  { import = "astrocommunity.debugging.nvim-bqf" },
 
   -- orchestration
   { import = "astrocommunity.code-runner.overseer-nvim" },
@@ -50,5 +51,5 @@ return {
   { import = "astrocommunity.motion.before-nvim" },
 
   -- game
-  { import = "astrocommunity.game.leetcode-nvim"}
+  { import = "astrocommunity.game.leetcode-nvim" },
 }
