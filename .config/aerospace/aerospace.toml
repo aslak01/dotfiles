@@ -87,9 +87,9 @@ end tell
 EOF'''
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#layout
-ctrl-period = 'layout tiles horizontal vertical'
-ctrl-comma = 'layout accordion horizontal vertical'
-alt-shift-space = 'layout accordion tiles'
+alt-period = 'layout tiles horizontal vertical'
+alt-comma = 'layout accordion horizontal vertical'
+alt-space = 'layout accordion tiles'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#focus
 cmd-h = 'focus left'
@@ -143,6 +143,7 @@ alt-shift-slash = 'mode join'
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
 [mode.service.binding]
 r = ['flatten-workspace-tree', 'mode main'] # reset layout
+
 #s = ['layout sticky tiling', 'mode main'] # sticky is not yet supported https://github.com/nikitabobko/AeroSpace/issues/2
 f = [
     'layout floating tiling',
