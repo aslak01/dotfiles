@@ -5,6 +5,7 @@ return {
     formatters_by_ft = {
       gotexttmpl = { "prettier" },
       mustache = { "prettier" },
+      json = { "prettier" },
       yaml = { "yamlfix" },
     },
     ext_parsers = {
