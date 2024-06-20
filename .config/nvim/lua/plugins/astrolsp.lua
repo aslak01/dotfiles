@@ -48,32 +48,32 @@ return {
       --   filetypes = { "go", "gomod", "gowork", "gotmpl", "gotexttmpl" },
       -- },
       -- clangd = { capabilities = { offsetEncoding = "utf-8" } },
-      vtsls = {
-        settings = {
-          typescript = {
-            inlayHints = {
-              parameterNames = { enabled = "all", suppressWhenArgumentMatchesName = false },
-              parameterTypes = { enabled = true },
-              variableTypes = { enabled = true, suppressWhenTypeMatchesName = false },
-              propertyDeclarationTypes = { enabled = true },
-              functionLikeReturnTypes = { enabled = true },
-              enumMemberValues = { enabled = true },
-            },
-            updateImportsOnFileMove = { enabled = "always" },
-          },
-          javascript = {
-            inlayHints = {
-              parameterNames = { enabled = "all", suppressWhenArgumentMatchesName = false },
-              parameterTypes = { enabled = true },
-              variableTypes = { enabled = true, suppressWhenTypeMatchesName = false },
-              propertyDeclarationTypes = { enabled = true },
-              functionLikeReturnTypes = { enabled = true },
-              enumMemberValues = { enabled = true },
-            },
-            updateImportsOnFileMove = { enabled = "always" },
-          },
-        },
-      },
+      --   vtsls = {
+      --     settings = {
+      --       typescript = {
+      --         inlayHints = {
+      --           parameterNames = { enabled = "all", suppressWhenArgumentMatchesName = false },
+      --           parameterTypes = { enabled = true },
+      --           variableTypes = { enabled = true, suppressWhenTypeMatchesName = false },
+      --           propertyDeclarationTypes = { enabled = true },
+      --           functionLikeReturnTypes = { enabled = true },
+      --           enumMemberValues = { enabled = true },
+      --         },
+      --         updateImportsOnFileMove = { enabled = "always" },
+      --       },
+      --       javascript = {
+      --         inlayHints = {
+      --           parameterNames = { enabled = "all", suppressWhenArgumentMatchesName = false },
+      --           parameterTypes = { enabled = true },
+      --           variableTypes = { enabled = true, suppressWhenTypeMatchesName = false },
+      --           propertyDeclarationTypes = { enabled = true },
+      --           functionLikeReturnTypes = { enabled = true },
+      --           enumMemberValues = { enabled = true },
+      --         },
+      --         updateImportsOnFileMove = { enabled = "always" },
+      --       },
+      --     },
+      --   },
     },
     -- customize how language servers are attached
     handlers = {
