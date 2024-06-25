@@ -16,4 +16,4 @@ vim.filetype.add {
 }
 
 -- TODO: remove when filetypes are cleaned up in go.nvim
--- vim.treesitter.language.register("gotmpl", "gotexttmpl")
+vim.treesitter.language.register("gotmpl", "gotexttmpl")
