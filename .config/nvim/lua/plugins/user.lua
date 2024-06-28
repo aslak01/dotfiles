@@ -19,11 +19,9 @@ return {
     "tjdevries/ocaml.nvim",
     build = ":lua require('ocaml').update()",
   },
-  -- {
-  --   "ray-x/lsp_signature.nvim",
-  --   event = "BufRead",
-  --   config = function() require("lsp_signature").setup() end,
-  -- },
+  {
+    "mistweaverco/kulala.nvim"
+  }
 
   -- == Examples of Overriding Plugins ==
 

@@ -8,6 +8,7 @@ vim.filetype.add {
     tmpl = "gotmpl",
   },
   filename = {
+    ["http"] =  "http",
     -- ["Foofile"] = "fooscript",
   },
   pattern = {
