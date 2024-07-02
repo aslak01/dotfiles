@@ -67,7 +67,7 @@
   "nvim-window-picker": { "branch": "main", "commit": "41cfaa428577c53552200a404ae9b3a0b5719706" },
   "ocaml.nvim": { "branch": "master", "commit": "4d3cce81a56c015214fed9ef006698d6da286e00" },
   "octo.nvim": { "branch": "master", "commit": "7731ca4e31b32c176a383642ffcd7d593ac17774" },
-  "oil.nvim": { "branch": "master", "commit": "ace46a41a1ea56d544a3775adf30490f2abd9235" },
+  "oil.nvim": { "branch": "master", "commit": "b15e4c1e647b9ddbb75a31caeb720b3b3ce4db54" },
   "openingh.nvim": { "branch": "main", "commit": "613c18967d42202f3e2a9ac788caf62a402e7c1a" },
   "overseer.nvim": { "branch": "master", "commit": "8bda5b073de30533e04f61b661cb7c22d7fa4f23" },
   "package-info.nvim": { "branch": "master", "commit": "45acce5b12ce824332d8000cc2c91805b6710446" },
