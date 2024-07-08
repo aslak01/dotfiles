@@ -27,7 +27,7 @@ return {
 
   -- sed
   { import = "astrocommunity.project.nvim-spectre" },
-  { import = "astrocommunity.project.grug-far" },
+  { import = "astrocommunity.project.grug-far-nvim" },
 
   -- quickfix list
   { import = "astrocommunity.debugging.nvim-bqf" },
