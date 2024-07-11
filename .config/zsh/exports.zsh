@@ -21,8 +21,6 @@ export PATH="$HOME/.bun/bin:$PATH"
 # bun completions
 [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
-# n (n-install)
-export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"
 
 # deno
 export DENO_INSTALL="$HOME/.deno"
