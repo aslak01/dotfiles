@@ -38,6 +38,9 @@ return {
   -- file system
   { import = "astrocommunity.file-explorer.oil-nvim" },
 
+  -- nota taking
+  { import = "astrocommunity.note-taking.obsidian-nvim" },
+
   -- github
   { import = "astrocommunity.git.octo-nvim" },
   { import = "astrocommunity.git.openingh-nvim" },
