@@ -4,7 +4,7 @@ HISTSIZE=1000000
 SAVEHIST=1000000
 export EDITOR="nvim"
 export TERMINAL="wezterm"
-export BROWSER="safari"
+export BROWSER="open"
 
 # dotfiles
 export XDG_CONFIG_HOME="$HOME/.config"
