@@ -80,7 +80,6 @@ function Keys.setup(config)
 		-- { key = "l", mods = "SHIFT|CTRL", action = act.ShowDebugOverlay },
 		{ key = "n", mods = "SHIFT|CTRL",  action = act.SpawnWindow },
 		{ key = "n", mods = "SUPER",       action = act.SpawnWindow },
-		{ key = "p", mods = "CTRL",        action = act.PaneSelect({ alphabet = "", mode = "Activate" }) },
 		{ key = "q", mods = "SHIFT|CTRL",  action = act.QuitApplication },
 		{ key = "q", mods = "SUPER",       action = act.QuitApplication },
 		{ key = "r", mods = "SHIFT|CTRL",  action = act.ReloadConfiguration },
