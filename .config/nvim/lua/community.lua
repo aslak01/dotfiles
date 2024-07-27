@@ -37,6 +37,7 @@ return {
 
   -- file system
   { import = "astrocommunity.file-explorer.oil-nvim" },
+  { import = "astrocommunity.file-explorer.telescope-file-browser-nvim" },
 
   -- nota taking
   { import = "astrocommunity.note-taking.obsidian-nvim" },
@@ -48,6 +49,8 @@ return {
   -- color
   { import = "astrocommunity.color.ccc-nvim" },
   { import = "astrocommunity.color.huez-nvim" },
+  -- dims unused variables
+  { import = "astrocommunity.utility.neodim" },
 
   -- editor tweaks
   { import = "astrocommunity.editing-support.mini-splitjoin" },
@@ -58,4 +61,6 @@ return {
 
   -- game
   { import = "astrocommunity.game.leetcode-nvim" },
+
+  { import = "astrocommunity.media.codesnap-nvim"}
 }
