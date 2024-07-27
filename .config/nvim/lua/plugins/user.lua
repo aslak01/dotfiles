@@ -1,6 +1,8 @@
 ---@type LazySpec
 return {
   -- auto switching zenbones theme
+  { "hauleth/blame.vim" },
+  { "yorickpeterse/nvim-grey" },
   { "rktjmp/lush.nvim" },
   { "mcchrish/zenbones.nvim" },
   {
@@ -8,12 +10,21 @@ return {
     config = function()
       require("auto-dark-mode").setup {
         update_interval = 1000,
-        set_dark_mode = function() vim.cmd "set background=dark" end,
-        set_light_mode = function() vim.cmd "set background=light" end,
+        set_dark_mode = function()
+          -- vim.api.nvim_set_option('background', 'dark')
+          vim.cmd "set background=dark"
+          vim.cmd('colorscheme blame')
+        end,
+        set_light_mode = function()
+          -- vim.api.nvim_set_option('background', 'light')
+          vim.cmd "set background=light"
+          vim.cmd('colorscheme grey')
+        end,
       }
     end,
     init = function() require("auto-dark-mode").init() end,
   },
+
 
   {
     "tjdevries/ocaml.nvim",
