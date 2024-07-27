@@ -3,8 +3,8 @@ return {
   -- auto switching zenbones theme
   { "hauleth/blame.vim" },
   { "yorickpeterse/nvim-grey" },
-  { "rktjmp/lush.nvim" },
-  { "mcchrish/zenbones.nvim" },
+  -- { "rktjmp/lush.nvim" },
+  -- { "mcchrish/zenbones.nvim" },
   {
     "f-person/auto-dark-mode.nvim",
     config = function()
