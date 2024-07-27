@@ -1,6 +1,6 @@
 ---@type LazySpec
 return {
-  -- auto switching zenbones theme
+  -- auto switching theme
   { "hauleth/blame.vim" },
   { "yorickpeterse/nvim-grey" },
   -- { "rktjmp/lush.nvim" },
@@ -24,12 +24,11 @@ return {
     end,
     init = function() require("auto-dark-mode").init() end,
   },
-
-
   {
     "tjdevries/ocaml.nvim",
     build = ":lua require('ocaml').update()",
   },
+  -- http
   {
     "mistweaverco/kulala.nvim"
   }
