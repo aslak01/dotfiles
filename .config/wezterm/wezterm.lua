@@ -21,12 +21,15 @@ end
 wezterm.on("ActivatePaneDirection-right", function(window, pane)
 	conditional_activate_pane(window, pane, "Right", "l")
 end)
+
 wezterm.on("ActivatePaneDirection-left", function(window, pane)
 	conditional_activate_pane(window, pane, "Left", "h")
 end)
+
 wezterm.on("ActivatePaneDirection-up", function(window, pane)
 	conditional_activate_pane(window, pane, "Up", "k")
 end)
+
 wezterm.on("ActivatePaneDirection-down", function(window, pane)
 	conditional_activate_pane(window, pane, "Down", "j")
 end)
@@ -46,8 +49,6 @@ local config = {
 		top = "0.3cell",
 		bottom = "1cell",
 	},
-	-- initial_cols = 80,
-	-- initial_rows = 25,
 	inactive_pane_hsb = {
 		saturation = 0.5,
 		brightness = 0.7,
