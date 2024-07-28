@@ -112,11 +112,11 @@ return {
     -- mappings to be set up on attaching of a language server
     mappings = {
       i = {
-        -- ["<C-l>"] = {
-        --   function() vim.lsp.buf.signature_help() end,
-        --   desc = "Signature help",
-        --   cond = "textDocument/signatureHelp",
-        -- },
+        ["<C-l>"] = {
+          function() vim.lsp.buf.signature_help() end,
+          desc = "Signature help",
+          cond = "textDocument/signatureHelp",
+        },
       },
       n = {
         gl = { function() vim.diagnostic.open_float() end, desc = "Hover diagnostics" },
