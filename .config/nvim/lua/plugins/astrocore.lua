@@ -53,10 +53,8 @@ return {
     -- NOTE: keycodes follow the casing in the vimdocs. For example, `<Leader>` must be capitalized
     mappings = {
       n = {
-
         ["<Leader>e"] = { "<cmd>Oil<cr>", desc = "Oil" },
         ["<Leader>o"] = { "<cmd>Oil<cr>", desc = "Oil" },
-
         -- navigate buffer tabs with `H` and `L`
         -- L = {
         --   function() require("astrocore.buffer").nav(vim.v.count > 0 and vim.v.count or 1) end,
@@ -82,6 +80,14 @@ return {
 
         -- quick save
         -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
+      },
+      i = {
+        ["<M-'>"] = "æ",
+        ["<M-S-'>"] = "Æ",
+        ["<M-o>"] = "ø",
+        ["<M-S-o>"] = "Ø",
+        ["<M-a>"] = "å",
+        ["<M-S-a>"] = "Å",
       },
       t = {
         -- setting a mapping to false will disable it
