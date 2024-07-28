@@ -17,10 +17,9 @@ source "${ZINIT_HOME}/zinit.zsh"
 
 eval "$(starship init zsh)"
 
-
-LANG=no_NO.UTF-8
-
-
+# https://wezfurlong.org/wezterm/faq.html#lang-and-locale
+export LANG=en_US.UTF-8
+export LC_COLLATE=C
 
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
@@ -39,6 +38,7 @@ zinit snippet OMZP::command-not-found
 bindkey '^f' autosuggest-accept
 
 # history
+
 HISTFILE=~/.zsh_history
 HISTORY_IGNORE="(ls|pwd|cd ..|yt-dlp *)"
 HISTSIZE=5000
