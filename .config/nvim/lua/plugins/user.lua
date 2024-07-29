@@ -3,6 +3,7 @@ return {
   -- auto switching theme
   { "hauleth/blame.vim" },
   { "yorickpeterse/nvim-grey" },
+  { "blazkowolf/gruber-darker.nvim" },
   -- { "rktjmp/lush.nvim" },
   -- { "mcchrish/zenbones.nvim" },
   {
