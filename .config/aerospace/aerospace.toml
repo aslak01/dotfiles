@@ -12,7 +12,7 @@
 # All possible modifiers: cmd, alt, ctrl, shift
 # All possible commands: https://nikitabobko.github.io/AeroSpace/commands
 
-start-at-login = true
+start-at-login = false
 # Available commands: https://nikitabobko.github.io/AeroSpace/commands
 after-login-command = []
 after-startup-command = [
