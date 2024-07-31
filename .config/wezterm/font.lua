@@ -9,7 +9,7 @@ function Fonts.setup(config)
 		"Apple Color Emoji",
 	})
 
-	config.font_size = 15
+	config.font_size = 16
 	config.underline_thickness = "200%"
 	config.underline_position = "-3pt"
 	config.line_height = 1.4
