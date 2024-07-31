@@ -1,4 +1,4 @@
-## Example config from yabai3
+# Example config from yabai3
 # https://github.com/sebastianst/yabai3
 # restart yabai
 alt + shift - r : yabai --restart-service 
@@ -62,17 +62,17 @@ alt - b : yabai -m window --insert south
 alt - v : yabai -m window --insert east 
 
 # new terminals
-alt - return : alacritty-new
-alt + shift - b : yabai -m window --insert south && alacritty-new
-alt + shift - v : yabai -m window --insert east && alacritty-new
+# alt - return : alacritty-new
+# alt + shift - b : yabai -m window --insert south && alacritty-new
+# alt + shift - v : yabai -m window --insert east && alacritty-new
 
 # stack window movement mode
 :: stack
 alt - s ; stack
 stack < escape ; default
 stack < s : yabai -m window --insert stack; skhd -k escape
-stack < return : yabai -m window --insert stack \
-    && alacritty-new; skhd -k escape
+# stack < return : yabai -m window --insert stack \
+#     && alacritty-new; skhd -k escape
 stack < h : yabai3 stack-enter west; skhd -k escape
 stack < j : yabai3 stack-enter south; skhd -k escape
 stack < k : yabai3 stack-enter north; skhd -k escape
