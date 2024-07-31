@@ -9,6 +9,9 @@ export BROWSER="open"
 # dotfiles
 export XDG_CONFIG_HOME="$HOME/.config"
 
+# custom bin
+export PATH=$PATH:"$HOME/bin"
+
 # Homebrew
 export PATH="$HOME/.local/bin":$PATH
 
