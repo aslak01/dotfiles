@@ -1,0 +1,21 @@
+# font
+font-size = 20
+font-thicken = false
+
+# colors
+# window-colorspace = display-p3
+
+theme = zenwritten_light
+
+cursor-invert-fg-bg = true
+
+window-theme = system
+
+# window styling
+window-decoration = false
+
+macos-titlebar-style = tabs
+macos-window-shadow = false
+
+# keyboard
+macos-option-as-alt = true
