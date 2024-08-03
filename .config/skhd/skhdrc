@@ -65,6 +65,7 @@ alt - v : yabai -m window --insert east
 # alt - return : alacritty-new
 # alt + shift - b : yabai -m window --insert south && alacritty-new
 # alt + shift - v : yabai -m window --insert east && alacritty-new
+alt - t : ghostty-new
 
 # stack window movement mode
 :: stack
