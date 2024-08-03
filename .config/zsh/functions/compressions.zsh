@@ -1,14 +1,5 @@
 #!/bin/zsh
 
-function compPdf() {
-    gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/screen -dNOPAUSE -dBATCH -sOutputFile=out"${$1}".pdf "${$1}"
-}
-
-function svgocp {
-    input=$1
-    svgo --config=""${HOME}"/.config/svgo.config.js" -i "${input}" -o - | pbcopy
-    echo "Optimised and copied "${input}" (if you provided a valid file). Check clipboard."
-}
 
 function slugit() {
     for file in *."$1"; do
@@ -18,6 +9,7 @@ function slugit() {
         mv "$file" "$newname"
     done
 }
+
 function optimiseit() {
     for i in *; do
         slugged=$(slugify ${i%.*} | sed -e 's/\r//g')
