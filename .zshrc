@@ -27,6 +27,11 @@ export LC_COLLATE=C
 # https://stackoverflow.com/questions/62931101/i-have-multiple-files-of-zcompdump-why-do-i-have-multiple-files-of-these
 export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
 
+# TODO:
+# optimise compdump loading:
+# https://gist.github.com/ctechols/ca1035271ad134841284
+# https://github.com/mrnugget/dotfiles/blob/master/zshrc
+
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
