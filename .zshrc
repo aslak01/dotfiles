@@ -23,6 +23,10 @@ eval "$(starship init zsh)"
 export LANG=en_US.UTF-8
 export LC_COLLATE=C
 
+# Don't dump zcompdump in ~
+# https://stackoverflow.com/questions/62931101/i-have-multiple-files-of-zcompdump-why-do-i-have-multiple-files-of-these
+export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
+
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
