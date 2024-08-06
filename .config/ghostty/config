@@ -7,7 +7,7 @@ font-thicken = false
 
 theme = zenwritten_light
 
-# cursor-invert-fg-bg = true
+cursor-invert-fg-bg = true
 
 window-theme = system
 
