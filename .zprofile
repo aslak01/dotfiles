@@ -1,20 +1,4 @@
-# Starship gets some timeouts without this stuff in this file
-
-eval 'export HOMEBREW_PREFIX="/opt/homebrew";
-export HOMEBREW_CELLAR="/opt/homebrew/Cellar";
-export HOMEBREW_REPOSITORY="/opt/homebrew";
-export PATH="/opt/homebrew/bin:/opt/homebrew/sbin${PATH+:$PATH}";
-export MANPATH="/opt/homebrew/share/man${MANPATH+:$MANPATH}:";
-export INFOPATH="/opt/homebrew/share/info:${INFOPATH:-}";'
-
-# MacPorts Installer addition on 2023-10-03_at_14:46:43: adding an appropriate PATH variable for use with MacPorts.
-export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
-# Finished adapting your PATH environment variable for use with MacPorts.
-# MacPorts Installer addition on 2023-10-03_at_14:46:43: adding an appropriate MANPATH variable for use with MacPorts.
-export MANPATH="/opt/local/share/man:$MANPATH"
-# Finished adapting your MANPATH environment variable for use with MacPorts.
-
-# n (n-install)
-export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"
+# .zprofile is for login shells. It is basically the same as .zlogin except that it's sourced before .zshrc whereas .zlogin is sourced after .zshrc. According to the zsh documentation, ".zprofile is meant as an alternative to .zlogin for ksh fans; the two are not intended to be used together, although this could certainly be done if desired."
+# Starship gets some timeouts warnings without this stuff in this file
 
 
