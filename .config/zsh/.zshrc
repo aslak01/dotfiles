@@ -127,10 +127,6 @@ fi
 
 source "${ZINIT_HOME}/zinit.zsh"
 
-# zoxide
-if command -v zoxide &> /dev/null; then
-    eval "$(zoxide init zsh)"
-fi
 
 
 # Load .zstyles file with customizations.
@@ -183,8 +179,8 @@ alias df='df -h'     # human-readable sizes
 # https://www.reddit.com/r/commandline/comments/yjg1fb/examplebased_cheat_sheets_from_the_command_line/iunks9b/
 alias tldrf='tldr --list | fzf --preview "tldr {1}" --preview-window=right,70% | xargs tldr'
 
-# fzf lower down dirs
-alias sd="cd \$(fd . -t d | fzf)"
+# # fzf lower down dirs
+# alias sd="cd \$(fd . -t d | fzf)"
 
 # alias ~='cd ~'
 alias ..='cd ..'
@@ -195,3 +191,26 @@ alias cd..='cd ..' # Typo
 
 alias zshrc="vim $HOME/.zshrc"
 alias nvimrc="vim $HOME/.config/nvim/"
+
+
+############## path shit
+# version managed Node
+export N_CACHE_PREFIX="$HOME/n"
+if [ -d $N_CACHE_PREFIX ]; then
+    [[ :$PATH: == *":$N_CACHE_PREFIX/bin:"* ]] || PATH+=":$N_CACHE_PREFIX/bin"
+fi
+
+_path_files=(${ZDOTDIR:-$HOME}/path-apps/*)
+if (( $#_path_files )); then
+    for file in "$_path_files"; do
+        echo "sourcing $file"
+        [[ -s "${file}" ]] && . "${file}"
+    done
+fi
+
+############## end path shit
+
+# zoxide
+if command -v zoxide &> /dev/null; then
+    eval "$(zoxide init zsh)"
+fi
