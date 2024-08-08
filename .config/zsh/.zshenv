@@ -21,12 +21,7 @@ if [[ -f "/opt/homebrew/bin/brew" ]]; then
     export INFOPATH="/opt/homebrew/share/info:${INFOPATH:-}";
 fi
 
-
-############## path shit
-
-source $ZDOTDIR/path-apps/index.zsh
-
-############## end path shit
+export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"
 
 
 # defaults
