@@ -23,7 +23,7 @@ return {
 
   -- misc lsp
   { import = "astrocommunity.lsp.lsp-signature-nvim" },
-  { import = "astrocommunity.lsp.lspsaga-nvim" },
+  -- { import = "astrocommunity.lsp.lspsaga-nvim" },
 
   -- sed
   { import = "astrocommunity.search.nvim-spectre" },
@@ -62,5 +62,5 @@ return {
   -- game
   { import = "astrocommunity.game.leetcode-nvim" },
 
-  { import = "astrocommunity.media.codesnap-nvim"}
+  { import = "astrocommunity.media.codesnap-nvim" },
 }
