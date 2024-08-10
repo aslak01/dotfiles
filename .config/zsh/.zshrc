@@ -127,8 +127,6 @@ fi
 
 source "${ZINIT_HOME}/zinit.zsh"
 
-
-
 # Load .zstyles file with customizations.
 if [[ -r "$ZDOTDIR/.zstyles" ]]; then
     source "$ZDOTDIR/.zstyles"
@@ -193,6 +191,11 @@ alias zshrc="vim $HOME/.zshrc"
 alias nvimrc="vim $HOME/.config/nvim/"
 
 
+# zoxide
+if command -v zoxide &> /dev/null; then
+    eval "$(zoxide init zsh)"
+fi
+
 ############## path shit
 # version managed Node
 export N_CACHE_PREFIX="$HOME/n"
@@ -210,23 +213,32 @@ if [ -d "$GOROOT" ]; then
     [[ :$PATH: == *":$GOROOT/bin:"* ]] || PATH+=":$GOROOT/bin"
 fi
 
-_path_files=(${ZDOTDIR:-$HOME}/path-apps/*)
-if (( $#_path_files )); then
-    for file in "$_path_files"; do
-        echo "sourcing $file"
-        [[ -s "${file}" ]] && . "${file}"
-    done
-fi
-
 export PNPM_HOME="$HOME/Library/pnpm/"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 
-############## end path shit
+# Homebrew
+export PATH="$HOME/.local/bin":$PATH
 
-# zoxide
-if command -v zoxide &> /dev/null; then
-    eval "$(zoxide init zsh)"
-fi
+# bun
+export PATH="$HOME/.bun/bin:$PATH"
+# bun completions
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
+
+# deno
+export DENO_INSTALL="$HOME/.deno"
+export PATH="$DENO_INSTALL/bin:$PATH"
+
+# yarn
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+# bob (nvim)
+export PATH="$HOME/.local/share/bob/nvim-bin:$PATH"
+
+# ocaml
+[[ ! -r $HOME/.opam/opam-init/init.zsh ]] || source $HOME/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
+
+# custom bin
+export PATH=$PATH:"$HOME/bin"
