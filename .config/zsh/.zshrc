@@ -200,6 +200,16 @@ if [ -d $N_CACHE_PREFIX ]; then
     [[ :$PATH: == *":$N_CACHE_PREFIX/bin:"* ]] || PATH+=":$N_CACHE_PREFIX/bin"
 fi
 
+export GOPATH="$HOME/go"
+if [ -d $GOPATH ]; then
+    [[ :$PATH: == *":$GOPATH/bin:"* ]] || PATH+=":$GOPATH/bin"
+fi
+
+export GOROOT="$(brew --prefix golang)/libexec"
+if [ -d "$GOROOT" ]; then
+    [[ :$PATH: == *":$GOROOT/bin:"* ]] || PATH+=":$GOROOT/bin"
+fi
+
 _path_files=(${ZDOTDIR:-$HOME}/path-apps/*)
 if (( $#_path_files )); then
     for file in "$_path_files"; do
@@ -207,6 +217,12 @@ if (( $#_path_files )); then
         [[ -s "${file}" ]] && . "${file}"
     done
 fi
+
+export PNPM_HOME="$HOME/Library/pnpm/"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
 
 ############## end path shit
 
