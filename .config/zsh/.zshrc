@@ -190,12 +190,6 @@ alias cd..='cd ..' # Typo
 alias zshrc="vim $HOME/.zshrc"
 alias nvimrc="vim $HOME/.config/nvim/"
 
-
-# zoxide
-if command -v zoxide &> /dev/null; then
-    eval "$(zoxide init zsh)"
-fi
-
 ############## path shit
 # version managed Node
 export N_CACHE_PREFIX="$HOME/n"
@@ -242,3 +236,9 @@ export PATH="$HOME/.local/share/bob/nvim-bin:$PATH"
 
 # custom bin
 export PATH=$PATH:"$HOME/bin"
+
+# zoxide
+if command -v zoxide &> /dev/null; then
+    unalias zi
+    eval "$(zoxide init zsh)"
+fi
