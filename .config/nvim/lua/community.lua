@@ -30,7 +30,7 @@ return {
   { import = "astrocommunity.search.grug-far-nvim" },
 
   -- quickfix list
-  { import = "astrocommunity.debugging.nvim-bqf" },
+  { import = "astrocommunity.quickfix.nvim-bqf" },
 
   -- orchestration
   { import = "astrocommunity.code-runner.overseer-nvim" },
