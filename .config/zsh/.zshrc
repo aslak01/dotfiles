@@ -39,9 +39,9 @@ setopt globdots                 # Glob dotfiles as well.
 setopt extendedglob             # Use extended globbing.
 setopt autocd                   # Automatically change directory if a directory is entered.
 
-# Smart URLs.
-autoload -Uz url-quote-magic
-zle -N self-insert url-quote-magic
+# # Smart URLs.
+# autoload -Uz url-quote-magic
+# zle -N self-insert url-quote-magic
 
 # General.
 setopt brace_ccl                # Allow brace character class list expansion.
