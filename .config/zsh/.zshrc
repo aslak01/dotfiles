@@ -242,3 +242,8 @@ if command -v zoxide &> /dev/null; then
     unalias zi
     eval "$(zoxide init zsh)"
 fi
+
+# python
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
