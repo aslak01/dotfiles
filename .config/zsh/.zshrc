@@ -250,4 +250,4 @@ if command -v pyenv 1>/dev/null 2>&1; then
 fi
 
 # Colima
-export DOCKER_HOST="unix://${HOME}/.config/.colima/default/docker.sock"
+export DOCKER_HOST="unix:/${HOME}/.config/.colima/default/docker.sock"
