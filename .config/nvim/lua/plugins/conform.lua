@@ -5,8 +5,8 @@ return {
     formatters_by_ft = {
       gotexttmpl = { "prettier" },
       gotmpl = { "prettier" },
-      mustache = { "eslint_d" },
-      handlebars = { "eslint_d" },
+      mustache = { "eslint" },
+      handlebars = { "eslint" },
       json = { "prettier" },
       yaml = { "yamlfix" },
     },
