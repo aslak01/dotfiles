@@ -229,6 +229,12 @@ export PATH="$DENO_INSTALL/bin:$PATH"
 # yarn
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
+# rust
+export RUSTPATH="$HOME/.cargo"
+if [ -f "$RUSTPATH/env" ]; then
+    source "$RUSTPATH/env"
+fi
+
 # bob (nvim)
 export PATH="$HOME/.local/share/bob/nvim-bin:$PATH"
 
