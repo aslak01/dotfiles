@@ -194,7 +194,7 @@ alias nvimrc="vim $HOME/.config/nvim/"
 # version managed Node
 export N_CACHE_PREFIX="$HOME/n"
 if [ -d $N_CACHE_PREFIX ]; then
-    [[ :$PATH: == *":$N_CACHE_PREFIX/bin:"* ]] || PATH+=":$N_CACHE_PREFIX/bin"
+    export PATH="$N_CACHE_PREFIX/bin":$PATH
 fi
 
 export GOPATH="$HOME/go"
@@ -254,4 +254,8 @@ fi
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
+
+# bun
+export BUN_HOME="$HOME/.bun"
+export PATH="$BUN_HOME/bin:$PATH"
 
