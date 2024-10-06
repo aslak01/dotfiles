@@ -259,3 +259,12 @@ fi
 export BUN_HOME="$HOME/.bun"
 export PATH="$BUN_HOME/bin:$PATH"
 
+### End of Zinit's installer chunk
+
+# pnpm
+export PNPM_HOME="/Users/a/Library/pnpm/"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
