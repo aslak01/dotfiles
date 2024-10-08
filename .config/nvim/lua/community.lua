@@ -62,5 +62,6 @@ return {
   -- game
   { import = "astrocommunity.game.leetcode-nvim" },
 
+  -- code pics
   { import = "astrocommunity.media.codesnap-nvim" },
 }
