@@ -6,6 +6,7 @@ font-thicken = false
 # colors
 # window-colorspace = display-p3
 
+theme = rose-pine
 theme = zenwritten_light
 
 cursor-invert-fg-bg = true
