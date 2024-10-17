@@ -6,7 +6,7 @@
 #     builtin source "${GHOSTTY_RESOURCES_DIR}/shell-integration/zsh/ghostty-integration"
 # fi
 
-# Zsh core config 
+# Zsh core config
 
 export SHELL_SESSIONS_DISABLE=1
 
@@ -93,7 +93,6 @@ zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:
 zstyle ':completion:*:functions' ignored-patterns '(_*|pre(cmd|exec))'
 zstyle ':completion:*' rehash true
 
-
 # History
 
 HISTFILE="$ZDOTDIR/.zhistory"
@@ -146,7 +145,6 @@ fi
 #     source "$ZDOTDIR/functions.zsh"
 # fi
 
-
 # Edit current command
 autoload -Uz edit-command-line
 zle -N edit-command-line
@@ -185,7 +183,9 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
-alias cd..='cd ..' # Typo 
+alias cd..='cd ..' # Typo
+
+alias pass="TERM=xterm-256color pass"
 
 alias zshrc="vim $HOME/.zshrc"
 alias nvimrc="vim $HOME/.config/nvim/"
