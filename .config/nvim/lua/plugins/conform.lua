@@ -25,7 +25,6 @@ return {
       lua = { "stylua" },
       sh = { "shfmt" },
       sql = { "sqlfluff" },
-      python = { "ruff_organize_imports", lsp_format = "last" },
       handlebars = { "eslint_d" },
       ["_"] = function(bufnr)
         return buf_utils.is_valid(bufnr)
@@ -44,6 +43,7 @@ return {
       "vue",
       "css",
       "scss",
+      "svg",
       "less",
       "html",
       "json",
