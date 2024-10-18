@@ -61,6 +61,7 @@ return {
         options = {
           ft_parsers = {
             markdown = "markdown",
+            svg = "html"
           },
         },
       },
