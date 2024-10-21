@@ -1,13 +1,14 @@
 # font
-font-family = "Fira Code"
+# font-family = "Fira Code"
+font-family = "Meslo"
 font-size = 20
 font-thicken = false
 
 # colors
 # window-colorspace = display-p3
 
-theme = rose-pine
 theme = zenwritten_light
+theme = rose-pine
 
 cursor-invert-fg-bg = true
 
@@ -21,3 +22,5 @@ macos-window-shadow = false
 
 # keyboard
 macos-option-as-alt = true
+
+confirm-close-surface = false
