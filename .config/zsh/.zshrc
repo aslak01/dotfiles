@@ -160,7 +160,7 @@ alias v='vim .'
 
 alias nocorschrome='open -a Google| Chrome --args --disable-web-security --user-data-dir="/tmp/"'
 alias nrs='open -a Numbers'
-alias mutt='neomutt'
+alias mutt='TERM=xterm-256color neomutt'
 
 alias ls='eza -a --icons'
 alias ll='eza -l --icons --color auto'
@@ -268,3 +268,6 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+
+export DPRINT_INSTALL="/Users/a/.dprint"
+export PATH="$DPRINT_INSTALL/bin:$PATH"
