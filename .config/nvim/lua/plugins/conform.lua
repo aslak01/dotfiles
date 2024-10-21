@@ -25,7 +25,7 @@ return {
       lua = { "stylua" },
       sh = { "shfmt" },
       sql = { "sqlfluff" },
-      handlebars = { "eslint_d" },
+      handlebars = { "dprint" },
       ["_"] = function(bufnr)
         return buf_utils.is_valid(bufnr)
             and buf_utils.has_filetype(bufnr)
@@ -61,7 +61,16 @@ return {
         options = {
           ft_parsers = {
             markdown = "markdown",
-            svg = "html"
+            svg = "html",
+            html = "html",
+          },
+        },
+      },
+      dprint = {
+        options = {
+          ft_parsers = {
+            mustache = "vue",
+            handlebars = "vue",
           },
         },
       },
