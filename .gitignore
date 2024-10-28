@@ -5,3 +5,4 @@ zsh_api_keys.zsh
 */sanity/config.json
 .docker/config.json
 **/StardewValley
+**/update-notifier-npm.json
