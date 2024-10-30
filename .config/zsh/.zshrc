@@ -271,3 +271,5 @@ esac
 
 export DPRINT_INSTALL="/Users/a/.dprint"
 export PATH="$DPRINT_INSTALL/bin:$PATH"
+
+. ./functions/janitr.zsh
