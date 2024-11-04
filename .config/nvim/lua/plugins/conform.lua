@@ -25,7 +25,7 @@ return {
       lua = { "stylua" },
       sh = { "shfmt" },
       sql = { "sqlfluff" },
-      handlebars = { "dprint" },
+      handlebars = { "djlint" },
       ["_"] = function(bufnr)
         return buf_utils.is_valid(bufnr)
             and buf_utils.has_filetype(bufnr)
