@@ -54,6 +54,7 @@ return {
       "markdown",
       "markdown.mdx",
       "graphql",
+      "gotmpl",
     })
 
     opts.formatters = {
