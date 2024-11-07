@@ -190,6 +190,8 @@ alias pass="TERM=xterm-256color pass"
 alias zshrc="vim $HOME/.zshrc"
 alias nvimrc="vim $HOME/.config/nvim/"
 
+alias icat="kitten icat"
+
 ############## path shit
 # version managed Node
 export N_CACHE_PREFIX="$HOME/n"
