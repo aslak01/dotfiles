@@ -21,6 +21,9 @@ return {
   { import = "astrocommunity.editing-support.conform-nvim" },
   { import = "astrocommunity.lsp.nvim-lint" },
 
+  -- completion
+  { import = "astrocommunity.completion.blink-cmp" },
+
   -- misc lsp
   { import = "astrocommunity.lsp.lsp-signature-nvim" },
   -- { import = "astrocommunity.lsp.lspsaga-nvim" },
@@ -39,7 +42,7 @@ return {
   { import = "astrocommunity.file-explorer.oil-nvim" },
   { import = "astrocommunity.file-explorer.telescope-file-browser-nvim" },
 
-  -- nota taking
+  -- note taking
   { import = "astrocommunity.note-taking.obsidian-nvim" },
 
   -- github
