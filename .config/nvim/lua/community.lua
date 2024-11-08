@@ -21,7 +21,6 @@ return {
   { import = "astrocommunity.editing-support.conform-nvim" },
   { import = "astrocommunity.lsp.nvim-lint" },
 
-  -- completion
   { import = "astrocommunity.completion.blink-cmp" },
 
   -- misc lsp
