@@ -51,6 +51,7 @@ return {
   -- color
   -- { import = "astrocommunity.color.ccc-nvim" },
   { import = "astrocommunity.color.huez-nvim" },
+
   -- dims unused variables
   { import = "astrocommunity.utility.neodim" },
 

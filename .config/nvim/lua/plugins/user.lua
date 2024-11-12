@@ -12,25 +12,35 @@ return {
       require("auto-dark-mode").setup {
         update_interval = 1000,
         set_dark_mode = function()
-          vim.api.nvim_set_option_value('background', 'dark', {})
-          vim.cmd('colorscheme blame')
+          vim.api.nvim_set_option_value("background", "dark", {})
+          vim.cmd "colorscheme blame"
         end,
         set_light_mode = function()
-          vim.api.nvim_set_option_value('background', 'light', {})
-          vim.cmd('colorscheme grey')
+          vim.api.nvim_set_option_value("background", "light", {})
+          vim.cmd "colorscheme grey"
         end,
       }
     end,
     init = function() require("auto-dark-mode").init() end,
   },
+
+  {
+    "wtfox/jellybeans.nvim",
+    priority = 1000,
+    config = function()
+      require("jellybeans").setup()
+      vim.cmd.colorscheme "jellybeans"
+    end,
+  },
+
   {
     "tjdevries/ocaml.nvim",
     build = ":lua require('ocaml').update()",
   },
   -- http
   {
-    "mistweaverco/kulala.nvim"
-  }
+    "mistweaverco/kulala.nvim",
+  },
 
   -- == Examples of Overriding Plugins ==
 
@@ -54,7 +64,7 @@ return {
   --   "L3MON4D3/LuaSnip",
   --   config = function(plugin, opts)
   --     require "astronvim.plugins.configs.luasnip"(plugin, opts) -- include the default astronvim config that calls the setup call
-  --     -- add more custom luasnip configuration such as filetype extend or custom snippets 
+  --     -- add more custom luasnip configuration such as filetype extend or custom snippets
   --     local luasnip = require "luasnip"
   --     luasnip.filetype_extend("javascript", { "javascriptreact" })
   --   end,
