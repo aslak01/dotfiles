@@ -274,4 +274,8 @@ esac
 export DPRINT_INSTALL="/Users/a/.dprint"
 export PATH="$DPRINT_INSTALL/bin:$PATH"
 
+# janitr
 . "$ZDOTDIR/functions/janitr.zsh"
+
+# fzf
+source <(fzf --zsh)
