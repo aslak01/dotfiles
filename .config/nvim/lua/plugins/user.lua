@@ -13,7 +13,8 @@ return {
         update_interval = 1000,
         set_dark_mode = function()
           vim.api.nvim_set_option_value("background", "dark", {})
-          vim.cmd "colorscheme blame"
+          -- vim.cmd "colorscheme blame"
+          vim.cmd "colorscheme monoglow"
         end,
         set_light_mode = function()
           vim.api.nvim_set_option_value("background", "light", {})
@@ -31,6 +32,12 @@ return {
       require("jellybeans").setup()
       vim.cmd.colorscheme "jellybeans"
     end,
+  },
+  {
+    "wnkz/monoglow.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {},
   },
 
   {
