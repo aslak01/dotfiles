@@ -209,7 +209,7 @@ if [ -d "$GOROOT" ]; then
     [[ :$PATH: == *":$GOROOT/bin:"* ]] || PATH+=":$GOROOT/bin"
 fi
 
-export PNPM_HOME="$HOME/Library/pnpm/"
+export PNPM_HOME="$HOME/Library/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;

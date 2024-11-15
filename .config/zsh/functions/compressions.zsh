@@ -1,6 +1,5 @@
 #!/bin/zsh
 
-
 function 8mbvid() {
     input=$1
     output=$2
@@ -77,7 +76,6 @@ function 8mbvid() {
 # echo "Compression complete. Output file: $output_file"
 # }
 
-
 # function vidToTarMb2() {
 #     input_file="$1"
 #     target_size_mb="$2"
@@ -137,6 +135,3 @@ function gif2mp4() {
     output=$2
     ffmpeg -i "$input" -movflags faststart -pix_fmt yuv420p -vf "scale=trunc(iw/2)*2:trunc(ih/2)*2" "$output"
 }
-
-
-
