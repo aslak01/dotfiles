@@ -7,8 +7,8 @@ font-thicken = false
 # colors
 # window-colorspace = display-p3
 
-theme = zenwritten_light
 theme = arthur
+theme = zenwritten_light
 
 cursor-invert-fg-bg = true
 
