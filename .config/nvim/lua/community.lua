@@ -29,7 +29,6 @@ return {
   -- { import = "astrocommunity.lsp.lspsaga-nvim" },
 
   -- sed
-  { import = "astrocommunity.search.nvim-spectre" },
   { import = "astrocommunity.search.grug-far-nvim" },
 
   -- quickfix list
