@@ -7,4 +7,5 @@ return vim.tbl_map(function(plugin) return { plugin, enabled = false } end, {
   "jay-babu/mason-null-ls.nvim",
   "rcarriga/nvim-notify",
   "folke/noice.nvim",
+  "ray-x/lsp-signature.nvim",
 })
