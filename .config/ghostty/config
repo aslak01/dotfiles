@@ -5,10 +5,10 @@ font-size = 20
 font-thicken = false
 
 # colors
-# window-colorspace = display-p3
+window-colorspace = display-p3
 
-theme = zenwritten_light
 theme = arthur
+theme = zenwritten_light
 
 cursor-invert-fg-bg = true
 
