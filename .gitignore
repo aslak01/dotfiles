@@ -6,3 +6,4 @@ zsh_api_keys.zsh
 .docker/config.json
 **/StardewValley
 **/update-notifier-npm.json
+**/colima
