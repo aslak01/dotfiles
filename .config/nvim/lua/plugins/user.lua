@@ -14,7 +14,7 @@ return {
         set_dark_mode = function()
           vim.api.nvim_set_option_value("background", "dark", {})
           -- vim.cmd "colorscheme blame"
-          vim.cmd "colorscheme monoglow"
+          vim.cmd "colorscheme lackluster-hack"
         end,
         set_light_mode = function()
           vim.api.nvim_set_option_value("background", "light", {})
@@ -38,6 +38,11 @@ return {
     lazy = false,
     priority = 1000,
     opts = {},
+  },
+  {
+    "slugbyte/lackluster.nvim",
+    lazy = false,
+    priority = 1000,
   },
 
   {
