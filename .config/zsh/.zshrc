@@ -279,3 +279,5 @@ export PATH="$DPRINT_INSTALL/bin:$PATH"
 
 # fzf
 source <(fzf --zsh)
+
+export DOCKER_HOST="unix:///$HOME/.config/colima/default/docker.sock"
