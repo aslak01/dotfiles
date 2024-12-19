@@ -25,7 +25,7 @@ return {
   { import = "astrocommunity.completion.blink-cmp" },
 
   -- misc lsp
-  { import = "astrocommunity.lsp.lsp-signature-nvim" },
+  -- { import = "astrocommunity.lsp.lsp-signature-nvim" },
   -- { import = "astrocommunity.lsp.lspsaga-nvim" },
 
   -- sed
