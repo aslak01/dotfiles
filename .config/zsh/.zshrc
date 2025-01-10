@@ -166,6 +166,9 @@ alias ls='eza -a --icons'
 alias ll='eza -l --icons --color auto'
 alias lsnew='eza -l -snew | tail'
 
+# replace find with gfind (also affects locate, updatedb, and xargs)
+export PATH="/opt/homebrew/opt/findutils/libexec/gnubin:$PATH"
+
 alias cat='bat --style=plain'
 
 # easier to read disk
