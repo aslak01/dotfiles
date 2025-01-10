@@ -3,5 +3,5 @@
   email = hei@asla.cc
 [blame]
     ignoreRevsFile = .git-blame-ignore-revs
-[includeIf "gitdir:~/w/db/**"]
-  path = ~/.config/git/aller
+[includeIf "gitdir:~/w/tnr/**"]
+  path = ~/.config/git/telenor
