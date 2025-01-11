@@ -24,6 +24,8 @@ return {
 
   { import = "astrocommunity.completion.blink-cmp" },
 
+  { import = "astrocommunity.completion.avante-nvim" },
+
   -- misc lsp
   -- { import = "astrocommunity.lsp.lsp-signature-nvim" },
   -- { import = "astrocommunity.lsp.lspsaga-nvim" },
