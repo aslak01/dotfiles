@@ -24,3 +24,6 @@ macos-window-shadow = false
 macos-option-as-alt = true
 
 confirm-close-surface = false
+
+keybind = super+shift+d=scroll_page_down
+keybind = super+shift+u=scroll_page_up
