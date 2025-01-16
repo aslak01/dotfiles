@@ -43,9 +43,6 @@ return {
   { import = "astrocommunity.file-explorer.oil-nvim" },
   { import = "astrocommunity.file-explorer.telescope-file-browser-nvim" },
 
-  -- note taking
-  { import = "astrocommunity.note-taking.obsidian-nvim" },
-
   -- github
   { import = "astrocommunity.git.octo-nvim" },
   { import = "astrocommunity.git.openingh-nvim" },

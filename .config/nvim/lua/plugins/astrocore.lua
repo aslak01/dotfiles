@@ -82,6 +82,7 @@ return {
         -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
       },
       i = {
+        -- hacking in support for norwegian keys in insert mode
         ["<M-'>"] = "æ",
         ["<M-\">"] = "Æ",
         ["<M-o>"] = "ø",

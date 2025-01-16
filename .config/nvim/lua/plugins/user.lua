@@ -45,14 +45,14 @@ return {
     priority = 1000,
   },
 
-  {
-    "tjdevries/ocaml.nvim",
-    build = ":lua require('ocaml').update()",
-  },
-  -- http
-  {
-    "mistweaverco/kulala.nvim",
-  },
+  -- {
+  --   "tjdevries/ocaml.nvim",
+  --   build = ":lua require('ocaml').update()",
+  -- },
+  -- -- http
+  -- {
+  --   "mistweaverco/kulala.nvim",
+  -- },
 
   -- == Examples of Overriding Plugins ==
 
