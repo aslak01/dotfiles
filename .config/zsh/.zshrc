@@ -195,6 +195,8 @@ alias nvimrc="vim $HOME/.config/nvim/"
 
 alias icat="kitten icat"
 
+alias obs="cd $HOME/Library/Mobile\ Documents/iCloud~md~obsidian/Documents"
+
 ############## path shit
 # version managed Node
 export N_CACHE_PREFIX="$HOME/n"
