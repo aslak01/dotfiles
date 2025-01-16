@@ -8,4 +8,5 @@ return vim.tbl_map(function(plugin) return { plugin, enabled = false } end, {
   "rcarriga/nvim-notify",
   "folke/noice.nvim",
   "ray-x/lsp-signature.nvim",
+  "nvim-neo-tree/neo-tree.nvim"
 })
