@@ -54,7 +54,7 @@ return {
     mappings = {
       n = {
         ["<Leader>e"] = { "<cmd>Oil<cr>", desc = "Oil" },
-        ["<Leader>o"] = { "<cmd>Oil<cr>", desc = "Oil" },
+        -- ["<Leader>o"] = { "<cmd>Oil<cr>", desc = "Oil" },
         -- navigate buffer tabs with `H` and `L`
         -- L = {
         --   function() require("astrocore.buffer").nav(vim.v.count > 0 and vim.v.count or 1) end,

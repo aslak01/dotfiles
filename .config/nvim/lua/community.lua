@@ -12,11 +12,11 @@ return {
   { import = "astrocommunity.pack.typescript-all-in-one" },
   { import = "astrocommunity.pack.svelte" },
   { import = "astrocommunity.pack.bash" },
-  { import = "astrocommunity.pack.rust" },
   { import = "astrocommunity.pack.go" },
-  { import = "astrocommunity.pack.gleam" },
   { import = "astrocommunity.pack.markdown" },
-  { import = "astrocommunity.markdown-and-latex.vimtex" },
+  -- { import = "astrocommunity.pack.gleam" },
+  -- { import = "astrocommunity.pack.rust" },
+  -- { import = "astrocommunity.markdown-and-latex.vimtex" },
 
   -- fortmatting and linting
   { import = "astrocommunity.editing-support.conform-nvim" },
@@ -52,20 +52,20 @@ return {
 
   -- color
   -- { import = "astrocommunity.color.ccc-nvim" },
-  { import = "astrocommunity.color.huez-nvim" },
+  -- { import = "astrocommunity.color.huez-nvim" },
 
   -- dims unused variables
   { import = "astrocommunity.utility.neodim" },
 
   -- editor tweaks
-  { import = "astrocommunity.editing-support.mini-splitjoin" },
+  -- { import = "astrocommunity.editing-support.mini-splitjoin" },
 
   -- motion
   { import = "astrocommunity.motion.nvim-surround" },
   { import = "astrocommunity.motion.before-nvim" },
 
   -- game
-  { import = "astrocommunity.game.leetcode-nvim" },
+  -- { import = "astrocommunity.game.leetcode-nvim" },
 
   -- code pics
   { import = "astrocommunity.media.codesnap-nvim" },
