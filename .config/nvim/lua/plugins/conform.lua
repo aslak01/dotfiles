@@ -35,12 +35,7 @@ return {
     }
 
     -- prettier filetypes
-    vim.tbl_map(function(ft) opts.formatters_by_ft[ft] = { "prettier" } end, {
-      "javascript",
-      "javascriptreact",
-      "typescript",
-      "typescriptreact",
-      "vue",
+    vim.tbl_map(function(ft) opts.formatters_by_ft[ft] = { "prettierd" } end, {
       "css",
       "scss",
       "svg",
@@ -57,6 +52,14 @@ return {
       "gotmpl",
     })
 
+    vim.tbl_map(function(ft) opts.formatters_by_ft[ft] = { "biome" } end, {
+      "javascript",
+      "javascriptreact",
+      "typescript",
+      "typescriptreact",
+      "vue",
+    })
+
     opts.formatters = {
       prettier = {
         options = {
@@ -67,9 +70,11 @@ return {
           },
         },
       },
+
       dprint = {
         options = {
           ft_parsers = {
+
             mustache = "vue",
             handlebars = "vue",
           },
