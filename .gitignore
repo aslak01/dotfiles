@@ -3,7 +3,7 @@ packer_compiled.lua
 zsh_api_keys.zsh
 .config/lazygit/state.yml
 */sanity/config.json
-.docker/config.json
+*/.docker/config.json
 **/StardewValley
 **/update-notifier-npm.json
 **/colima
