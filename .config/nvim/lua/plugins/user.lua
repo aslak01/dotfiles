@@ -3,6 +3,11 @@ return {
   -- auto switching theme
   -- { "hauleth/blame.vim" },
   { "yorickpeterse/nvim-grey" },
+  {
+    "slugbyte/lackluster.nvim",
+    lazy = false,
+    priority = 1000,
+  },
   -- { "blazkowolf/gruber-darker.nvim" },
   -- { "rktjmp/lush.nvim" },
   -- { "mcchrish/zenbones.nvim" },
@@ -39,11 +44,6 @@ return {
   --   priority = 1000,
   --   opts = {},
   -- },
-  {
-    "slugbyte/lackluster.nvim",
-    lazy = false,
-    priority = 1000,
-  },
 
   -- {
   --   "tjdevries/ocaml.nvim",

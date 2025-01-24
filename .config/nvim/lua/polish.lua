@@ -4,17 +4,13 @@
 
 vim.filetype.add {
   extension = {
-    mustache = "handlebars",
     tmpl = "gotmpl",
   },
   filename = {
-    ["http"] =  "http",
+    ["http"] = "http",
     -- ["Foofile"] = "fooscript",
   },
   pattern = {
     -- ["~/%.config/foo/.*"] = "fooscript",
   },
 }
-
--- TODO: remove when filetypes are cleaned up in go.nvim
-vim.treesitter.language.register("gotmpl", "gotexttmpl")

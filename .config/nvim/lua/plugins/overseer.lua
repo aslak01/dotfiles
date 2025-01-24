@@ -39,7 +39,7 @@ return {
         },
         OpOut = {
           function() require("overseer").run_template { name = "view file output" } end,
-          desc = "View the current file ouptut with `opout`",
+          desc = "View the current file output with `opout`",
         },
         Present = {
           function()
