@@ -22,7 +22,7 @@ return {
   { import = "astrocommunity.editing-support.conform-nvim" },
   { import = "astrocommunity.lsp.nvim-lint" },
 
-  { import = "astrocommunity.completion.blink-cmp" },
+  -- { import = "astrocommunity.completion.blink-cmp" },
 
   -- { import = "astrocommunity.completion.avante-nvim" },
 
@@ -37,14 +37,13 @@ return {
   { import = "astrocommunity.quickfix.nvim-bqf" },
 
   -- orchestration
-  { import = "astrocommunity.code-runner.overseer-nvim" },
+  -- { import = "astrocommunity.code-runner.overseer-nvim" },
 
   -- file system
   { import = "astrocommunity.file-explorer.oil-nvim" },
-  { import = "astrocommunity.file-explorer.telescope-file-browser-nvim" },
 
   -- github
-  { import = "astrocommunity.git.octo-nvim" },
+  -- { import = "astrocommunity.git.octo-nvim" },
   { import = "astrocommunity.git.openingh-nvim" },
 
   -- color
@@ -52,7 +51,7 @@ return {
   -- { import = "astrocommunity.color.huez-nvim" },
 
   -- dims unused variables
-  { import = "astrocommunity.utility.neodim" },
+  -- { import = "astrocommunity.utility.neodim" },
 
   -- editor tweaks
   -- { import = "astrocommunity.editing-support.mini-splitjoin" },
