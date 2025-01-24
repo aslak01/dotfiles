@@ -1,5 +1,3 @@
-# .zaliases
-
 # General
 alias vim='nvim'
 alias g='lazygit'
