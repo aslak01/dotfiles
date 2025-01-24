@@ -15,6 +15,10 @@ require("lazy").setup({
 } --[[@as LazySpec]], {
   -- Configure any other `lazy.nvim` configuration options here
   -- install = { colorscheme = { "astrodark", "habamax" } },
+  mason = {
+    enable = true,
+    dap = { enabled = false },
+  },
   performance = {
     rtp = {
       -- disable some rtp plugins, add more to your liking
