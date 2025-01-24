@@ -9,7 +9,7 @@ return {
   -- lang specific lsp etc
   { import = "astrocommunity.pack.lua" },
   { import = "astrocommunity.pack.html-css" },
-  { import = "astrocommunity.pack.typescript-all-in-one" },
+  { import = "astrocommunity.pack.typescript" },
   { import = "astrocommunity.pack.svelte" },
   { import = "astrocommunity.pack.bash" },
   { import = "astrocommunity.pack.go" },

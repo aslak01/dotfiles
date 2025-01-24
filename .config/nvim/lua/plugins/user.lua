@@ -1,9 +1,9 @@
 ---@type LazySpec
 return {
   -- auto switching theme
-  { "hauleth/blame.vim" },
+  -- { "hauleth/blame.vim" },
   { "yorickpeterse/nvim-grey" },
-  { "blazkowolf/gruber-darker.nvim" },
+  -- { "blazkowolf/gruber-darker.nvim" },
   -- { "rktjmp/lush.nvim" },
   -- { "mcchrish/zenbones.nvim" },
   {
@@ -25,20 +25,20 @@ return {
     init = function() require("auto-dark-mode").init() end,
   },
 
-  {
-    "wtfox/jellybeans.nvim",
-    priority = 1000,
-    config = function()
-      require("jellybeans").setup()
-      vim.cmd.colorscheme "jellybeans"
-    end,
-  },
-  {
-    "wnkz/monoglow.nvim",
-    lazy = false,
-    priority = 1000,
-    opts = {},
-  },
+  -- {
+  --   "wtfox/jellybeans.nvim",
+  --   priority = 1000,
+  --   config = function()
+  --     require("jellybeans").setup()
+  --     vim.cmd.colorscheme "jellybeans"
+  --   end,
+  -- },
+  -- {
+  --   "wnkz/monoglow.nvim",
+  --   lazy = false,
+  --   priority = 1000,
+  --   opts = {},
+  -- },
   {
     "slugbyte/lackluster.nvim",
     lazy = false,
