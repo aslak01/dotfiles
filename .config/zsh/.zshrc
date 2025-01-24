@@ -62,6 +62,7 @@ setopt hist_ignore_space
 setopt hist_save_no_dups
 setopt hist_verify
 setopt extended_history
+setopt hist_reduce_blanks
 
 # Edit current command
 autoload -Uz edit-command-line
@@ -74,6 +75,7 @@ if [ ! -d "$ZINIT_HOME" ]; then
     mkdir -p "$(dirname $ZINIT_HOME)"
     git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 fi
+
 source "${ZINIT_HOME}/zinit.zsh"
 
 # Compile Zsh files for faster loading
