@@ -27,7 +27,7 @@ alias mutt='TERM=xterm-256color neomutt'
 # Tools
 alias ls='eza -a --icons'
 alias ll='eza -l --icons --color auto'
-alias lsnew='eza -l -snew | tail'
+alias lsnew='eza -l --icons -snew | tail'
 alias tldrf='tldr --list | fzf --preview "tldr {1}" --preview-window=right,70% | xargs tldr'
 alias sd="cd \$(fd . -t d | fzf)"
 

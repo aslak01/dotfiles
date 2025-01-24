@@ -1,15 +1,19 @@
 # .zinit
 
-# Load zsh-vi-mode FIRST to avoid widget conflicts
-# 🛠️ Moved to top to initialize before other plugins
+# zinit ice wait"1" lucid atload"async_init"
+# zinit light mafredri/zsh-async
+
 zinit ice depth=1 wait lucid
 zinit light jeffreytse/zsh-vi-mode
 
 # Starship prompt (managed by Zinit)
 zinit ice as"command" from"gh-r" \
-          atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
-          atpull"%atclone" src"init.zsh" \
-          wait"1" lucid  # 🛠️ Added explicit wait
+          bpick"*x86_64*apple*darwin*.tar.gz" \
+          atclone"./starship init zsh > init.zsh && \
+                   ./starship completions zsh > _starship" \
+          atpull"%atclone" \
+          src"init.zsh" \
+          wait lucid
 zinit light starship/starship
 
 # Load zsh-autosuggestions with priority loading
@@ -44,7 +48,4 @@ zinit light pyenv/pyenv
 zinit ice wait"1" lucid
 zinit snippet OMZ::plugins/sudo/sudo.plugin.zsh
 
-# zsh-autosuggestions config
-# 🛠️ Moved below zsh-vi-mode initialization
-ZSH_AUTOSUGGEST_USE_ASYNC=true
 bindkey '^f' autosuggest-accept

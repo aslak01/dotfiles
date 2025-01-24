@@ -24,7 +24,7 @@ add_to_path() {
 }
 
 # Add paths
-local paths=(
+paths=(
     "$HOME/.local/bin"
     "$HOME/n/bin"  # Node version manager
     "$HOME/go/bin" # Go
@@ -41,6 +41,9 @@ local paths=(
 for dir in "${paths[@]}"; do
   add_to_path "$dir"
 done
+
+# remove path dupes
+typeset -U PATH
 
 # Docker
 export DOCKER_HOST="unix:///$HOME/.config/colima/default/docker.sock"

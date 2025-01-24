@@ -1,4 +1,3 @@
-#! /bin/zsh
 # zmodload zsh/zprof
 
 # Disable shell sessions
@@ -27,9 +26,6 @@ setopt globdots
 setopt extendedglob
 setopt autocd
 setopt brace_ccl
-setopt combining_chars
-setopt rc_quotes
-unsetopt mail_warning
 setopt long_list_jobs
 setopt auto_resume
 setopt notify
@@ -96,7 +92,6 @@ unset _zsh_files
 [[ -r "$ZDOTDIR/private_api_keys" ]] && source "$ZDOTDIR/private_api_keys"
 [[ -r "$ZDOTDIR/.zaliases" ]] && source "$ZDOTDIR/.zaliases"
 
-eval "$(starship init zsh)"
 eval "$(tv init zsh)"
 
 # zprof
