@@ -42,7 +42,6 @@ for dir in "${paths[@]}"; do
   add_to_path "$dir"
 done
 
-# remove path dupes
 typeset -U PATH
 
 # Docker

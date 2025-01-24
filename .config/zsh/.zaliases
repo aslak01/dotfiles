@@ -23,11 +23,9 @@ alias pass="TERM=xterm-256color pass"
 alias mutt='TERM=xterm-256color neomutt'
 
 # Tools
-alias ls='eza -a --icons'
-alias ll='eza -l --icons --color auto'
-alias lsnew='eza -l --icons -snew | tail'
-alias tldrf='tldr --list | fzf --preview "tldr {1}" --preview-window=right,70% | xargs tldr'
-alias sd="cd \$(fd . -t d | fzf)"
+alias ls='eza -a --icons --group-directories-first --color=auto'
+alias ll='eza -la --icons --group-directories-first --color=auto'
+alias lnew='eza -la --icons --group-directories-first --color=auto -snew | tail'
 
 # Configuration
 alias zshrc="vim $HOME/.zshrc"
