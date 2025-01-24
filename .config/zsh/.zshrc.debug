@@ -1,0 +1,29 @@
+# Load zinit
+ZINIT_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/zinit/zinit.git"
+source "${ZINIT_HOME}/zinit.zsh"
+
+# Load essential plugins
+zinit light zsh-users/zsh-autosuggestions
+zinit light zdharma-continuum/fast-syntax-highlighting
+zinit light starship/starship
+
+# Initialize Starship
+eval "$(starship init zsh)"
+
+# Basic Zsh settings
+setopt globdots
+setopt extendedglob
+setopt autocd
+
+zinit ice wait"1" lucid atload"_zsh_autosuggest_start"
+zinit light zsh-users/zsh-autosuggestions
+
+# Load fast-syntax-highlighting
+zinit ice wait"1" lucid
+zinit light zdharma-continuum/fast-syntax-highlighting
+
+# Load Starship prompt
+zinit ice as"command" from"gh-r" \
+          atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
+          atpull"%atclone" src"init.zsh"
+zinit light starship/starship
