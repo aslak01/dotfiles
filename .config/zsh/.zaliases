@@ -2,7 +2,7 @@
 
 # General
 alias vim='nvim'
-alias lg='lazygit'
+alias g='lazygit'
 alias v='vim .'
 alias cat='bat --style=plain'
 alias df='df -h'

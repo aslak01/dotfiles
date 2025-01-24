@@ -90,11 +90,11 @@ for file in "${_zsh_files[@]}"; do
 done
 unset _zsh_files
 
-[[ -r "$ZDOTDIR/.zaliases" ]] && source "$ZDOTDIR/.zaliases"
 [[ -r "$ZDOTDIR/.zstyle" ]] && source "$ZDOTDIR/.zstyle"
 [[ -r "$ZDOTDIR/.zinit" ]] && source "$ZDOTDIR/.zinit"
 [[ -r "$ZDOTDIR/.zfunctions" ]] && source "$ZDOTDIR/.zfunctions"
 [[ -r "$ZDOTDIR/private_api_keys" ]] && source "$ZDOTDIR/private_api_keys"
+[[ -r "$ZDOTDIR/.zaliases" ]] && source "$ZDOTDIR/.zaliases"
 
 eval "$(starship init zsh)"
 eval "$(tv init zsh)"
