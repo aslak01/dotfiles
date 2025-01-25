@@ -1,6 +1,7 @@
 ---@type LazySpec
 return {
   dir = "~/w/pers/typebreak.nvim",
+  lazy = true,
   dependencies = {
     "nvim-lua/plenary.nvim",
     { "grapp-dev/nui-components.nvim", dependencies = { "MunifTanjim/nui.nvim" } },

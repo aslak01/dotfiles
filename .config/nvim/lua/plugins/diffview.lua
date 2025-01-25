@@ -4,6 +4,7 @@ return {
   {
     "sindrets/diffview.nvim",
     cmd = { "DiffviewOpen", "DiffviewFileHistory" },
+    lazy = true,
     dependencies = {
       "AstroNvim/astrocore",
       opts = {
