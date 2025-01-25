@@ -43,10 +43,40 @@ return {
     -- customize language server configuration options passed to `lspconfig`
     ---@diagnostic disable: missing-fields
     config = {
-      -- TODO: remove this when go.nvim corrects template filetypes
-      -- gopls = {
-      --   filetypes = { "go", "gomod", "gowork", "gotmpl", "gotexttmpl" },
-      -- },
+      svelte = {
+        settings = {
+          svelte = {
+            plugin = {
+              html = { completions = { enabled = true } },
+              typescript = { enable = false },
+            },
+          },
+        },
+      },
+
+      -- ========================================
+      -- 2. Restrict ESLint to non-Svelte files
+      -- ========================================
+      eslint = {
+        filetypes = {
+          "javascript",
+          "typescript",
+          "javascriptreact",
+          "typescriptreact",
+          "vue",
+          "astro",
+        },
+      },
+
+      -- ========================================
+      -- 3. Configure Biome for JS/TS only
+      -- ========================================
+      biome = {
+        filetypes = {
+          "javascript",
+          "typescript",
+        },
+      },
       -- clangd = { capabilities = { offsetEncoding = "utf-8" } },
       --   vtsls = {
       --     settings = {
