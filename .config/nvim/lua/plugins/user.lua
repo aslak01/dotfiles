@@ -2,7 +2,7 @@
 return {
   -- auto switching theme
   -- { "hauleth/blame.vim" },
-  { "yorickpeterse/nvim-grey" },
+  { "yorickpeterse/nvim-grey", lazy = false, priority = 1000 },
   {
     "slugbyte/lackluster.nvim",
     lazy = false,
@@ -13,6 +13,7 @@ return {
   -- { "mcchrish/zenbones.nvim" },
   {
     "f-person/auto-dark-mode.nvim",
+    lazy = false,
     opts = {
       update_interval = 1000,
       set_dark_mode = function()

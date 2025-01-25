@@ -13,15 +13,15 @@ require("lazy").setup({
   { import = "community" },
   { import = "plugins" },
 } --[[@as LazySpec]], {
-  -- Configure any other `lazy.nvim` configuration options here
   -- install = { colorscheme = { "astrodark", "habamax" } },
+  defaults = { lazy = true },
   mason = {
     enable = true,
     dap = { enabled = false },
   },
+  lockfile = vim.fn.stdpath "data" .. "/lazy-lock.json",
   performance = {
     rtp = {
-      -- disable some rtp plugins, add more to your liking
       disabled_plugins = {
         "gzip",
         "netrwPlugin",
@@ -31,4 +31,5 @@ require("lazy").setup({
       },
     },
   },
+  ui = { backdrop = 100 },
 } --[[@as LazyConfig]])
