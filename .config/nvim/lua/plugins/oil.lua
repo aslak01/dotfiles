@@ -1,17 +1,7 @@
 ---@type LazySpec
 return {
   "stevearc/oil.nvim",
-  init = function() -- start oil on startup lazily if necessary
-    if vim.fn.argc() == 1 then
-      local arg = vim.fn.argv(0)
-      ---@cast arg string
-      local stat = (vim.uv or vim.loop).fs_stat(arg)
-      local adapter = string.match(arg, "^([%l-]*)://")
-      if (stat and stat.type == "directory") or adapter == "oil-ssh" then
-        require "oil"
-      end
-    end
-  end,
+  lazy = false,
   opts = {
     view_options = {
       show_hidden = true,
