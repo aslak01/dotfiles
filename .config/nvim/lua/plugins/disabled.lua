@@ -12,4 +12,5 @@ return vim.tbl_map(function(plugin) return { plugin, enabled = false } end, {
   "ray-x/lsp-signature.nvim",
   "nvim-neo-tree/neo-tree.nvim",
   "stevearc/dressing.nvim",
+  "numToStr/Comment.nvim",
 })

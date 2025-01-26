@@ -2,7 +2,11 @@
 return {
   "epwalsh/obsidian.nvim",
   lazy = true,
-  event = { "bufreadpre " .. vim.fn.expand "~" .. "/Library/Mobile Documents/iCloud~md~obsidian/Documents/**.md" },
+  event = {
+    "bufreadpre "
+      .. vim.fn.expand "~"
+      .. "/Library/Mobile Documents/iCloud~md~obsidian/Documents/**.md",
+  },
   opts = {
     workspaces = {
       {

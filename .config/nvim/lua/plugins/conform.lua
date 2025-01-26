@@ -19,13 +19,18 @@ return {
 
     opts.formatters_by_ft = {
       ["*"] = function(bufnr)
-        return buf_utils.is_valid(bufnr) and buf_utils.has_filetype(bufnr) and { "injected" } or {}
+        return buf_utils.is_valid(bufnr)
+            and buf_utils.has_filetype(bufnr)
+            and { "injected" }
+          or {}
       end,
       packer = { "packer_fmt" },
       toml = { "taplo" },
       lua = { "stylua" },
       puppet = { "puppet-lint" },
       sh = { "shfmt" },
+      zsh = { "beautysh" },
+      bash = { "shfmt" },
       sql = { "sqlfluff" },
       python = { "isort", "black" },
       ["_"] = function(bufnr)
@@ -78,13 +83,20 @@ return {
     {
       "AstroNvim/astrocore",
       opts = {
-        options = { opt = { formatexpr = "v:lua.require'conform'.formatexpr()" } },
+        options = {
+          opt = { formatexpr = "v:lua.require'conform'.formatexpr()" },
+        },
         commands = {
           Format = {
             function(args)
               local range = nil
               if args.count ~= -1 then
-                local end_line = vim.api.nvim_buf_get_lines(0, args.line2 - 1, args.line2, true)[1]
+                local end_line = vim.api.nvim_buf_get_lines(
+                  0,
+                  args.line2 - 1,
+                  args.line2,
+                  true
+                )[1]
                 range = {
                   start = { args.line1, 0 },
                   ["end"] = { args.line2, end_line:len() },
@@ -98,8 +110,14 @@ return {
         },
         mappings = {
           n = {
-            ["<Leader>lf"] = { function() vim.cmd.Format() end, desc = "Format buffer" },
-            ["<Leader>lI"] = { function() vim.cmd.ConformInfo() end, desc = "Conform information" },
+            ["<Leader>lf"] = {
+              function() vim.cmd.Format() end,
+              desc = "Format buffer",
+            },
+            ["<Leader>lI"] = {
+              function() vim.cmd.ConformInfo() end,
+              desc = "Conform information",
+            },
             ["<Leader>uf"] = {
               function()
                 if vim.b.autoformat == nil then
@@ -108,7 +126,10 @@ return {
                 end
                 vim.b.autoformat = not vim.b.autoformat
                 require("astrocore").notify(
-                  string.format("Buffer autoformatting %s", vim.b.autoformat and "on" or "off")
+                  string.format(
+                    "Buffer autoformatting %s",
+                    vim.b.autoformat and "on" or "off"
+                  )
                 )
               end,
               desc = "Toggle autoformatting (buffer)",
@@ -119,7 +140,10 @@ return {
                 vim.g.autoformat = not vim.g.autoformat
                 vim.b.autoformat = nil
                 require("astrocore").notify(
-                  string.format("Global autoformatting %s", vim.g.autoformat and "on" or "off")
+                  string.format(
+                    "Global autoformatting %s",
+                    vim.g.autoformat and "on" or "off"
+                  )
                 )
               end,
               desc = "Toggle autoformatting (global)",

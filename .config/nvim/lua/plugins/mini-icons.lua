@@ -1,3 +1,4 @@
+---@type LazySpec
 return {
   "echasnovski/mini.icons",
   opts = {
@@ -48,7 +49,8 @@ return {
           },
           kind_icon = {
             provider = function(icon, node)
-              icon.text, icon.highlight = require("mini.icons").get("lsp", node.extra.kind.name)
+              icon.text, icon.highlight =
+                require("mini.icons").get("lsp", node.extra.kind.name)
             end,
           },
         },

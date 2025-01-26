@@ -1,3 +1,4 @@
+---@type LazySpec
 return {
   "stevearc/oil.nvim",
   init = function() -- start oil on startup lazily if necessary
@@ -6,7 +7,9 @@ return {
       ---@cast arg string
       local stat = (vim.uv or vim.loop).fs_stat(arg)
       local adapter = string.match(arg, "^([%l-]*)://")
-      if (stat and stat.type == "directory") or adapter == "oil-ssh" then require "oil" end
+      if (stat and stat.type == "directory") or adapter == "oil-ssh" then
+        require "oil"
+      end
     end
   end,
   opts = {
@@ -15,7 +18,6 @@ return {
     },
   },
   specs = {
-    { "nvim-neo-tree/neo-tree.nvim", optional = true, opts = { filesystem = { hijack_netrw_behavior = "disabled" } } },
     {
       "AstroNvim/astrocore",
       opts = {

@@ -4,7 +4,10 @@ return {
   lazy = true,
   dependencies = {
     "nvim-lua/plenary.nvim",
-    { "grapp-dev/nui-components.nvim", dependencies = { "MunifTanjim/nui.nvim" } },
+    {
+      "grapp-dev/nui-components.nvim",
+      dependencies = { "MunifTanjim/nui.nvim" },
+    },
   },
   keys = {
     {

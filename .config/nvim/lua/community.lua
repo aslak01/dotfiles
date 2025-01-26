@@ -40,7 +40,7 @@ return {
   -- { import = "astrocommunity.code-runner.overseer-nvim" },
 
   -- file system
-  { import = "astrocommunity.file-explorer.oil-nvim" },
+  -- { import = "astrocommunity.file-explorer.oil-nvim" },
 
   -- github
   -- { import = "astrocommunity.git.octo-nvim" },
