@@ -1,3 +1,4 @@
+---@type LazySpec
 return {
   "bloznelis/before.nvim",
   event = { "InsertEnter", "TextChanged" },
@@ -7,8 +8,14 @@ return {
       opts = {
         mappings = {
           n = {
-            ["]e"] = { function() require("before").jump_to_next_edit() end, desc = "Next edit" },
-            ["[e"] = { function() require("before").jump_to_last_edit() end, desc = "Previous edit" },
+            ["]e"] = {
+              function() require("before").jump_to_next_edit() end,
+              desc = "Next edit",
+            },
+            ["[e"] = {
+              function() require("before").jump_to_last_edit() end,
+              desc = "Previous edit",
+            },
           },
         },
       },

@@ -5,6 +5,7 @@ local function selene_configured(path)
   ) > 0
 end
 
+---@type LazySpec
 return {
   {
     "AstroNvim/astrolsp",

@@ -3,11 +3,6 @@ return {
   "stevearc/oil.nvim",
   cmd = "Oil",
   lazy = false,
-  opts = {
-    view_options = {
-      show_hidden = true,
-    },
-  },
   init = function() -- start oil on startup lazily if necessary
     if vim.fn.argc() == 1 then
       local arg = vim.fn.argv(0)
@@ -93,7 +88,7 @@ return {
           end,
         },
         R = "actions.refresh",
-        ["<Tab>"] = "actions.close",
+        H = "actions.toggle_hidden",
       },
       lsp_file_methods = { autosave_changes = "unmodified" },
       view_options = {
