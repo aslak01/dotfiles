@@ -7,20 +7,20 @@ return {
   { "AstroNvim/astrocommunity" },
 
   -- lang specific lsp etc
-  { import = "astrocommunity.pack.lua" },
-  { import = "astrocommunity.pack.html-css" },
-  { import = "astrocommunity.pack.typescript" },
-  { import = "astrocommunity.pack.svelte" },
-  { import = "astrocommunity.pack.bash" },
-  { import = "astrocommunity.pack.go" },
-  { import = "astrocommunity.pack.markdown" },
+  -- { import = "astrocommunity.pack.lua" },
+  -- { import = "astrocommunity.pack.html-css" },
+  -- { import = "astrocommunity.pack.typescript" },
+  -- { import = "astrocommunity.pack.svelte" },
+  -- { import = "astrocommunity.pack.bash" },
+  -- { import = "astrocommunity.pack.go" },
+  -- { import = "astrocommunity.pack.markdown" },
   -- { import = "astrocommunity.pack.gleam" },
   -- { import = "astrocommunity.pack.rust" },
   -- { import = "astrocommunity.markdown-and-latex.vimtex" },
 
   -- fortmatting and linting
-  { import = "astrocommunity.editing-support.conform-nvim" },
-  { import = "astrocommunity.lsp.nvim-lint" },
+  -- { import = "astrocommunity.editing-support.conform-nvim" },
+  -- { import = "astrocommunity.lsp.nvim-lint" },
 
   -- { import = "astrocommunity.completion.blink-cmp" },
 
@@ -31,10 +31,10 @@ return {
   -- { import = "astrocommunity.lsp.lspsaga-nvim" },
 
   -- sed
-  { import = "astrocommunity.search.grug-far-nvim" },
+  -- { import = "astrocommunity.search.grug-far-nvim" },
 
   -- quickfix list
-  { import = "astrocommunity.quickfix.nvim-bqf" },
+  -- { import = "astrocommunity.quickfix.nvim-bqf" },
 
   -- orchestration
   -- { import = "astrocommunity.code-runner.overseer-nvim" },
@@ -44,7 +44,7 @@ return {
 
   -- github
   -- { import = "astrocommunity.git.octo-nvim" },
-  { import = "astrocommunity.git.openingh-nvim" },
+  -- { import = "astrocommunity.git.openingh-nvim" },
 
   -- color
   -- { import = "astrocommunity.color.ccc-nvim" },
@@ -57,12 +57,12 @@ return {
   -- { import = "astrocommunity.editing-support.mini-splitjoin" },
 
   -- motion
-  { import = "astrocommunity.motion.nvim-surround" },
-  { import = "astrocommunity.motion.before-nvim" },
+  -- { import = "astrocommunity.motion.nvim-surround" },
+  -- { import = "astrocommunity.motion.before-nvim" },
 
   -- game
   -- { import = "astrocommunity.game.leetcode-nvim" },
 
   -- code pics
-  { import = "astrocommunity.media.codesnap-nvim" },
+  -- { import = "astrocommunity.media.codesnap-nvim" },
 }

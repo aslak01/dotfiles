@@ -17,6 +17,7 @@ local function with_file(file, mode, callback, on_error)
   end
 end
 
+---@type LazySpec
 return {
   {
     "AstroNvim/astroui",
