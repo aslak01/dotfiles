@@ -1,3 +1,4 @@
+local lint -- cache for the nvim-lint package
 ---@type LazySpec
 return {
   "mfussenegger/nvim-lint",
