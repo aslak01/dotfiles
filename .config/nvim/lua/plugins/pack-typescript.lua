@@ -32,7 +32,7 @@ local has_prettier = function(bufnr)
       ignore = {
         servers = function(client)
           return not vim.tbl_contains(
-            { "eslint", "ts_ls", "typescript-tools", "volar", "vtsls" },
+            { "eslint", "ts_ls", "typescript-tools", "vtsls" },
             client.name
           )
         end,

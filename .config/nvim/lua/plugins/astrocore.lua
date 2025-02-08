@@ -62,7 +62,7 @@ return {
       -- vim options can be configured here
       options = {
         opt = { -- vim.opt.<key>
-          conceallevel = 1, -- enable conceal
+          -- conceallevel = 1, -- enable conceal
           relativenumber = true, -- sets vim.opt.relativenumber
           number = true, -- sets vim.opt.number
           spell = false, -- sets vim.opt.spell
