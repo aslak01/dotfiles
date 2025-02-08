@@ -1,6 +1,6 @@
 # General
 alias vim='nvim'
-alias g='lazygit'
+alias g='update_lazygit_theme && lazygit'
 alias v='vim .'
 alias cat='bat --style=plain'
 alias df='df -h'

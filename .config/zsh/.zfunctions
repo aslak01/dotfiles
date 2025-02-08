@@ -2,3 +2,38 @@
 tldrf() {
   tldr --list | fzf --preview "tldr {1}" --preview-window=right,70% | xargs tldr
 }
+
+is_dark_mode() {
+  local mode
+  mode=$(defaults read -g AppleInterfaceStyle 2>/dev/null)
+  [[ "$mode" == "Dark" ]] && echo "dark" || echo "light"
+}
+
+configure_themes() {
+  local mode=$(is_dark_mode)
+  case $mode in
+    dark)
+      export LS_COLORS="$(vivid generate dracula)"
+      export BAT_THEME="Dracula"
+      LAZYGIT_THEME="dracula"
+      ;;
+    light)
+      export LS_COLORS="$(vivid generate solarized-light)"
+      export BAT_THEME="Solarized (light)"
+      LAZYGIT_THEME="solarized-light"
+      ;;
+  esac
+}
+
+update_lazygit_theme() {
+  # local lazygit_config="$HOME/.config/lazygit/config.yml"
+  # local mode=$(is_dark_mode)
+  # case $mode in
+  #   dark)
+  #     sed -i '' 's/^\( *theme:\).*/\1 dracula/' "$lazygit_config"
+  #     ;;
+  #   light)
+  #     sed -i '' 's/^\( *theme:\).*/\1 solarized-light/' "$lazygit_config"
+  #     ;;
+  # esac
+}

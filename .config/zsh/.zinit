@@ -4,15 +4,6 @@
 zinit ice depth=1 wait lucid
 zinit light jeffreytse/zsh-vi-mode
 
-# Starship prompt (managed by Zinit)
-zinit ice as"command" from"gh-r" \
-          bpick"*x86_64*apple*darwin*.tar.gz" \
-          atclone"./starship init zsh > init.zsh && \
-                   ./starship completions zsh > _starship" \
-          atpull"%atclone" \
-          src"init.zsh" \
-          wait lucid
-zinit light starship/starship
 
 # Load zsh-autosuggestions with priority loading
 # 🛠️ Changed wait to "0a" to load before syntax highlighting
@@ -34,9 +25,9 @@ zinit light junegunn/fzf
 
 # Lazy-load zoxide
 zinit ice as"program" from"gh-r" \
-          atclone"./zoxide init zsh > init.zsh" \
-          atpull"%atclone" src"init.zsh" \
-          wait"1" lucid
+    atclone"./zoxide init zsh > init.zsh" \
+    atpull"%atclone" src"init.zsh" \
+    wait"1" lucid
 zinit light ajeetdsouza/zoxide
 
 # Lazy-load pyenv
@@ -52,3 +43,4 @@ bindkey '^f' autosuggest-accept
 autoload -Uz edit-command-line
 zle -N edit-command-line
 bindkey -M vicmd 'vv' edit-command-line
+

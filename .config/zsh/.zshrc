@@ -1,3 +1,4 @@
+# shellcheck shell=bash
 # zmodload zsh/zprof
 
 # Disable shell sessions
@@ -7,7 +8,7 @@ export SHELL_SESSIONS_DISABLE=1
 autoload -Uz compinit promptinit
 
 # Initialize compinit with cache
-_comp_files=(${ZDOTDIR:-$HOME}/.zcompdump(Nm-20))
+_comp_files="(${ZDOTDIR:-$HOME}/.zcompdump(Nm-20))"
 if (( $#_comp_files )); then
     compinit -u -i -C
 else
@@ -69,6 +70,8 @@ if [ ! -d "$ZINIT_HOME" ]; then
     git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 fi
 
+export STARSHIP_SHELL="zsh"
+
 source "${ZINIT_HOME}/zinit.zsh"
 unalias zi 2>/dev/null
 
@@ -91,3 +94,22 @@ unset _zsh_files
 eval "$(tv init zsh)"
 
 # zprof
+
+configure_themes
+
+# vim mode bug workaround: https://github.com/starship/starship/issues/3418#issuecomment-2477375663
+if [[ "${widgets[zle-keymap-select]#user:}" == "starship_zle-keymap-select" || \
+      "${widgets[zle-keymap-select]#user:}" == "starship_zle-keymap-select-wrapped" ]]; then
+    zle -N zle-keymap-select "";
+fi
+
+eval "$(starship init zsh)"
+
+# bun completions
+[ -s "/Users/t991563/.bun/_bun" ] && source "/Users/t991563/.bun/_bun"
+
+
+# update wezterm tab titles
+function precmd() {
+  print -Pn "\e]0;${PWD:t}\a"
+}

@@ -39,13 +39,13 @@ paths=(
 )
 
 for dir in "${paths[@]}"; do
-  add_to_path "$dir"
+    add_to_path "$dir"
 done
 
 typeset -U PATH
 
 # Docker
-export DOCKER_HOST="unix:///$HOME/.config/colima/default/docker.sock"
+export DOCKER_HOST="unix://$HOME/.config/colima/default/docker.sock"
 
 # Defaults
 export LANG=en_US.UTF-8
