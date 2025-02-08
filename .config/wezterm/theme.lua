@@ -40,7 +40,7 @@ end
 
 local function scheme_for_appearance(appearance)
 	if appearance:find("Dark") then
-		return "Zenwritten_dark"
+		return "Arthur"
 	else
 		return "Zenwritten_light"
 	end

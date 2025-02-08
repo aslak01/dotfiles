@@ -153,13 +153,9 @@ end
 
 local function tab_title(tab_info)
 	local title = tab_info.tab_title
-	-- if the tab title is explicitly set, take that
-	if title and #title > 0 then
-		return title
-	end
-	-- Otherwise, use the title from the active pane
-	-- in that tab
-	return tab_info.active_pane.title
+	-- if the tab title is explicitly set, take that;
+	-- otherwise, use the title from the active pane.
+	return title and #title > 0 and title or tab_info.active_pane.title
 end
 
 function Tab.setup(config)
@@ -175,12 +171,25 @@ function Tab.setup(config)
 		-- local title = get_current_working_dir(tab)
 		local titleFmt = wezterm.truncate_right(title, tab_width - 2)
 		local process = pane.foreground_process_name
-		return wezterm.format({
-			{ Attribute = { Intensity = "Half" } },
-			{ Text = " " .. string.format("%s", tab.tab_index + 1) },
-			"ResetAttributes",
-			{ Text = " " .. get_process(process) .. " " .. titleFmt .. " " },
-		})
+		local process_name = string.gsub(process, "(.*[/\\])(.*)", "%2")
+
+		-- If the active process is zsh, let the OSC update (from your precmd)
+		-- control the tab title (i.e. no process icon is prepended)
+		if process_name == "zsh" then
+			return wezterm.format({
+				{ Attribute = { Intensity = "Half" } },
+				{ Text = " " .. tostring(tab.tab_index + 1) },
+				"ResetAttributes",
+				{ Text = " " .. titleFmt .. " " },
+			})
+		else
+			return wezterm.format({
+				{ Attribute = { Intensity = "Half" } },
+				{ Text = " " .. string.format("%s", tab.tab_index + 1) },
+				"ResetAttributes",
+				{ Text = " " .. get_process(process) .. " " .. titleFmt .. " " },
+			})
+		end
 	end)
 end
 
