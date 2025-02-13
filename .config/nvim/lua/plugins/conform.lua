@@ -57,32 +57,29 @@ return {
       "gotmpl",
     })
 
-    -- vim.tbl_map(
-    --   function(ft) opts.formatters_by_ft[ft] = { "dprint", "prettierd" } end,
-    --   {
-    --     "javascript",
-    --     "javascriptreact",
-    --     "typescript",
-    --     "typescriptreact",
-    --     "vue",
-    --   }
-    -- )
-
-    local fallback_formatters = { "dprint", "prettierd" }
-
-    for _, ft in ipairs {
+    vim.tbl_map(function(ft) opts.formatters_by_ft[ft] = { "biome" } end, {
       "javascript",
       "javascriptreact",
       "typescript",
       "typescriptreact",
       "vue",
-    } do
-      opts.formatters_by_ft[ft] = fallback_formatters
-    end
+    })
+
+    -- local fallback_formatters = { "biome", "prettierd" }
+    --
+    -- for _, ft in ipairs {
+    --   "javascript",
+    --   "javascriptreact",
+    --   "typescript",
+    --   "typescriptreact",
+    --   "vue",
+    -- } do
+    --   opts.formatters_by_ft[ft] = fallback_formatters
+    -- end
 
     opts.formatters = {
-      biome = { require_cwd = true },
-      dprint = { require_cwd = true },
+      -- biome = { require_cwd = true },
+      -- dprint = { require_cwd = true },
       prettier = {
         options = {
           ft_parsers = {

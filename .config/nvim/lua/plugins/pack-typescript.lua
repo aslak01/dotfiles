@@ -32,7 +32,7 @@ local has_prettier = function(bufnr)
       ignore = {
         servers = function(client)
           return not vim.tbl_contains(
-            { "eslint", "ts_ls", "typescript-tools", "vtsls" },
+            { "eslint", "ts_ls", "biome", "typescript-tools", "vtsls" },
             client.name
           )
         end,
@@ -80,7 +80,7 @@ local has_prettier = function(bufnr)
 end
 
 local conform_formatter = function(bufnr)
-  return has_prettier(bufnr) and { "prettierd" } or {}
+  return has_prettier(bufnr) and { "biome" } or {}
 end
 
 ---@type LazySpec
@@ -172,7 +172,7 @@ return {
     opts = function(_, opts)
       opts.ensure_installed = require("astrocore").list_insert_unique(
         opts.ensure_installed,
-        { "vtsls", "eslint-lsp", "prettierd", "js-debug-adapter" }
+        { "vtsls", "eslint-lsp", "biome", "js-debug-adapter" }
       )
     end,
   },
