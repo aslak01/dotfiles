@@ -57,8 +57,8 @@ PATH = '/opt/homebrew/bin:/opt/homebrew/sbin:${PATH}'
 [mode.main.binding]
 # cmd-h = []
 
-# alt-t = 'exec-and-forget open -n /Applications/WezTerm.app'
-alt-t = 'exec-and-forget open -n /Applications/Ghostty.app'
+alt-t = 'exec-and-forget open -n /Applications/WezTerm.app'
+# alt-t = 'exec-and-forget open -n /Applications/Ghostty.app'
 
 alt-b = '''exec-and-forget osascript <<EOF
 tell application "Safari"
