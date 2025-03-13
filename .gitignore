@@ -7,3 +7,5 @@ zsh_api_keys.zsh
 **/StardewValley
 **/update-notifier-npm.json
 **/colima
+**/podman/machine
+**/podman-connections.*

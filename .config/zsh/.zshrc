@@ -1,3 +1,4 @@
+#! /usr/bin zsh
 # shellcheck shell=bash
 # zmodload zsh/zprof
 
@@ -70,6 +71,9 @@ if [ ! -d "$ZINIT_HOME" ]; then
     git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 fi
 
+# mise
+eval "$(mise activate zsh)"
+
 export STARSHIP_SHELL="zsh"
 
 source "${ZINIT_HOME}/zinit.zsh"
@@ -113,3 +117,4 @@ eval "$(starship init zsh)"
 function precmd() {
   print -Pn "\e]0;${PWD:t}\a"
 }
+

@@ -4,6 +4,7 @@ alias g='update_lazygit_theme && lazygit'
 alias v='vim .'
 alias cat='bat --style=plain'
 alias df='df -h'
+alias lsnew='eza --sort=modified --reverse | tail'
 
 # Navigation
 alias ..='cd ..'

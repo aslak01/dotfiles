@@ -47,10 +47,13 @@ return {
           qmd = "markdown",
           yaml = yaml_ft,
           yml = yaml_ft,
+          pkl = "pkl",
+          pcf = "pkl",
         },
         filename = {
           ["docker-compose.yaml"] = "yaml.docker-compose",
           ["docker-compose.yml"] = "yaml.docker-compose",
+          ["PklProject"] = "pkl",
         },
         pattern = {
           ["%.env%.[%w_.-]+"] = "sh",
