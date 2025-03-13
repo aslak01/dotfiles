@@ -36,6 +36,7 @@ paths=(
     "$HOME/.local/share/bob/nvim-bin" # Bob (Neovim)
     "$HOME/bin" # Custom bin
     "$HOME/.dprint/bin" # Dprint
+    "$HOME.local/share/bob/nvim-bin/"
 )
 
 for dir in "${paths[@]}"; do
