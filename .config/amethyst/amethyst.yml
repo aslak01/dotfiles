@@ -1,0 +1,43 @@
+layouts:
+  - tall
+  - tall-right
+  - two-pane
+  - middle-wide
+  - floating
+  - bsp
+
+window-max-count: 6
+
+window-margins: true
+window-margin-size: 5
+
+mouse-resizes-windows: true
+
+floating-is.blacklist: false
+
+floating:
+  - com.apple.iCal
+  - com.apple.systempreferences
+  - com.adguard.mac.adguard
+  - com.valvesoftware.steam
+  - com.apple.keychainaccess
+  - com.apple.calculator
+  - com.if.Amphetamine
+  - com.if.balena.etcher
+  - net.battle.app
+  - com.apple.iBooksX
+  - com.apple.AddressBook
+  - ch.sudo.cyberduck
+  - com.apple.Dictionary
+  - com.apple.FaceTime
+  - net.filebot.filebot
+  - com.apple.findmy
+  - net.kassett.finicky
+  - com.apple.FontBook
+  - fr.handbrake.handbrake
+  - com.burbn.instagram
+  - com.mojang.minecraftlauncher
+  - com.apple.PhotoBooth
+  - net.televator.Vimari
+  - com.colliderli.iina
+  - com.apple.MobileSMS

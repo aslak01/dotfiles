@@ -1,0 +1,46 @@
+# zinit ice wait"1" lucid atload"async_init"
+# zinit light mafredri/zsh-async
+
+zinit ice depth=1 wait lucid
+zinit light jeffreytse/zsh-vi-mode
+
+
+# Load zsh-autosuggestions with priority loading
+# 🛠️ Changed wait to "0a" to load before syntax highlighting
+zinit ice wait"0a" lucid atload"_zsh_autosuggest_start"
+zinit light zsh-users/zsh-autosuggestions
+
+# Load syntax highlighting AFTER autosuggestions
+# 🛠️ Changed wait to "0b" to ensure proper order
+zinit ice wait"0b" lucid atinit"FAST_HIGHLIGHT=()"
+zinit light zdharma-continuum/fast-syntax-highlighting
+
+# Lazy-load fzf-tab
+zinit ice wait"1" lucid
+zinit light Aloxaf/fzf-tab
+
+# Lazy-load fzf
+zinit ice from"gh-r" as"program" wait"1" lucid
+zinit light junegunn/fzf
+
+# Lazy-load zoxide
+zinit ice as"program" from"gh-r" \
+    atclone"./zoxide init zsh > init.zsh" \
+    atpull"%atclone" src"init.zsh" \
+    wait"1" lucid
+zinit light ajeetdsouza/zoxide
+
+# Lazy-load pyenv
+zinit ice wait lucid trigger-load'!pyenv'
+zinit light pyenv/pyenv
+
+zinit ice wait"1" lucid
+zinit snippet OMZ::plugins/sudo/sudo.plugin.zsh
+
+bindkey '^f' autosuggest-accept
+
+# Edit current command
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey -M vicmd 'vv' edit-command-line
+

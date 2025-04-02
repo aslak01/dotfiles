@@ -1,0 +1,28 @@
+# font
+# font-family = "Fira Code"
+font-family = "Meslo"
+font-size = 20
+font-thicken = false
+
+# colors
+window-colorspace = display-p3
+
+theme = dark:arthur,light:zenwritten_light
+
+cursor-invert-fg-bg = true
+
+window-theme = system
+
+# window styling
+# window-decoration = false
+
+macos-titlebar-style = tabs
+macos-window-shadow = false
+
+# keyboard
+macos-option-as-alt = true
+
+confirm-close-surface = false
+
+keybind = super+shift+d=scroll_page_down
+keybind = super+shift+u=scroll_page_up

@@ -1,0 +1,7 @@
+[user]
+  name = Aslak
+  email = hei@asla.cc
+[blame]
+    ignoreRevsFile = .git-blame-ignore-revs
+[includeIf "gitdir:~/w/tnr/**"]
+  path = ~/.config/git/telenor
