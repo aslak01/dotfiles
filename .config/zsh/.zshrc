@@ -123,3 +123,11 @@ function precmd() {
 if command -v gfind >/dev/null 2>&1; then
   PATH=$(brew --prefix)/opt/findutils/libexec/gnubin:$PATH
 fi
+
+# pnpm
+export PNPM_HOME="/Users/t991563/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
