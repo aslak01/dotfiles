@@ -31,3 +31,5 @@ alias lnew='eza -la --icons --group-directories-first --color=auto -snew | tail'
 # Configuration
 alias zshrc="vim $HOME/.zshrc"
 alias nvimrc="vim $HOME/.config/nvim/"
+
+alias skgl="$HOME/w/tnr/skogul/skogul"

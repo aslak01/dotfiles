@@ -118,3 +118,8 @@ function precmd() {
   print -Pn "\e]0;${PWD:t}\a"
 }
 
+
+# default to using gnu find for linux compatibility (when installed)
+if command -v gfind >/dev/null 2>&1; then
+  PATH=$(brew --prefix)/opt/findutils/libexec/gnubin:$PATH
+fi
