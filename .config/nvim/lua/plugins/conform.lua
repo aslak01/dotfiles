@@ -55,6 +55,7 @@ return {
       "markdown",
       "markdown.mdx",
       "gotmpl",
+      "svelte",
     })
 
     vim.tbl_map(function(ft) opts.formatters_by_ft[ft] = { "biome" } end, {

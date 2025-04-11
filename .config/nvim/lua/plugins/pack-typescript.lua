@@ -32,7 +32,7 @@ local has_prettier = function(bufnr)
       ignore = {
         servers = function(client)
           return not vim.tbl_contains(
-            { "eslint", "ts_ls", "biome", "typescript-tools", "vtsls" },
+            { "eslint", "ts_ls", "typescript-tools", "volar", "vtsls" },
             client.name
           )
         end,
@@ -79,11 +79,16 @@ local has_prettier = function(bufnr)
   return prettier_dependency or next(prettierrc_rooter(bufnr))
 end
 
+local null_ls_formatter = function(params)
+  if vim.tbl_contains(format_filetypes, params.filetype) then
+    return has_prettier(params.bufnr)
+  end
+  return true
+end
 local conform_formatter = function(bufnr)
-  return has_prettier(bufnr) and { "biome" } or {}
+  return has_prettier(bufnr) and { "prettierd" } or {}
 end
 
----@type LazySpec
 return {
   {
     "nvim-treesitter/nvim-treesitter",
@@ -109,7 +114,13 @@ return {
           {
             event = "BufWritePost",
             desc = "Fix all eslint errors",
-            callback = function() vim.cmd.EslintFixAll() end,
+            callback = function(args)
+              if
+                vim.F.if_nil(vim.b[args.buf].autoformat, vim.g.autoformat, true)
+              then
+                vim.cmd.EslintFixAll()
+              end
+            end,
           },
         },
       },
@@ -157,6 +168,26 @@ return {
     end,
   },
   {
+    "jay-babu/mason-null-ls.nvim",
+    optional = true,
+    opts = function(_, opts)
+      opts.ensure_installed = require("astrocore").list_insert_unique(
+        opts.ensure_installed,
+        { "prettierd" }
+      )
+      if not opts.handlers then opts.handlers = {} end
+
+      opts.handlers.prettierd = function(source_name, methods)
+        local null_ls = require "null-ls"
+        for _, method in ipairs(methods) do
+          null_ls.register(null_ls.builtins[method][source_name].with {
+            runtime_condition = null_ls_formatter,
+          })
+        end
+      end
+    end,
+  },
+  {
     "stevearc/conform.nvim",
     optional = true,
     opts = function(_, opts)
@@ -167,12 +198,20 @@ return {
     end,
   },
   {
+    "jay-babu/mason-nvim-dap.nvim",
+    optional = true,
+    opts = function(_, opts)
+      opts.ensure_installed =
+        require("astrocore").list_insert_unique(opts.ensure_installed, { "js" })
+    end,
+  },
+  {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
     optional = true,
     opts = function(_, opts)
       opts.ensure_installed = require("astrocore").list_insert_unique(
         opts.ensure_installed,
-        { "vtsls", "eslint-lsp", "biome", "js-debug-adapter" }
+        { "vtsls", "eslint-lsp", "prettierd", "js-debug-adapter" }
       )
     end,
   },
@@ -230,5 +269,17 @@ return {
         ["yarn.lock"] = { glyph = "", hl = "MiniIconsBlue" },
       },
     },
+  },
+  {
+    "nvim-neotest/neotest",
+    optional = true,
+    dependencies = { { "nvim-neotest/neotest-jest", config = function() end } },
+    opts = function(_, opts)
+      if not opts.adapters then opts.adapters = {} end
+      table.insert(
+        opts.adapters,
+        require "neotest-jest"(require("astrocore").plugin_opts "neotest-jest")
+      )
+    end,
   },
 }
