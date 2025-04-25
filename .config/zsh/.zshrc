@@ -67,7 +67,7 @@ setopt hist_reduce_blanks
 # Zinit
 ZINIT_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/zinit/zinit.git"
 if [ ! -d "$ZINIT_HOME" ]; then
-    mkdir -p "$(dirname $ZINIT_HOME)"
+    mkdir -p "$(dirname "$ZINIT_HOME")"
     git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 fi
 
@@ -99,7 +99,6 @@ eval "$(tv init zsh)"
 
 # zprof
 
-configure_themes
 
 # vim mode bug workaround: https://github.com/starship/starship/issues/3418#issuecomment-2477375663
 if [[ "${widgets[zle-keymap-select]#user:}" == "starship_zle-keymap-select" || \
@@ -110,7 +109,7 @@ fi
 eval "$(starship init zsh)"
 
 # bun completions
-[ -s "/Users/t991563/.bun/_bun" ] && source "/Users/t991563/.bun/_bun"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
 
 # update wezterm tab titles
@@ -125,9 +124,12 @@ if command -v gfind >/dev/null 2>&1; then
 fi
 
 # pnpm
-export PNPM_HOME="/Users/t991563/.local/share/pnpm"
+export PNPM_HOME="$HOME/.local/share/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+#
+#
+configure_themes

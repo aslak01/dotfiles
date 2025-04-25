@@ -15,17 +15,28 @@ configure_themes() {
     dark)
       export LS_COLORS="$(vivid generate dracula)"
       export BAT_THEME="Dracula"
-      LAZYGIT_THEME="dracula"
+      export LAZYGIT_THEME="dracula"
+
+      # Check if running in an interactive terminal && kitty
+      if [[ -t 0 ]] && [[ -n "$KITTY_WINDOW_ID" ]]; then
+        kitty @ set-colors --all --config ~/.config/kitty/themes/arthur.conf
+      fi
+
       ;;
     light)
       export LS_COLORS="$(vivid generate solarized-light)"
       export BAT_THEME="Solarized (light)"
-      LAZYGIT_THEME="solarized-light"
+      export LAZYGIT_THEME="solarized-light"
+
+      if [[ -t 0 ]] && [[ -n "$KITTY_WINDOW_ID" ]]; then
+        kitty @ set-colors --all --config ~/.config/kitty/themes/solarized-light.conf
+      fi
+
       ;;
   esac
 }
 
-update_lazygit_theme() {
+# update_lazygit_theme() {
   # local lazygit_config="$HOME/.config/lazygit/config.yml"
   # local mode=$(is_dark_mode)
   # case $mode in
@@ -36,4 +47,4 @@ update_lazygit_theme() {
   #     sed -i '' 's/^\( *theme:\).*/\1 solarized-light/' "$lazygit_config"
   #     ;;
   # esac
-}
+# }
