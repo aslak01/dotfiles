@@ -1,3 +1,4 @@
+-- bootstrap lazy.nvim, AstroNvim, and user plugins
 local lazypath = vim.env.LAZY or vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
 if not (vim.env.LAZY or (vim.uv or vim.loop).fs_stat(lazypath)) then
   -- stylua: ignore
@@ -13,4 +14,3 @@ if not pcall(require, "lazy") then
 end
 
 require "lazy_setup"
-require "polish"

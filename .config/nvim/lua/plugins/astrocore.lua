@@ -1,17 +1,46 @@
--- AstroCore provides a central place to modify mappings, vim options, autocommands, and more!
+if true then return {} end -- WARN: REMOVE THIS LINE TO ACTIVATE THIS FILE
 -- Configuration documentation can be found with `:h astrocore`
 
 ---@type LazySpec
 return {
   "AstroNvim/astrocore",
-  --@type AstroCoreOpts
+  ---@type AstroCoreOpts
   opts = {
+    features = {
+      diagnostics = { virtual_lines = false },
+    },
+    diagnostics = {
+      update_in_insert = false,
+      virtual_text = { severity = { min = vim.diagnostic.severity.WARN } },
+      virtual_lines = {
+        current_line = true,
+        severity = { min = vim.diagnostic.severity.WARN },
+      },
+    },
+    filetypes = {
+      -- see `:h vim.filetype.add` for usage
+      extension = {
+        yaml = "yaml",
+        yml = "yaml",
+        pkl = "pkl",
+        pcf = "pkl",
+      },
+      filename = {
+        ["PklProject"] = "pkl",
+      },
+      pattern = {
+        ["%.env%.[%w_.-]+"] = "sh",
+        [".*%.pkr%.hcl"] = "hcl.packer",
+        [".*zsh/%..*"] = "zsh",
+        ["/tmp/neomutt.*"] = "markdown",
+      },
+    },
     options = {
-      opt = {
+      opt = { -- vim.opt.<key>
         relativenumber = true,
         number = true,
         spell = false,
-        signcolumn = "yes", -- sets vim.opt.signcolumn to auto
+        signcolumn = "yes", 
         scrolloff = 8,
         wrap = false,
         showtabline = 0,
@@ -29,53 +58,8 @@ return {
           nbsp = "␣",
         },
         showbreak = "↪ ",
-        -- conceallevel = 1,
       },
-    },
-    -- Configure core features of AstroNvim
-    features = {
-      diagnostics = { virtual_lines = false },
-      -- autopairs = false, -- enable autopairs at start
-      -- cmp = true, -- enable completion at start
-      -- diagnostics_mode = 3, -- diagnostic mode on start (0 = off, 1 = no signs/virtual text, 2 = no virtual text, 3 = on)
-      -- highlighturl = false, -- highlight URLs at start
-    },
-    -- Diagnostics configuration (for vim.diagnostics.config({...})) when diagnostics are on
-    diagnostics = {
-      update_in_insert = false,
-      virtual_text = { severity = { min = vim.diagnostic.severity.WARN } },
-      virtual_lines = {
-        current_line = true,
-        severity = { min = vim.diagnostic.severity.WARN },
-      },
-    },
-    filetypes = {
-      extension = {
-        mdx = "markdown.mdx",
-        nf = "nextflow",
-        ["nf.test"] = "nextflow",
-        qmd = "markdown",
-        yaml = "yaml",
-        yml = "yaml",
-        pkl = "pkl",
-        pcf = "pkl",
-      },
-      filename = {
-        ["docker-compose.yaml"] = "yaml.docker-compose",
-        ["docker-compose.yml"] = "yaml.docker-compose",
-        ["PklProject"] = "pkl",
-      },
-      pattern = {
-        ["%.env%.[%w_.-]+"] = "sh",
-        [".*%.pkr%.hcl"] = "hcl.packer",
-        [".*zsh/%..*"] = "zsh",
-        ["/tmp/neomutt.*"] = "markdown",
-      },
-    },
-    signs = {
-      BqfSign = {
-        text = " " .. require("astroui").get_icon "Selected",
-        texthl = "BqfSign",
+      g = { -- vim.g.<key>
       },
     },
     autocmds = {
@@ -91,24 +75,19 @@ return {
         },
       },
     },
-    -- Mappings can be configured through AstroCore as well.
-    -- NOTE: keycodes follow the casing in the vimdocs. For example, `<Leader>` must be capitalized
     mappings = {
       n = {
         ["<Leader>e"] = { "<cmd>Oil<cr>", desc = "Oil" },
-      },
-      i = {
-        -- hacking in support for norwegian letters in insert mode
-        ["<M-'>"] = "æ",
-        ['<M-">'] = "Æ",
-        ["<M-o>"] = "ø",
-        ["<M-O>"] = "Ø",
-        ["<M-a>"] = "å",
-        ["<M-A>"] = "Å",
-      },
-      t = {
-        -- setting a mapping to false will disable it
-        -- ["<esc>"] = false,
+        ["]b"] = { function() require("astrocore.buffer").nav(vim.v.count1) end, desc = "Next buffer" },
+        ["[b"] = { function() require("astrocore.buffer").nav(-vim.v.count1) end, desc = "Previous buffer" },
+        ["<Leader>bd"] = {
+          function()
+            require("astroui.status.heirline").buffer_picker(
+              function(bufnr) require("astrocore.buffer").close(bufnr) end
+            )
+          end,
+          desc = "Close buffer from tabline",
+        },
       },
     },
   },
