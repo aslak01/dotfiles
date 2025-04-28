@@ -4,8 +4,9 @@ alias vim='nvim'
 alias g='lazygit'
 alias v='vim .'
 alias cat='bat --style=plain'
-alias df='df -h'
 alias lsnew='eza --sort=modified --reverse | tail'
+alias df='df -h'
+alias du='du -h'
 
 # Navigation
 alias ..='cd ..'
@@ -29,8 +30,8 @@ alias ls='eza -a --icons --group-directories-first --color=auto'
 alias ll='eza -la --icons --group-directories-first --color=auto'
 alias lnew='eza -la --icons --group-directories-first --color=auto -snew | tail'
 
-# Configuration
-alias zshrc="vim $HOME/.zshrc"
 alias nvimrc="vim $HOME/.config/nvim/"
+alias zshrc="vim $ZDOTDIR/.zshrc"
+alias s="source $ZDOTDIR/.zshrc"
 
 alias skgl="$HOME/w/tnr/skogul/skogul"
