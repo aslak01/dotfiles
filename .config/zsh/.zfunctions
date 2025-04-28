@@ -29,7 +29,7 @@ configure_themes() {
       export LAZYGIT_THEME="solarized-light"
 
       if [[ -t 0 ]] && [[ -n "$KITTY_WINDOW_ID" ]]; then
-        kitty @ set-colors --all --config ~/.config/kitty/themes/solarized-light.conf
+        kitty @ set-colors --all --config ~/.config/kitty/themes/nvim-grey.conf
       fi
 
       ;;
