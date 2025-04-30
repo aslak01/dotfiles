@@ -2,7 +2,12 @@
 alias vim='nvim'
 # alias g='update_lazygit_theme && lazygit'
 alias g='lazygit'
-alias v='vim .'
+alias v='nvim .'
+
+alias kvim='NVIM_APPNAME="kickstart.nvim" nvim'
+alias kv='NVIM_APPNAME="kickstart.nvim" nvim .'
+
+
 alias cat='bat --style=plain'
 alias lsnew='eza --sort=modified --reverse | tail'
 alias df='df -h'
