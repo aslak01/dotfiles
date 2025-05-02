@@ -48,3 +48,23 @@ configure_themes() {
   #     ;;
   # esac
 # }
+
+lshosts() {
+  config_dir=~/.ssh/config.d
+
+  if [[ -d "$config_dir" ]]; then
+    for file in "$config_dir"/*; do
+      if [[ -f "$file" ]]; then
+        while IFS= read -r line; do
+          if [[ "$line" =~ ^Host\ +([^[:space:]]+) ]]; then
+            alias="${match[1]}"
+            echo "$alias"
+          fi
+        done < "$file"
+      fi
+    done
+  else
+    echo "Directory $config_dir does not exist."
+  fi
+}
+
