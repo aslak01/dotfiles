@@ -10,7 +10,7 @@ autoload -Uz compinit promptinit
 
 # Initialize compinit with cache
 _comp_files="(${ZDOTDIR:-$HOME}/.zcompdump(Nm-20))"
-if (( $#_comp_files )); then
+if (($#_comp_files)); then
     compinit -u -i -C
 else
     compinit -i
@@ -99,11 +99,10 @@ eval "$(tv init zsh)"
 
 # zprof
 
-
 # vim mode bug workaround: https://github.com/starship/starship/issues/3418#issuecomment-2477375663
-if [[ "${widgets[zle-keymap-select]#user:}" == "starship_zle-keymap-select" || \
-      "${widgets[zle-keymap-select]#user:}" == "starship_zle-keymap-select-wrapped" ]]; then
-    zle -N zle-keymap-select "";
+if [[ "${widgets[zle - keymap - select]#user:}" == "starship_zle-keymap-select" ||
+    "${widgets[zle - keymap - select]#user:}" == "starship_zle-keymap-select-wrapped" ]]; then
+    zle -N zle-keymap-select ""
 fi
 
 eval "$(starship init zsh)"
@@ -111,25 +110,25 @@ eval "$(starship init zsh)"
 # bun completions
 [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
-
 # update wezterm tab titles
 function precmd() {
-  print -Pn "\e]0;${PWD:t}\a"
+    print -Pn "\e]0;${PWD:t}\a"
 }
-
 
 # default to using gnu find for linux compatibility (when installed)
 if command -v gfind >/dev/null 2>&1; then
-  PATH=$(brew --prefix)/opt/findutils/libexec/gnubin:$PATH
+    PATH=$(brew --prefix)/opt/findutils/libexec/gnubin:$PATH
 fi
 
 # pnpm
 export PNPM_HOME="$HOME/.local/share/pnpm"
 case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
+*":$PNPM_HOME:"*) ;;
+*) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
 #
 #
 configure_themes
+
+eval "$(ssh-agent -s)"
