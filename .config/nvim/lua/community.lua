@@ -10,5 +10,6 @@ return {
   { import = "astrocommunity.pack.lua" },
   { import = "astrocommunity.pack.go" },
   { import = "astrocommunity.pack.bash" },
+  { import = "astrocommunity.pack.yaml" },
   -- import/override with your plugins folder
 }
