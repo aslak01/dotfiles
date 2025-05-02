@@ -131,5 +131,5 @@ esac
 #
 configure_themes
 
-{ eval "$(ssh-agent -s)"; } &>/dev/null
+eval "$(ssh-agent -s)" &>/dev/null
 eval "$(keychain --eval id_ed25519 --quiet)"
