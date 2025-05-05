@@ -17,47 +17,51 @@ return {
   opts = function(_, opts)
     local astrocore, get_icon = require "astrocore", require("astroui").get_icon
 
-    -- git status cache
-    local git_avail = vim.fn.executable "git" == 1
-    local function parse_output(commands)
-      local result, ret = astrocore.cmd(commands, false), {}
-      if result then
-        for line in vim.gsplit(result, "\n", { plain = true, trimempty = true }) do
-          ret[line:gsub("/$", "")] = true
-        end
+  local function parse_output(commands)
+    local result, ret = astrocore.cmd(commands, false), {}
+    if result then
+      for line in vim.gsplit(result, "\n", { plain = true, trimempty = true }) do
+        ret[line:gsub("/$", "")] = true
       end
-      return ret
     end
-    local git_status_index = function(self, key)
-      local ignore = {
-        "git",
-        "-C",
-        key,
-        "ls-files",
-        "--ignored",
-        "--exclude-standard",
-        "--others",
-        "--directory",
-      }
-      local tracked = { "git", "-C", key, "ls-tree", "HEAD", "--name-only" }
-      local ret =
-        { ignored = parse_output(ignore), tracked = parse_output(tracked) }
-      rawset(self, key, ret)
-      return ret
-    end
-    local new_git_status = function()
-      return setmetatable({}, { __index = git_status_index })
-    end
-    local git_status = new_git_status()
-    -- clear git status cache on refresh
-    local refresh = require("oil.actions").refresh
-    refresh.callback = astrocore.patch_func(
-      refresh.callback,
-      function(orig, ...)
-        git_status = new_git_status()
-        orig(...)
+    return ret
+  end
+
+  local git_status_cache = {}
+
+  local function get_git_status(dir)
+    if not git_status_cache[dir] then
+      local git_avail = vim.fn.executable "git" == 1
+      if git_avail then
+        local ignore_cmd = { "git", "-C", dir, "ls-files", "--ignored", "--exclude-standard", "--others", "--directory" }
+        local tracked_cmd = { "git", "-C", dir, "ls-tree", "HEAD", "--name-only" }
+        git_status_cache[dir] = {
+          ignored = parse_output(ignore_cmd),
+          tracked = parse_output(tracked_cmd),
+        }
+      else
+        git_status_cache[dir] = { ignored = {}, tracked = {} }
       end
-    )
+    end
+    return git_status_cache[dir]
+  end
+
+  local view_options = {
+    is_hidden_file = function(name, bufnr)
+      local dir = require("oil").get_current_dir(bufnr)
+      local is_hidden = vim.startswith(name, ".") and name ~= ".."
+      if not vim.fn.executable "git" == 1 or not dir then
+        return is_hidden
+      end
+      local status = get_git_status(dir)
+      if is_hidden then
+        return not status.tracked[name]
+      else
+        return status.ignored[name]
+      end
+    end,
+    is_always_hidden = function(name) return name == ".." end,
+  }
 
     local columns = {
       icon = {
@@ -91,22 +95,7 @@ return {
         H = "actions.toggle_hidden",
       },
       lsp_file_methods = { autosave_changes = "unmodified" },
-      view_options = {
-        is_hidden_file = function(name, bufnr)
-          local dir = require("oil").get_current_dir(bufnr)
-          local is_hidden = vim.startswith(name, ".") and name ~= ".."
-          -- if no git or no local directory (e.g. for ssh connections), just hide dotfiles
-          if not git_avail or not dir then return is_hidden end
-          -- dotfiles are considered hidden unless tracked
-          if is_hidden then
-            return not git_status[dir].tracked[name]
-          else
-            -- Check if file is gitignored
-            return git_status[dir].ignored[name]
-          end
-        end,
-        is_always_hidden = function(name) return name == ".." end,
-      },
+      view_options = view_options,
       preview_win = {
         win_options = {
           foldcolumn = "0",
@@ -168,10 +157,10 @@ return {
             end,
             status.component.separated_path {
               padding = { left = 2 },
-              max_depth = false,
+              max_depth = 0,
               suffix = false,
               path_func = function(self)
-                return require("oil").get_current_dir(self.bufnr)
+                return require("oil").get_current_dir(self.bufnr) or ""
               end,
             },
           })
