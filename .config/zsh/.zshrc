@@ -133,3 +133,7 @@ configure_themes
 
 eval "$(ssh-agent -s)" &>/dev/null
 eval "$(keychain --eval id_ed25519 --quiet)"
+
+# copy terminfo on ssh connect
+# "i'm helping"
+[ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
