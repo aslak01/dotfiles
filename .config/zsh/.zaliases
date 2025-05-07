@@ -7,7 +7,6 @@ alias v='nvim .'
 alias kvim='NVIM_APPNAME="kickstart.nvim" nvim'
 alias kv='NVIM_APPNAME="kickstart.nvim" nvim .'
 
-
 alias cat='bat --style=plain'
 alias lsnew='eza --sort=modified --reverse | tail'
 alias df='df -h'
@@ -40,3 +39,11 @@ alias zshrc="vim $ZDOTDIR/.zshrc"
 alias s="source $ZDOTDIR/.zshrc"
 
 alias skgl="$HOME/w/tnr/skogul/skogul"
+
+alias binsign="xattr -d com.apple.quarantine"
+alias ql="qlmanage -p"
+
+alias tra="ssh tra"
+# copy terminfo on ssh connect
+# "i'm helping"
+[ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
