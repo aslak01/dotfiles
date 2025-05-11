@@ -6,6 +6,7 @@ export XDG_DATA_HOME=${XDG_DATA_HOME:-$HOME/.local/share}
 export XDG_STATE_HOME=${XDG_STATE_HOME:-$HOME/.local/state}
 export XDG_RUNTIME_DIR=${XDG_RUNTIME_DIR:-$HOME/.xdg}
 export XDG_PROJECTS_DIR=${XDG_PROJECTS_DIR:-$HOME/w}
+#
 # Homebrew
 if [[ -f "/opt/homebrew/bin/brew" ]]; then
     export HOMEBREW_PREFIX="/opt/homebrew"
@@ -25,18 +26,18 @@ add_to_path() {
 
 # Add paths
 paths=(
-    "$HOME/.local/bin"
-    "$HOME/n/bin"  # Node version manager
-    "$HOME/go/bin" # Go
+    "/opt/homebrew/bin"                # homebrew
+    "$HOME/.local/bin"                 # homebrewed scripts
+    "$HOME/n/bin"                      # Node version manager
+    "$HOME/go/bin"                     # Go
     "/opt/homebrew/opt/go/libexec/bin" # Go root
-    "$HOME/Library/pnpm" # PNPM
-    "$HOME/.bun/bin" # Bun
-    "$HOME/.deno/bin" # Deno
-    "$HOME/.cargo/bin" # Rust
-    "$HOME/.local/share/bob/nvim-bin" # Bob (Neovim)
-    "$HOME/bin" # Custom bin
-    "$HOME/.dprint/bin" # Dprint
-    "$HOME.local/share/bob/nvim-bin/"
+    "$HOME/Library/pnpm"               # PNPM
+    "$HOME/.bun/bin"                   # Bun
+    "$HOME/.deno/bin"                  # Deno
+    "$HOME/.cargo/bin"                 # Rust
+    "$HOME/.local/share/bob/nvim-bin"  # Bob (Neovim)
+    "$HOME/bin"                        # Custom bin
+    "$HOME/.dprint/bin"                # Dprint
 )
 
 for dir in "${paths[@]}"; do
