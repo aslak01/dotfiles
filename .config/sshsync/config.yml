@@ -1,0 +1,18 @@
+groups:
+    pis:
+    - nas
+    tnr:
+    - dev2
+    tnr-adm:
+    - tra
+    tnr-tmp:
+    - qdb1
+    - desktop
+    - dev
+    tsdbtest:
+    - graftest
+    tsdbtest1:
+    - qdb2
+    - idb1
+    - tsb1
+    - vmb1
