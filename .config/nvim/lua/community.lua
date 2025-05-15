@@ -13,6 +13,8 @@ return {
   { import = "astrocommunity.pack.python" },
   { import = "astrocommunity.pack.yaml" },
   { import = "astrocommunity.pack.markdown" },
+  { import = "astrocommunity.pack.typescript" },
+  { import = "astrocommunity.pack.svelte" },
   { import = "astrocommunity.markdown-and-latex.markview-nvim" },
   -- import/override with your plugins folder
 }

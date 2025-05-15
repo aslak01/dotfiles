@@ -112,6 +112,25 @@ return {
     on_attach = function(client, bufnr)
       -- this would disable semanticTokensProvider for all clients
       -- client.server_capabilities.semanticTokensProvider = nil
+      -- local old_handler = vim.lsp.handlers["workspace/executeCommand"]
+      -- vim.lsp.handlers["workspace/executeCommand"] = function(a, result, ctx)
+      --         if ctx.params.command == "_typescript.goToSourceDefinition" then
+      --                 vim.lsp.handlers["textDocument/definition"](a, result, ctx)
+      --         else
+      --                 old_handler(a, result, ctx)
+      --         end
+      -- end
+      --
+      -- vim.keymap.set("n", "gs", function()
+      --         local params = vim.lsp.util.make_position_params()
+      --         vim.lsp.buf.execute_command({
+      --         command = "_typescript.goToSourceDefinition",
+      --         arguments = {
+      --                 params.textDocument.uri,
+      --                 params.position
+      --         },
+      -- }) end, {buffer=bufnr})
+
     end,
   },
 }
