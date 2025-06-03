@@ -77,6 +77,7 @@ eval "$(mise activate zsh)"
 export STARSHIP_SHELL="zsh"
 
 source "${ZINIT_HOME}/zinit.zsh"
+
 unalias zi 2>/dev/null
 
 # Compile Zsh files for faster loading
@@ -107,28 +108,43 @@ fi
 
 eval "$(starship init zsh)"
 
-# bun completions
-[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
-
 # update wezterm tab titles
-function precmd() {
-    print -Pn "\e]0;${PWD:t}\a"
-}
+# function precmd() {
+#     print -Pn "\e]0;${PWD:t}\a"
+# }
 
 # default to using gnu find for linux compatibility (when installed)
 if command -v gfind >/dev/null 2>&1; then
     PATH=$(brew --prefix)/opt/findutils/libexec/gnubin:$PATH
 fi
 
-# pnpm
-export PNPM_HOME="$HOME/.local/share/pnpm"
-case ":$PATH:" in
-*":$PNPM_HOME:"*) ;;
-*) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end
-#
-#
+paths=(
+    "$HOME/.local/bin"                 # homebrewed scripts
+    "$HOME/go/bin"                     # Go
+    "/opt/homebrew/opt/go/libexec/bin" # Go root
+    "$PNPM_HOME"                       # PNPM
+    "$HOME/.bun/bin"                   # Bun
+    "$HOME/.deno/bin"                  # Deno
+    "$HOME/.cargo/bin"                 # Rust
+    "$HOME/.local/share/bob/nvim-bin"  # Bob (Neovim)
+    "$HOME/bin"                        # Custom bin
+    "$HOME/.dprint/bin"                # Dprint
+)
+
+for dir in "${paths[@]}"; do
+    add_to_path_if_present "$dir"
+done
+
+completions=(
+    "$HOME/.bun/_bun"
+)
+
+for comp in "${completions[@]}"; do
+    source_if_present "$comp"
+done
+
+typeset -U PATH
+
 configure_themes
 
 eval "$(ssh-agent -s)" &>/dev/null
@@ -137,3 +153,5 @@ eval "$(keychain --eval id_ed25519 --quiet)"
 # copy terminfo on ssh connect
 # "i'm helping"
 [ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
+
+export PATH="/opt/homebrew/sbin:/opt/homebrew/bin:$PATH"

@@ -12,41 +12,41 @@ is_dark_mode() {
 configure_themes() {
   local mode=$(is_dark_mode)
   case $mode in
-    dark)
-      export LS_COLORS="$(vivid generate dracula)"
-      export BAT_THEME="Dracula"
-      export LAZYGIT_THEME="dracula"
+  dark)
+    export LS_COLORS="$(vivid generate dracula)"
+    export BAT_THEME="Dracula"
+    export LAZYGIT_THEME="dracula"
 
-      # Check if running in an interactive terminal && kitty
-      if [[ -t 0 ]] && [[ -n "$KITTY_WINDOW_ID" ]]; then
-        kitty @ set-colors --all --config ~/.config/kitty/themes/arthur.conf
-      fi
+    # Check if running in an interactive terminal && kitty
+    if [[ -t 0 ]] && [[ -n "$KITTY_WINDOW_ID" ]]; then
+      kitty @ set-colors --all --config ~/.config/kitty/themes/arthur.conf
+    fi
 
-      ;;
-    light)
-      export LS_COLORS="$(vivid generate solarized-light)"
-      export BAT_THEME="Solarized (light)"
-      export LAZYGIT_THEME="solarized-light"
+    ;;
+  light)
+    export LS_COLORS="$(vivid generate solarized-light)"
+    export BAT_THEME="Solarized (light)"
+    export LAZYGIT_THEME="solarized-light"
 
-      if [[ -t 0 ]] && [[ -n "$KITTY_WINDOW_ID" ]]; then
-        kitty @ set-colors --all --config ~/.config/kitty/themes/nvim-grey.conf
-      fi
+    if [[ -t 0 ]] && [[ -n "$KITTY_WINDOW_ID" ]]; then
+      kitty @ set-colors --all --config ~/.config/kitty/themes/nvim-grey.conf
+    fi
 
-      ;;
+    ;;
   esac
 }
 
 # update_lazygit_theme() {
-  # local lazygit_config="$HOME/.config/lazygit/config.yml"
-  # local mode=$(is_dark_mode)
-  # case $mode in
-  #   dark)
-  #     sed -i '' 's/^\( *theme:\).*/\1 dracula/' "$lazygit_config"
-  #     ;;
-  #   light)
-  #     sed -i '' 's/^\( *theme:\).*/\1 solarized-light/' "$lazygit_config"
-  #     ;;
-  # esac
+# local lazygit_config="$HOME/.config/lazygit/config.yml"
+# local mode=$(is_dark_mode)
+# case $mode in
+#   dark)
+#     sed -i '' 's/^\( *theme:\).*/\1 dracula/' "$lazygit_config"
+#     ;;
+#   light)
+#     sed -i '' 's/^\( *theme:\).*/\1 solarized-light/' "$lazygit_config"
+#     ;;
+# esac
 # }
 
 lshosts() {
@@ -60,7 +60,7 @@ lshosts() {
             alias="${match[1]}"
             echo "$alias"
           fi
-        done < "$file"
+        done <"$file"
       fi
     done
   else
@@ -68,3 +68,14 @@ lshosts() {
   fi
 }
 
+add_to_path_if_present() {
+  if [[ -d "$1" && ":${PATH}:" != *":$1:"* ]]; then
+    export PATH="$1:$PATH"
+  fi
+}
+
+source_if_present() {
+  if [[ -d "$1" && -s "$1" ]]; then
+    source "$1"
+  fi
+}
