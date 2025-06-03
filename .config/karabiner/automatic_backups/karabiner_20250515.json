@@ -77,20 +77,11 @@
                     "ignore": false,
                     "simple_modifications": [
                         {
-                            "from": { "pointing_button": "button4" },
-                            "to": [{ "key_code": "escape" }]
-                        },
-                        {
                             "from": { "pointing_button": "button5" },
                             "to": [{ "consumer_key_code": "al_terminal_lock_or_screensaver" }]
-                        }
-                    ]
-                },
-                {
-                    "identifiers": { "is_keyboard": true },
-                    "simple_modifications": [
+                        },
                         {
-                            "from": { "key_code": "caps_lock" },
+                            "from": { "pointing_button": "button4" },
                             "to": [{ "key_code": "escape" }]
                         }
                     ]
