@@ -1,6 +1,10 @@
 #! /usr/bin zsh
 # shellcheck shell=bash
 # zmodload zsh/zprof
+#
+source_if_exists() {
+    [[ -r "$1" ]] && source "$1"
+}
 
 # Disable shell sessions
 export SHELL_SESSIONS_DISABLE=1
@@ -8,15 +12,19 @@ export SHELL_SESSIONS_DISABLE=1
 # Load compinit and promptinit
 autoload -Uz compinit promptinit
 
-# Initialize compinit with cache
-_comp_files="(${ZDOTDIR:-$HOME}/.zcompdump(Nm-20))"
-if (($#_comp_files)); then
-    compinit -u -i -C
+_comp_files="(${ZDOTDIR:-$HOME}/.zcompdump(Nm-20))"  # Should be _comp_files, not *comp*files
+
+# only run compinit once per day:
+if [[ -n ${ZDOTDIR:-$HOME}/.zcompdump(#qN.mh+24) ]]; then
+    compinit -i -C  
 else
     compinit -i
 fi
+
 unset _comp_files
+
 promptinit
+
 # setopt prompt_subst
 
 # Load colors
@@ -36,9 +44,6 @@ unsetopt hup
 unsetopt check_jobs
 setopt complete_in_word
 setopt always_to_end
-# setopt path_dirs
-# setopt auto_menu
-# setopt auto_list
 setopt auto_param_slash
 setopt no_complete_aliases
 
@@ -64,21 +69,18 @@ setopt hist_verify
 setopt extended_history
 setopt hist_reduce_blanks
 
+# mise
+command -v mise >/dev/null && eval "$(mise activate zsh)"
+
+
 # Zinit
 ZINIT_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/zinit/zinit.git"
 if [ ! -d "$ZINIT_HOME" ]; then
     mkdir -p "$(dirname "$ZINIT_HOME")"
     git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 fi
+source_if_exists "${ZINIT_HOME}/zinit.zsh"
 
-# mise
-eval "$(mise activate zsh)"
-
-export STARSHIP_SHELL="zsh"
-
-source "${ZINIT_HOME}/zinit.zsh"
-
-unalias zi 2>/dev/null
 
 # Compile Zsh files for faster loading
 _zsh_files=("$ZDOTDIR/.zshrc" "$ZDOTDIR/.zstyle" "$ZDOTDIR/.zaliases" "$ZDOTDIR/.zfunctions" "$ZDOTDIR/.zinit")
@@ -90,23 +92,16 @@ for file in "${_zsh_files[@]}"; do
 done
 unset _zsh_files
 
-[[ -r "$ZDOTDIR/.zstyle" ]] && source "$ZDOTDIR/.zstyle"
-[[ -r "$ZDOTDIR/.zinit" ]] && source "$ZDOTDIR/.zinit"
-[[ -r "$ZDOTDIR/.zfunctions" ]] && source "$ZDOTDIR/.zfunctions"
-[[ -r "$ZDOTDIR/private_api_keys" ]] && source "$ZDOTDIR/private_api_keys"
-[[ -r "$ZDOTDIR/.zaliases" ]] && source "$ZDOTDIR/.zaliases"
+source_if_exists "$ZDOTDIR/.zstyle"
+source_if_exists "$ZDOTDIR/.zinit"
+source_if_exists "$ZDOTDIR/.zfunctions"
+source_if_exists "$ZDOTDIR/private_api_keys"
+source_if_exists "$ZDOTDIR/.zaliases"
 
-eval "$(tv init zsh)"
 
 # zprof
 
-# vim mode bug workaround: https://github.com/starship/starship/issues/3418#issuecomment-2477375663
-if [[ "${widgets[zle - keymap - select]#user:}" == "starship_zle-keymap-select" ||
-    "${widgets[zle - keymap - select]#user:}" == "starship_zle-keymap-select-wrapped" ]]; then
-    zle -N zle-keymap-select ""
-fi
 
-eval "$(starship init zsh)"
 
 # update wezterm tab titles
 # function precmd() {
@@ -118,7 +113,10 @@ if command -v gfind >/dev/null 2>&1; then
     PATH=$(brew --prefix)/opt/findutils/libexec/gnubin:$PATH
 fi
 
-paths=(
+# this auto dedupes
+typeset -U path
+
+path=(
     "$HOME/.local/bin"                 # homebrewed scripts
     "$HOME/go/bin"                     # Go
     "/opt/homebrew/opt/go/libexec/bin" # Go root
@@ -129,11 +127,12 @@ paths=(
     "$HOME/.local/share/bob/nvim-bin"  # Bob (Neovim)
     "$HOME/bin"                        # Custom bin
     "$HOME/.dprint/bin"                # Dprint
+    $path
 )
 
-for dir in "${paths[@]}"; do
-    add_to_path_if_present "$dir"
-done
+# for dir in "${paths[@]}"; do
+#     add_to_path_if_present "$dir"
+# done
 
 completions=(
     "$HOME/.bun/_bun"
@@ -143,15 +142,32 @@ for comp in "${completions[@]}"; do
     source_if_present "$comp"
 done
 
-typeset -U PATH
+
 
 configure_themes
 
-eval "$(ssh-agent -s)" &>/dev/null
-eval "$(keychain --eval id_ed25519 --quiet)"
+
+export STARSHIP_SHELL="zsh"
+
+unalias zi 2>/dev/null
+
+if ! pgrep -u "$USER" ssh-agent >/dev/null; then
+    eval "$(ssh-agent -s)" &>/dev/null
+fi
+
+eval "$(keychain --eval id_ed25519 --quiet)" 2>/dev/null
 
 # copy terminfo on ssh connect
 # "i'm helping"
 [ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
 
-export PATH="/opt/homebrew/sbin:/opt/homebrew/bin:$PATH"
+# export PATH="/opt/homebrew/sbin:/opt/homebrew/bin:$PATH"
+command -v tv >/dev/null && eval "$(tv init zsh)"
+
+if command -v starship >/dev/null; then
+    if [[ "${widgets[zle-keymap-select]#user:}" == "starship_zle-keymap-select" ||
+          "${widgets[zle-keymap-select]#user:}" == "starship_zle-keymap-select-wrapped" ]]; then
+        zle -N zle-keymap-select ""
+    fi
+    eval "$(starship init zsh)"
+fi
