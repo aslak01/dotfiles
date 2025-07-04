@@ -47,6 +47,36 @@ yabai -m rule --add app='^System Settings$' manage=off
 yabai -m rule --add title='Preferences$' manage=off
 yabai -m rule --add title='Settings$' manage=off
 yabai -m rule --add app='Calculator$' manage=off
-yabai -m rule --add app='Raycast' manage=off
+yabai -m rule --add app='Raycast' manage=
+
+yabai -m rule --add title="^Info$" manage=off
+yabai -m rule --add title=".*Info$" manage=off
+yabai -m rule --add title="Get Info" manage=off
+yabai -m rule --add title="^Open$" manage=off
+yabai -m rule --add title="^Save" manage=off
+yabai -m rule --add title="Choose" manage=off
+
+# Common dialog patterns
+yabai -m rule --add title="^.*Dialog$" manage=off
+yabai -m rule --add title="^.*Preferences$" manage=off
+yabai -m rule --add title="^.*Settings$" manage=off
+
+# System dialogs by window role
+yabai -m rule --add role="^AXDialog$" manage=off
+yabai -m rule --add role="^AXSystemDialog$" manage=off
+
+# Small windows (often dialogs)
+yabai -m rule --add title=".*" role="^AXDialog$" manage=off
+
+# Specific dialog types
+yabai -m rule --add title="^Delete" manage=off
+yabai -m rule --add title="^Replace" manage=off
+yabai -m rule --add title="^Connect" manage=off
+yabai -m rule --add title="^Eject" manage=off
+yabai -m rule --add title="^Confirm" manage=off
+
+yabai -m rule --add app="^Finder$" title="^Copy$" manage=off
+yabai -m rule --add app="^Finder$" title="^Move$" manage=off
+yabai -m rule --add app="^Finder$" title=".*Info$" manage=off
 
 echo "yabai configuration loaded."
