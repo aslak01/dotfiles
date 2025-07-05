@@ -18,19 +18,19 @@ configure_themes() {
     export LAZYGIT_THEME="dracula"
 
     # Check if running in an interactive terminal && kitty
-    if [[ -t 0 ]] && [[ -n "$KITTY_WINDOW_ID" ]]; then
-      kitty @ set-colors --all --config ~/.config/kitty/themes/arthur.conf
-    fi
-
+    # if [[ -t 0 ]] && [[ -n "$KITTY_WINDOW_ID" ]]; then
+    #   kitty @ set-colors --all --config ~/.config/kitty/themes/arthur.conf
+    # fi
+    #
     ;;
   light)
     export LS_COLORS="$(vivid generate solarized-light)"
     export BAT_THEME="Solarized (light)"
     export LAZYGIT_THEME="solarized-light"
 
-    if [[ -t 0 ]] && [[ -n "$KITTY_WINDOW_ID" ]]; then
-      kitty @ set-colors --all --config ~/.config/kitty/themes/nvim-grey.conf
-    fi
+    # if [[ -t 0 ]] && [[ -n "$KITTY_WINDOW_ID" ]]; then
+    #   kitty @ set-colors --all --config ~/.config/kitty/themes/nvim-grey.conf
+    # fi
 
     ;;
   esac
