@@ -9,3 +9,4 @@ zsh_api_keys.zsh
 **/colima
 **/podman/machine
 **/podman-connections.*
+node_modules
