@@ -10,3 +10,4 @@ zsh_api_keys.zsh
 **/podman/machine
 **/podman-connections.*
 node_modules
+**/configstore/update-notifier-@google

@@ -23,7 +23,7 @@ alias cd..='cd ..'
 alias nocorschrome='open -a Google Chrome --args --disable-web-security --user-data-dir="/tmp/"'
 alias nrs='open -a Numbers'
 alias icat="kitten icat"
-alias obs="cd $HOME/Library/Mobile\ Documents/iCloud~md~obsidian/Documents"
+alias obs="cd $HOME/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/obsidian-vault && v"
 
 # ghostty support
 alias pass="TERM=xterm-256color pass"
