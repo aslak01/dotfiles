@@ -73,6 +73,7 @@ setopt hist_reduce_blanks
 command -v mise >/dev/null && eval "$(mise activate zsh)"
 
 
+
 # Zinit
 ZINIT_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/zinit/zinit.git"
 if [ ! -d "$ZINIT_HOME" ]; then
@@ -156,6 +157,9 @@ if ! pgrep -u "$USER" ssh-agent >/dev/null; then
 fi
 
 eval "$(keychain --eval id_ed25519 --quiet)" 2>/dev/null
+
+# ocaml
+command -v opam >/dev/null && eval $(opam env --switch=default --set-switch 2>/dev/null)
 
 # copy terminfo on ssh connect
 # "i'm helping"

@@ -17,4 +17,5 @@ return {
   { import = "astrocommunity.pack.html-css" },
   { import = "astrocommunity.editing-support.conform-nvim" },
   { import = "astrocommunity.test.neotest" },
+  { import = "astrocommunity.pack.ocaml" },
 }
