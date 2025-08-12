@@ -47,3 +47,5 @@ alias tra="ssh tra"
 # copy terminfo on ssh connect
 # "i'm helping"
 [ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
+
+alias p="pass -c"
