@@ -16,7 +16,7 @@ start-at-login = true
 # Available commands: https://nikitabobko.github.io/AeroSpace/commands
 after-login-command = []
 after-startup-command = [
-  # 'exec-and-forget /opt/homebrew/opt/borders/bin/borders',
+    # 'exec-and-forget /opt/homebrew/opt/borders/bin/borders',
 ]
 
 # Normalizations. See: https://nikitabobko.github.io/AeroSpace/guide#normalization
@@ -144,8 +144,8 @@ r = ['flatten-workspace-tree', 'mode main'] # reset layout
 
 #s = ['layout sticky tiling', 'mode main'] # sticky is not yet supported https://github.com/nikitabobko/AeroSpace/issues/2
 f = [
-  'layout floating tiling',
-  'mode main',
+    'layout floating tiling',
+    'mode main',
 ] # Toggle between floating and tiling layout
 backspace = ['close-all-windows-but-current', 'mode main']
 esc = ['reload-config', 'mode main']
@@ -169,4 +169,8 @@ run = 'layout tiling'
 # ghostty tab hack
 [[on-window-detected]]
 if.app-id = "com.mitchellh.ghostty"
+run = ["layout floating"]
+
+[[on-window-detected]]
+if.app-id = 'com.cisco.secureclient.gui'
 run = ["layout floating"]
