@@ -1,1 +1,12 @@
 **/.claude/settings.local.json
+.DS_Store
+CLAUDE.md
+.Spotlight-V100
+.Trashes
+Thumbs.db
+ehthumbs.db
+*.swp
+*.swo
+.env
+node_modules/
+
