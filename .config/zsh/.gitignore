@@ -21,3 +21,5 @@
 .zephyr/
 .zlocal
 private*
+.theme_cache
+.keychain_env_cache

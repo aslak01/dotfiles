@@ -70,7 +70,7 @@ setopt extended_history
 setopt hist_reduce_blanks
 
 # mise
-command -v mise >/dev/null && eval "$(mise activate zsh)"
+source_if_exists "$ZDOTDIR/.zmise"
 
 
 
@@ -84,7 +84,7 @@ source_if_exists "${ZINIT_HOME}/zinit.zsh"
 
 
 # Compile Zsh files for faster loading
-_zsh_files=("$ZDOTDIR/.zshrc" "$ZDOTDIR/.zstyle" "$ZDOTDIR/.zaliases" "$ZDOTDIR/.zfunctions" "$ZDOTDIR/.zinit")
+_zsh_files=("$ZDOTDIR/.zshrc" "$ZDOTDIR/.zstyle" "$ZDOTDIR/.zaliases" "$ZDOTDIR/.zfunctions" "$ZDOTDIR/.zinit" "$ZDOTDIR/.zmise")
 
 for file in "${_zsh_files[@]}"; do
     if [[ ! -f "${file}.zwc" || "${file}" -nt "${file}.zwc" ]]; then
@@ -152,11 +152,7 @@ export STARSHIP_SHELL="zsh"
 
 unalias zi 2>/dev/null
 
-if ! pgrep -u "$USER" ssh-agent >/dev/null; then
-    eval "$(ssh-agent -s)" &>/dev/null
-fi
-
-eval "$(keychain --eval id_ed25519 --quiet)" 2>/dev/null
+load_keychain_cached
 
 # ocaml
 command -v opam >/dev/null && eval $(opam env --switch=default --set-switch 2>/dev/null)
