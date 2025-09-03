@@ -24,6 +24,7 @@ return {
         yml = "yaml",
         pkl = "pkl",
         pcf = "pkl",
+        gohtml = "gotmpl",
       },
       filename = {
         ["PklProject"] = "pkl",
@@ -40,7 +41,7 @@ return {
         relativenumber = true,
         number = true,
         spell = false,
-        signcolumn = "yes", 
+        signcolumn = "yes",
         scrolloff = 8,
         wrap = false,
         showtabline = 0,

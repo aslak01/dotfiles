@@ -1,9 +1,15 @@
 ---@type LazySpec
 return {
-  { "yorickpeterse/nvim-grey",
-    lazy = false,
-    priority = 1000
-  },
+  -- {
+  --   "stevedylandev/ansi-nvim",
+  --   lazy = false,
+  --   priority = 1000,
+  --   config = function()
+  --     vim.cmd "colorscheme ansi"
+  --     vim.opt.termguicolors = false
+  --   end,
+  -- },
+  { "yorickpeterse/nvim-grey", lazy = false, priority = 1000 },
   {
     "slugbyte/lackluster.nvim",
     lazy = false,
@@ -23,5 +29,5 @@ return {
         vim.cmd "colorscheme grey"
       end,
     },
-  }
+  },
 }
