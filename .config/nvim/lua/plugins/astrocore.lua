@@ -63,6 +63,12 @@ return {
       g = { -- vim.g.<key>
       },
     },
+    commands = {
+      MessagesCopy = {
+        function() vim.cmd "redir @+ | messages | redir END" end,
+        desc = "Copy messages to clipboard",
+      },
+    },
     autocmds = {
       auto_spell = {
         {
@@ -89,6 +95,7 @@ return {
           end,
           desc = "Close buffer from tabline",
         },
+        ["<Leader>mc"] = { "<cmd>MessagesCopy<cr>", desc = "Copy messages to clipboard" },
       },
     },
   },
