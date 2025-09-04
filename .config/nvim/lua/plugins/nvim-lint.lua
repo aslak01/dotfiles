@@ -73,8 +73,11 @@ return {
       if not linters then return {} end
       return vim.tbl_filter(function(name)
         local linter = lint.linters[name]
+        local cmd = linter and linter.cmd
         return linter
-          and vim.fn.executable(linter.cmd) == 1
+          and cmd
+          and type(cmd) == "string"
+          and vim.fn.executable(cmd) == 1
           and not (type(linter) == "table" and linter.condition and not linter.condition(ctx))
       end, linters)
     end
