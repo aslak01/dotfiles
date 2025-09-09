@@ -42,6 +42,7 @@ alias skgl="$HOME/w/tnr/skogul/skogul"
 
 alias binsign="xattr -d com.apple.quarantine"
 alias ql="qlmanage -p"
+alias c="cd $HOME/w/pers/claud && claude"
 
 alias tra="ssh tra"
 # copy terminfo on ssh connect
