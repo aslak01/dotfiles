@@ -17,6 +17,7 @@ return {
         enabled = true,
         allow_filetypes = {
           -- "go",
+          "css",
         },
         ignore_filetypes = {
           -- "python",
@@ -130,7 +131,6 @@ return {
       --                 params.position
       --         },
       -- }) end, {buffer=bufnr})
-
     end,
   },
 }
