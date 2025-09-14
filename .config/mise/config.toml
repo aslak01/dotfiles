@@ -2,7 +2,6 @@
 node = "latest"
 opam = "latest"
 python = "latest"
-ruby = "3.4.2"
 uv = "latest"
 
 [settings]
