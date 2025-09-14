@@ -6,19 +6,19 @@ tldrf() {
 is_dark_mode() {
   local cache_file="$ZDOTDIR/.theme_cache"
   local pref_file="$HOME/Library/Preferences/.GlobalPreferences.plist"
-  
+
   # Check if cache exists and is newer than prefs
   if [[ -f "$cache_file" && "$cache_file" -nt "$pref_file" ]]; then
     cat "$cache_file"
     return
   fi
-  
+
   # Cache miss - check system and update cache
   local mode
   mode=$(defaults read -g AppleInterfaceStyle 2>/dev/null)
   local result
   [[ "$mode" == "Dark" ]] && result="dark" || result="light"
-  echo "$result" > "$cache_file"
+  echo "$result" >"$cache_file"
   echo "$result"
 }
 
@@ -33,7 +33,7 @@ configure_themes() {
 
     ;;
   light)
-    export LS_COLORS="$(vivid generate solarized-light)"
+    export LS_COLORS="$(vivid generate ayu)"
     export BAT_THEME="Solarized (light)"
     export LAZYGIT_THEME="solarized-light"
     ;;
@@ -85,16 +85,16 @@ imgcopy() {
 load_keychain_cached() {
   local cache_file="$ZDOTDIR/.keychain_env_cache"
   local keychain_state="$HOME/.keychain/$(hostname)-sh"
-  
+
   # Check if cache exists and is newer than keychain state
   if [[ -f "$cache_file" && "$cache_file" -nt "$keychain_state" ]]; then
     source "$cache_file"
     return
   fi
-  
+
   # Cache miss - generate and cache keychain environment
   if command -v keychain >/dev/null; then
-    keychain --eval id_ed25519 --quiet 2>/dev/null > "$cache_file"
+    keychain --eval id_ed25519 --quiet 2>/dev/null >"$cache_file"
     source "$cache_file"
   fi
 }
