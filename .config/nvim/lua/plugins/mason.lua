@@ -7,16 +7,19 @@ return {
     opts = {
       -- Make sure to use the names found in `:Mason`
       ensure_installed = {
-        -- install language servers
+        -- language servers
         "lua-language-server",
 
-        -- install formatters
+        -- linters
+        "oxlint",
+
+        -- formatters
         "stylua",
 
-        -- install debuggers
-        "debugpy",
+        -- debuggers
+        -- "debugpy",
 
-        -- install any other package
+        -- other packages
         "tree-sitter-cli",
       },
     },
