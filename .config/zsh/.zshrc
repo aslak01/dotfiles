@@ -118,6 +118,8 @@ fi
 typeset -U path
 
 path=(
+    "/opt/homebrew/bin"                # Homebrew binaries
+    "/opt/homebrew/sbin"               # Homebrew system binaries
     "$HOME/.local/bin"                 # homebrewed scripts
     "$HOME/go/bin"                     # Go
     "/opt/homebrew/opt/go/libexec/bin" # Go root
