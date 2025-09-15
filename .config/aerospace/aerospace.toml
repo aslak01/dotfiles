@@ -2,7 +2,7 @@ start-at-login = true
 # Available commands: https://nikitabobko.github.io/AeroSpace/commands
 after-login-command = []
 after-startup-command = [
-    # 'exec-and-forget /opt/homebrew/opt/borders/bin/borders',
+  # 'exec-and-forget /opt/homebrew/opt/borders/bin/borders',
 ]
 
 # Normalizations. See: https://nikitabobko.github.io/AeroSpace/guide#normalization
@@ -51,6 +51,12 @@ alt-t = 'exec-and-forget open -n /Applications/kitty.app'
 alt-b = '''exec-and-forget osascript <<EOF
 tell application "Safari"
     make new document at end of documents
+    activate
+end tell
+EOF'''
+
+alt-f = '''exec-and-forget osascript <<EOF
+tell application "Firefox"
     activate
 end tell
 EOF'''
@@ -131,8 +137,8 @@ r = ['flatten-workspace-tree', 'mode main'] # reset layout
 
 #s = ['layout sticky tiling', 'mode main'] # sticky is not yet supported https://github.com/nikitabobko/AeroSpace/issues/2
 f = [
-    'layout floating tiling',
-    'mode main',
+  'layout floating tiling',
+  'mode main',
 ] # Toggle between floating and tiling layout
 backspace = ['close-all-windows-but-current', 'mode main']
 esc = ['reload-config', 'mode main']
