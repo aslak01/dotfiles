@@ -12,3 +12,4 @@ zsh_api_keys.zsh
 node_modules
 **/configstore/update-notifier-@google
 *.pem
+**/medusa/config.json
