@@ -70,8 +70,8 @@ if command -v sheldon >/dev/null 2>&1; then
     zsh-defer eval "$(sheldon source)"
 fi
 
-if [[ command -v mise >/dev/null ]]; then
-    eval "$(mise activate zsh)"
+if command -v mise >/dev/null; then
+    zsh-defer eval "$(mise activate zsh)"
 fi
 
 _zsh_files=("$ZDOTDIR/.zshrc" "$ZDOTDIR/.zstyle" "$ZDOTDIR/.zaliases" "$ZDOTDIR/.zfunctions" "$ZDOTDIR/.zmise")
