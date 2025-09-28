@@ -13,10 +13,10 @@ autoload -Uz compinit promptinit
 _comp_files="(${ZDOTDIR:-$HOME}/.zcompdump(Nm-20))" 
 
 # shellcheck disable=SC1072,SC1073,SC1036,SC1009
-if [[ -n ${ZDOTDIR:-$HOME}/.zcompdump(#qN.mh+24) ]]; then
-    compinit -i -C  
+if [[ -z ${ZDOTDIR:-$HOME}/.zcompdump(#qN.mh+24) ]]; then
+    compinit -i -C
 else
-    compinit -i
+    compinit -i -C
 fi
 
 unset _comp_files
@@ -146,4 +146,4 @@ if command -v starship >/dev/null; then
     eval "$(starship init zsh)"
 fi
 
-. "$HOME/.local/bin/env"
+zsh-defer source "$HOME/.local/bin/env"

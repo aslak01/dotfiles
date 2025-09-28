@@ -25,7 +25,7 @@ github = "Aloxaf/fzf-tab"
 apply = ["defer"]
 
 [plugins.zoxide]
-inline = "eval \"$(zoxide init zsh)\""
+inline = "zsh-defer eval \"$(zoxide init zsh)\""
 
 
 [plugins.sudo]
