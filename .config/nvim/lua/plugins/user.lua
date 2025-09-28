@@ -81,7 +81,7 @@ return {
   -- disable brittle notifications in this plugin
   {
     "vuki656/package-info.nvim",
-    ft = "json",
+    ft = "package.json",
     config = function()
       require("package-info").setup {
         notifications = false,

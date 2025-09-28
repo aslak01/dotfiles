@@ -36,6 +36,7 @@ return {
       javascriptreact = { "oxlint" },
       typescript = { "oxlint" },
       typescriptreact = { "oxlint" },
+      make = { "checkmake" },
     },
     linters = {
       oxlint = {
