@@ -1,0 +1,41 @@
+shell = "zsh"
+
+[templates]
+defer = "{% for file in files %}zsh-defer source \"{{ file }}\"\n{% endfor %}"
+
+[plugins]
+
+[plugins.zsh-defer]
+github = "romkatv/zsh-defer"
+
+[plugins.zsh-vi-mode]
+github = "jeffreytse/zsh-vi-mode"
+
+[plugins.zsh-autosuggestions]
+github = "zsh-users/zsh-autosuggestions"
+apply = ["defer"]
+hooks.init = "zsh-defer \"bindkey '^f' autosuggest-accept\""
+
+[plugins.fast-syntax-highlighting]
+github = "zdharma-continuum/fast-syntax-highlighting"
+apply = ["defer"]
+
+[plugins.fzf-tab]
+github = "Aloxaf/fzf-tab"
+apply = ["defer"]
+
+[plugins.zoxide]
+inline = "eval \"$(zoxide init zsh)\""
+
+
+[plugins.sudo]
+remote = "https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/sudo/sudo.plugin.zsh"
+apply = ["defer"]
+
+# Lightweight immediate loading
+[plugins.edit-command-line]
+inline = '''
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey -M vicmd 'vv' edit-command-line
+'''

@@ -1,20 +1,18 @@
-#! /usr/bin zsh
+#! /usr/bin/env zsh
 # shellcheck shell=bash
 # zmodload zsh/zprof
-#
+
 source_if_exists() {
     [[ -r "$1" ]] && source "$1"
 }
 
-# Disable shell sessions
 export SHELL_SESSIONS_DISABLE=1
 
-# Load compinit and promptinit
 autoload -Uz compinit promptinit
 
-_comp_files="(${ZDOTDIR:-$HOME}/.zcompdump(Nm-20))"  # Should be _comp_files, not *comp*files
+_comp_files="(${ZDOTDIR:-$HOME}/.zcompdump(Nm-20))" 
 
-# only run compinit once per day:
+# shellcheck disable=SC1072,SC1073,SC1036,SC1009
 if [[ -n ${ZDOTDIR:-$HOME}/.zcompdump(#qN.mh+24) ]]; then
     compinit -i -C  
 else
@@ -25,12 +23,10 @@ unset _comp_files
 
 promptinit
 
-# setopt prompt_subst
-
-# Load colors
 autoload -U colors && colors
 
 # ZSH Settings
+# setopt prompt_subst
 unsetopt case_glob
 setopt globdots
 setopt extendedglob
@@ -69,22 +65,16 @@ setopt hist_verify
 setopt extended_history
 setopt hist_reduce_blanks
 
-# mise
-source_if_exists "$ZDOTDIR/.zmise"
-
-
-
-# Zinit
-ZINIT_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/zinit/zinit.git"
-if [ ! -d "$ZINIT_HOME" ]; then
-    mkdir -p "$(dirname "$ZINIT_HOME")"
-    git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+if command -v sheldon >/dev/null 2>&1; then
+    source "$HOME/.local/share/sheldon/repos/github.com/romkatv/zsh-defer/zsh-defer.plugin.zsh"
+    zsh-defer eval "$(sheldon source)"
 fi
-source_if_exists "${ZINIT_HOME}/zinit.zsh"
 
+if [[ command -v mise >/dev/null ]]; then
+    eval "$(mise activate zsh)"
+fi
 
-# Compile Zsh files for faster loading
-_zsh_files=("$ZDOTDIR/.zshrc" "$ZDOTDIR/.zstyle" "$ZDOTDIR/.zaliases" "$ZDOTDIR/.zfunctions" "$ZDOTDIR/.zinit" "$ZDOTDIR/.zmise")
+_zsh_files=("$ZDOTDIR/.zshrc" "$ZDOTDIR/.zstyle" "$ZDOTDIR/.zaliases" "$ZDOTDIR/.zfunctions" "$ZDOTDIR/.zmise")
 
 for file in "${_zsh_files[@]}"; do
     if [[ ! -f "${file}.zwc" || "${file}" -nt "${file}.zwc" ]]; then
@@ -94,20 +84,9 @@ done
 unset _zsh_files
 
 source_if_exists "$ZDOTDIR/.zstyle"
-source_if_exists "$ZDOTDIR/.zinit"
 source_if_exists "$ZDOTDIR/.zfunctions"
 source_if_exists "$ZDOTDIR/private_api_keys"
 source_if_exists "$ZDOTDIR/.zaliases"
-
-
-# zprof
-
-
-
-# update wezterm tab titles
-# function precmd() {
-#     print -Pn "\e]0;${PWD:t}\a"
-# }
 
 # default to using gnu find for linux compatibility (when installed)
 if command -v gfind >/dev/null 2>&1; then
@@ -145,26 +124,19 @@ for comp in "${completions[@]}"; do
     source_if_present "$comp"
 done
 
-
-
 configure_themes
-
 
 export STARSHIP_SHELL="zsh"
 
-unalias zi 2>/dev/null
-
 load_keychain_cached
 
-# ocaml
-command -v opam >/dev/null && eval $(opam env --switch=default --set-switch 2>/dev/null)
+if command -v opam >/dev/null; then
+    zsh-defer eval "$(opam env --switch=default --set-switch 2>/dev/null)"
+fi
 
-# copy terminfo on ssh connect
-# "i'm helping"
-[ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
-
-# export PATH="/opt/homebrew/sbin:/opt/homebrew/bin:$PATH"
-command -v tv >/dev/null && eval "$(tv init zsh)"
+if command -v tv >/dev/null; then
+    zsh-defer eval "$(tv init zsh)"
+fi
 
 if command -v starship >/dev/null; then
     if [[ "${widgets[zle-keymap-select]#user:}" == "starship_zle-keymap-select" ||
@@ -173,3 +145,5 @@ if command -v starship >/dev/null; then
     fi
     eval "$(starship init zsh)"
 fi
+
+. "$HOME/.local/bin/env"
