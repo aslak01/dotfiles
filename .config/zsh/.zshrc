@@ -124,11 +124,11 @@ for comp in "${completions[@]}"; do
     source_if_present "$comp"
 done
 
-configure_themes
+zsh-defer configure_themes
 
 export STARSHIP_SHELL="zsh"
 
-load_keychain_cached
+zsh-defer load_keychain_cached
 
 if command -v opam >/dev/null; then
     zsh-defer eval "$(opam env --switch=default --set-switch 2>/dev/null)"

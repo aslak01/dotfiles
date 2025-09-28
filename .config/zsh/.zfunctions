@@ -25,19 +25,30 @@ is_dark_mode() {
 configure_themes() {
   local mode
   mode=$(is_dark_mode)
+
+  local vivid_scheme bat_theme lazygit_theme
   case $mode in
   dark)
-    export LS_COLORS="$(vivid generate dracula)"
-    export BAT_THEME="Dracula"
-    export LAZYGIT_THEME="dracula"
-
+    vivid_scheme="dracula"
+    bat_theme="Dracula"
+    lazygit_theme="dracula"
     ;;
   light)
-    export LS_COLORS="$(vivid generate ayu)"
-    export BAT_THEME="Solarized (light)"
-    export LAZYGIT_THEME="solarized-light"
+    vivid_scheme="ayu"
+    bat_theme="Solarized (light)"
+    lazygit_theme="solarized-light"
     ;;
   esac
+
+  local vivid_cache="$ZDOTDIR/.vivid_${vivid_scheme}_cache"
+
+  if [[ ! -f "$vivid_cache" || "$vivid_cache" -ot "$(command -v vivid)" ]]; then
+    vivid generate "$vivid_scheme" > "$vivid_cache"
+  fi
+
+  export LS_COLORS="$(cat "$vivid_cache")"
+  export BAT_THEME="$bat_theme"
+  export LAZYGIT_THEME="$lazygit_theme"
 }
 
 lshosts() {
