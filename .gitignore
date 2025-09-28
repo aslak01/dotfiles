@@ -13,3 +13,4 @@ node_modules
 **/configstore/update-notifier-@google
 *.pem
 **/medusa/config.json
+uv-receipt.json
