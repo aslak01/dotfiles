@@ -55,11 +55,7 @@ tell application "Safari"
 end tell
 EOF'''
 
-alt-f = '''exec-and-forget osascript <<EOF
-tell application "Firefox"
-    activate
-end tell
-EOF'''
+alt-f = '''exec-and-forget open -n -a Firefox'''
 
 cmd-shift-b = 'exec-and-forget qutebrowser'
 
