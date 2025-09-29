@@ -8,20 +8,22 @@ source_if_exists() {
 
 export SHELL_SESSIONS_DISABLE=1
 
-autoload -Uz compinit promptinit
+autoload -Uz compinit
 
-_comp_files="(${ZDOTDIR:-$HOME}/.zcompdump(Nm-20))" 
+_comp_files="(${ZDOTDIR:-$HOME}/.zcompdump(Nm-20))"
 
-# shellcheck disable=SC1072,SC1073,SC1036,SC1009
-if [[ -z ${ZDOTDIR:-$HOME}/.zcompdump(#qN.mh+24) ]]; then
-    compinit -i -C
+# Optimize compinit with better caching logic
+if [[ ${ZDOTDIR:-$HOME}/.zcompdump(#qNmh+24) ]]; then
+    # Completion dump is fresh (< 24h old), load without security checks for speed
+    compinit -C -d "${ZDOTDIR:-$HOME}/.zcompdump"
 else
-    compinit -i -C
+    # Completion dump is stale or missing, rebuild with security checks
+    compinit -i -d "${ZDOTDIR:-$HOME}/.zcompdump"
 fi
 
 unset _comp_files
 
-promptinit
+# promptinit  # Disabled since using Starship
 
 autoload -U colors && colors
 
@@ -147,3 +149,4 @@ if command -v starship >/dev/null; then
 fi
 
 zsh-defer source "$HOME/.local/bin/env"
+# zprof
