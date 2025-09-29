@@ -80,9 +80,6 @@ else:
 # Enhanced cookie management - don't persist cookies across sessions
 c.content.cookies.store = False
 
-# Better security isolation
-c.content.site_isolation = True
-
 # Enhanced blocking method
 c.content.blocking.method = "both"
 
@@ -205,9 +202,9 @@ c.bindings.commands = {
         ",<Space>": "search",
         ",C": "tab-only",
         ",M": "hint links spawn --detach /opt/homebrew/bin/mpv {hint-url}",
-        ",b": "set-cmd-text -s :buffer",
+        ",b": "cmd-set-text -s :buffer",
         ",c": "tab-close",
-        ",e": "set-cmd-text -s :open",
+        ",e": "cmd-set-text -s :open",
         ",h": "history",
         ",m": "spawn --detach /opt/homebrew/bin/mpv {url}",
         ",q": "tab-prev",
@@ -219,13 +216,13 @@ c.bindings.commands = {
         "<Ctrl-0>": "zoom",
         "<Ctrl-Shift-Tab>": "tab-prev",
         "<Ctrl-Tab>": "tab-next",
-        "<Ctrl-f>": "set-cmd-text /",
+        "<Ctrl-f>": "cmd-set-text /",
         "<Ctrl-i>": "forward",
         "<Ctrl-o>": "back",
         "<Ctrl-p>": "lastpass",
         "<Ctrl-a>": "mode-enter passthrough",
         "=": "zoom",
-        "?": "set-cmd-text :open -t ?",
+        "?": "cmd-set-text :open -t ?",
         "F": "hint links tab-bg",
         "gi": "hint inputs",
         "<cmd-1>": "tab-focus 1",
@@ -247,4 +244,3 @@ c.bindings.commands = {
         "<Escape>": "mode-leave ;; jseval -q document.activeElement.blur()",
     },
 }
-
