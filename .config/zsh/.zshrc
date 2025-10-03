@@ -130,7 +130,7 @@ zsh-defer configure_themes
 
 export STARSHIP_SHELL="zsh"
 
-zsh-defer load_keychain_cached
+load_keychain_cached
 
 if command -v opam >/dev/null; then
     zsh-defer eval "$(opam env --switch=default --set-switch 2>/dev/null)"
