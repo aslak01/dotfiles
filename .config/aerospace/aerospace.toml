@@ -164,6 +164,10 @@ run = ["layout floating"]
 if.app-id = 'com.cisco.secureclient.gui'
 run = ["layout floating"]
 
+[[on-window-detected]]
+if.app-name-regex-substring = 'mpv'
+run = ["layout floating"]
+
 
 # All possible keys:
 # - Letters.        a, b, c, ..., z

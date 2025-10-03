@@ -1,53 +1,79 @@
-# mpv-settings
-my settings for MPV (Windows/Mac/Linux Compatible)
+# MPV Hotkeys Reference
 
-might not be suitable for your pc, but if you have any recommendations, just tell me, 
-or just make a pull request. If i like it, i put it in.
+## Playback Control (Default)
+- **Space** / **p** - Pause/unpause
+- **q** - Quit
+- **Q** - Quit without saving position
+- **[** / **]** - Decrease/increase playback speed by 10%
+- **{** / **}** - Decrease/increase playback speed by 50%
+- **Backspace** - Reset playback speed to 1.0
 
-# Installation
-Depending on your Operating System, you need to place the stuff inside the zip in a certain directory.
-The root directory needs to look like this:
+## Volume Control
+- **9** / **0** - Volume down/up by 2 (default)
+- **m** - Toggle mute
+- **AXIS_UP** / **WHEEL_UP** - Volume -1 (custom)
+- **AXIS_DOWN** / **WHEEL_DOWN** - Volume +1 (custom)
 
-->mpv
+## Seeking
+- **Left** / **Right** - Seek backward/forward 5 seconds (default)
+- **Up** / **Down** - Seek forward/backward 60 seconds (default)
+- **AXIS_LEFT** / **WHEEL_LEFT** - Seek +1 second (custom)
+- **AXIS_RIGHT** / **WHEEL_RIGHT** - Seek -1 second (custom)
+- **h** - Seek -65 seconds backward (custom)
+- **H** - Seek +65 seconds forward (custom)
+- **Shift+Right** - Step forward one frame (custom)
+- **Shift+Left** - Step backward one frame (custom)
+- **.** / **,** - Step forward/backward one frame (default)
 
--->input.conf
+## Video/Audio/Subtitle Controls
+- **a** - Cycle audio track (custom)
+- **#** - Cycle audio track (default)
+- **s** - Cycle subtitle track (custom)
+- **j** / **J** - Cycle subtitle track forward/backward (default)
+- **v** - Toggle subtitle visibility (default) / Toggle deband (custom override)
+- **i** - Toggle interpolation on/off (custom)
+- **_** - Cycle video track (default)
 
--->mpv.conf
+## Timing Adjustments
+- **+** - Add +0.010s audio delay (custom)
+- **-** - Add -0.010s audio delay (custom)
+- **Ctrl++** / **Ctrl+-** - Adjust audio delay ±0.1s (default)
+- **F1** - Subtract 0.1s subtitle delay (custom)
+- **F2** - Add 0.1s subtitle delay (custom)
+- **z** / **Z** - Adjust subtitle delay ±0.1s (default)
 
---->shaders
+## Display & Window
+- **f** - Toggle fullscreen (default)
+- **F4** - Cycle aspect ratio: 16:9 → 4:3 → 2.35:1 → auto (custom)
+- **d** - Toggle deinterlacing (default)
+- **1** / **2** - Decrease/increase contrast (default)
+- **3** / **4** - Decrease/increase brightness (default)
+- **5** / **6** - Decrease/increase gamma (default)
+- **7** / **8** - Decrease/increase saturation (default)
 
---->script-opts
+## Screenshots (Default)
+- **s** (without custom override) - Take screenshot (with subtitles)
+- **S** - Take screenshot (without subtitles)
+- **Ctrl+s** - Take screenshot (exact source, no filters)
 
---->scripts
+## OSD & Info (Default)
+- **o** / **O** - Toggle OSD modes / Toggle OSD permanently
+- **I** - Show stats overlay (toggle)
+- **i** (without custom override) - Show video/audio/subtitle info
+- **\`** - Show console
 
-you need to rename the proper config you want to use to mpv.conf.
+## Window Management
+- **T** - Toggle stay-on-top / float on top mode (default)
 
-example: mpv-windows.conf -> mpv.conf
+## Command Palette & Menus
+- **t** - Open M-x command palette (Emacs-style searchable command menu) (custom)
+- **F** - Toggle seek-to seeker interface (custom)
+- **Ctrl+f** - Toggle youtube-quality menu for streaming videos (custom)
 
-# WINDOWS INSTALLATION
-"C:\Users\YOURNAME\AppData\Roaming\mpv"
+## Playlist Navigation
+- **<** / **>** - Previous/next entry in playlist (default)
+- **Enter** - Go to next entry in playlist (default)
 
-# MAC INSTALLATION
-Path:
-
-/USERNAME/.config/mpv
-
-Tested Apple Devices on latest OS (BigSur at the time of writing the readme):
-
-- Base Macbook Pro 2018 13"
-
-
-# LINUX INSTALLATION
-Path:
-/home/user/.config/mpv
-
-/user/ is always the name of the user who wants to use mpv.
-# Community and Discord Help Server
-
-I also have a Server for mpv-settings and AIO_Video_Enhancer. You can join here: https://discord.gg/WjtkbcQ
-
-Discord: Tsubajashi#8355
-# DONATIONS
-if you like to donate, heres a link: https://www.paypal.com/paypalme2/tsubajashi
-I always thank anybody who donates to me, as the current time is a bit rough when it comes to my finances, but don't pressure yourself to do so.
-It's a donation after all - if you are in a similar bad spot financially, please use it to get yourself nice things. :)
+## Looping
+- **l** - Set/clear A-B loop points (default)
+- **L** - Toggle infinite loop (default)
