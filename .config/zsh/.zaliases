@@ -50,3 +50,4 @@ alias tra="ssh tra"
 [ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
 
 alias p="pass -c"
+#hei
