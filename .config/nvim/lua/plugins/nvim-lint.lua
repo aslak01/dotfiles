@@ -32,10 +32,11 @@ return {
   },
   opts = {
     linters_by_ft = {
-      javascript = { "oxlint" },
-      javascriptreact = { "oxlint" },
-      typescript = { "oxlint" },
-      typescriptreact = { "oxlint" },
+      javascript = { "oxlint", "biomejs" },
+      javascriptreact = { "oxlint", "biomejs" },
+      typescript = { "oxlint", "biomejs" },
+      typescriptreact = { "oxlint", "biomejs" },
+      css = { "biomejs" },
       make = { "checkmake" },
     },
     linters = {
@@ -51,6 +52,39 @@ return {
           local project_root = roots[1].paths[1]
           if project_root then
             local config_file = vim.fs.joinpath(project_root, ".oxlintrc.json")
+            return vim.fn.filereadable(config_file) == 1
+          end
+
+          return false
+        end,
+      },
+      biomejs = {
+        cmd = function()
+          local rooter = require "astrocore.rooter"
+          local bufnr = vim.api.nvim_get_current_buf()
+          local roots = rooter.detect(bufnr, false)
+
+          if roots and #roots > 0 then
+            local project_root = roots[1].paths[1]
+            -- Try node_modules/.bin/biome first (local installation)
+            local local_biome = vim.fs.joinpath(project_root, "node_modules", ".bin", "biome")
+            if vim.fn.executable(local_biome) == 1 then return local_biome end
+          end
+
+          -- Fallback to global biome
+          return "biome"
+        end,
+        condition = function(ctx)
+          local rooter = require "astrocore.rooter"
+          local bufnr = vim.fn.bufnr(ctx.filename)
+          local roots = rooter.detect(bufnr, false) -- false = just get first root
+
+          if not roots or #roots == 0 then return false end
+
+          -- Check if biome.json exists in the detected project root
+          local project_root = roots[1].paths[1]
+          if project_root then
+            local config_file = vim.fs.joinpath(project_root, "biome.json")
             return vim.fn.filereadable(config_file) == 1
           end
 

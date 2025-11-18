@@ -81,21 +81,21 @@ return {
           end,
         },
       },
-      auto_background_switch = {
-        {
-          event = "OptionSet",
-          pattern = "background",
-          desc = "Switch colorscheme based on terminal background",
-          callback = function()
-            local bg = vim.o.background
-            if bg == "dark" then
-              vim.cmd.colorscheme("lackluster-hack")
-            else
-              vim.cmd.colorscheme("grey")
-            end
-          end,
-        },
-      },
+      -- auto_background_switch = {
+      --   {
+      --     event = "OptionSet",
+      --     pattern = "background",
+      --     desc = "Switch colorscheme based on terminal background",
+      --     callback = function()
+      --       local bg = vim.o.background
+      --       if bg == "dark" then
+      --         vim.cmd.colorscheme("lackluster-hack")
+      --       else
+      --         vim.cmd.colorscheme("grey")
+      --       end
+      --     end,
+      --   },
+      -- },
     },
     mappings = {
       n = {

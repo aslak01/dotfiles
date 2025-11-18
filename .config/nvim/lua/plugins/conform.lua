@@ -27,7 +27,7 @@ return {
       rego = { "opa_fmt" },
       sh = { "shfmt" },
       sql = { "sqlfluff" },
-      python = { "isort", "black" },
+      python = { "ruff_organize_imports", "ruff_format" },
       ["_"] = function(bufnr)
         if #vim.lsp.get_clients { bufnr = bufnr, method = "textDocument/formatting" } then
           return { lsp_format = "last" }
@@ -38,8 +38,9 @@ return {
       end,
     }
 
-    -- prettier filetypes
-    vim.tbl_map(function(ft) opts.formatters_by_ft[ft] = { "prettier" } end, {
+    -- biome/prettier filetypes
+    -- Use biome when config found, otherwise fall back to prettierd
+    local biome_filetypes = {
       "javascript",
       "javascriptreact",
       "typescript",
@@ -58,7 +59,19 @@ return {
       "markdown.mdx",
       "graphql",
       "handlebars",
-    })
+    }
+
+    vim.tbl_map(function(ft)
+      opts.formatters_by_ft[ft] = function(bufnr)
+        -- Check for biome config files in the project root
+        local root = vim.fs.root(bufnr, { "biome.json", "biome.jsonc", "rome.json" })
+        if root then
+          return { "biome" }
+        else
+          return { "prettierd", "prettier", stop_after_first = true }
+        end
+      end
+    end, biome_filetypes)
 
     opts.formatters = {
       prettier = {

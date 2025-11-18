@@ -27,7 +27,24 @@ require("lazy").setup({
         "tarPlugin",
         "tohtml",
         "zipPlugin",
+        "matchit",
+        "matchparen",
+        "2html_plugin",
+        "getscript",
+        "getscriptPlugin",
+        "logipat",
+        "rrhelper",
+        "spellfile_plugin",
+        "vimball",
+        "vimballPlugin",
       },
     },
+    cache = {
+      enabled = true,
+    },
+    reset_packpath = true,
+  },
+  defaults = {
+    lazy = true, -- Make all plugins lazy by default
   },
 } --[[@as LazyConfig]])
