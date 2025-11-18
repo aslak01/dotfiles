@@ -26,17 +26,25 @@ alias icat="kitten icat"
 alias obs="cd $HOME/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/obsidian-vault && v"
 
 # ghostty support
-alias pass="TERM=xterm-256color pass"
-alias mutt='TERM=xterm-256color neomutt'
+# alias pass="TERM=xterm-256color pass"
+# alias mutt='TERM=xterm-256color neomutt'
 
 # Tools
-alias ls='eza -a --icons --group-directories-first --color=auto'
-alias ll='eza -la --icons --group-directories-first --color=auto'
-alias lnew='eza -la --icons --group-directories-first --color=auto -snew | tail'
+alias ls='eza -A --icons --group-directories-first --color=auto'
+alias ll='eza -lA --icons --group-directories-first --color=auto'
+alias lnew='eza -lA --icons --group-directories-first --color=auto -snew | tail'
 
+# fix gnu sed vs bsd sed file extension issue in pass
+pass() {
+  /opt/homebrew/bin/pass "$@" | sed 's/\.gpg\([^/]*\)$/\1/'
+}
+alias p="pass -c"
+
+# convenience
 alias nvimrc="vim $HOME/.config/nvim/"
 alias zshrc="vim $ZDOTDIR/.zshrc"
 alias s="source $ZDOTDIR/.zshrc"
+alias tra="ssh tra"
 
 alias skgl="$HOME/w/tnr/skogul/skogul"
 
@@ -44,9 +52,6 @@ alias binsign="xattr -d com.apple.quarantine"
 alias ql="qlmanage -p"
 alias c="cd $HOME/w/pers/claud && claude"
 
-alias tra="ssh tra"
 # copy terminfo on ssh connect
 # "i'm helping"
 [ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
-
-alias p="pass -c"

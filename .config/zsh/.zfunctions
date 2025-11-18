@@ -43,7 +43,7 @@ configure_themes() {
   local vivid_cache="$ZDOTDIR/.vivid_${vivid_scheme}_cache"
 
   if [[ ! -f "$vivid_cache" || "$vivid_cache" -ot "$(command -v vivid)" ]]; then
-    vivid generate "$vivid_scheme" > "$vivid_cache"
+    vivid generate "$vivid_scheme" >"$vivid_cache"
   fi
 
   export LS_COLORS="$(cat "$vivid_cache")"
@@ -94,8 +94,10 @@ imgcopy() {
 }
 
 load_keychain_cached() {
-  local cache_file="$ZDOTDIR/.keychain_env_cache"
-  local keychain_state="$HOME/.keychain/$(hostname)-sh"
+  local cache_file
+  local keychain_state
+  cache_file="$ZDOTDIR/.keychain_env_cache"
+  keychain_state="$HOME/.keychain/$(hostname)-sh"
 
   # Check if cache exists and is newer than keychain state
   if [[ -f "$cache_file" && "$cache_file" -nt "$keychain_state" ]]; then
