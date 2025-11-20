@@ -10,7 +10,10 @@ return {
   { import = "astrocommunity.pack.python-ruff", ft = "python" },
   { import = "astrocommunity.pack.yaml", ft = { "yaml", "yml" } },
   { import = "astrocommunity.pack.markdown", ft = "markdown" },
-  { import = "astrocommunity.pack.typescript", ft = { "typescript", "typescriptreact", "javascript", "javascriptreact" } },
+  {
+    import = "astrocommunity.pack.typescript",
+    ft = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
+  },
   { import = "astrocommunity.pack.svelte", ft = "svelte" },
   { import = "astrocommunity.markdown-and-latex.markview-nvim", ft = "markdown" },
   { import = "astrocommunity.motion.nvim-surround" },
@@ -18,4 +21,5 @@ return {
   { import = "astrocommunity.editing-support.conform-nvim" },
   { import = "astrocommunity.test.neotest", cmd = "Neotest" },
   { import = "astrocommunity.pack.ocaml", ft = "ocaml" },
+  { import = "astrocommunity.pack.gleam", ft = "gleam" },
 }
