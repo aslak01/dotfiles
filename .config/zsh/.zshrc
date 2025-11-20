@@ -8,6 +8,8 @@ source_if_exists() {
 
 export SHELL_SESSIONS_DISABLE=1
 
+eval "$(brew shellenv)"
+
 autoload -Uz compinit
 
 _comp_files="(${ZDOTDIR:-$HOME}/.zcompdump(Nm-20))"
