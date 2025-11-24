@@ -22,4 +22,5 @@ return {
   { import = "astrocommunity.test.neotest", cmd = "Neotest" },
   { import = "astrocommunity.pack.ocaml", ft = "ocaml" },
   { import = "astrocommunity.pack.gleam", ft = "gleam" },
+  { import = "astrocommunity.pack.pkl", ft = "pkl" },
 }
