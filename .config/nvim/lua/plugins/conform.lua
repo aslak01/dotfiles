@@ -25,9 +25,13 @@ return {
       lua = { "stylua" },
       puppet = { "puppet-lint" },
       rego = { "opa_fmt" },
-      sh = { "shfmt" },
+      sh = function(bufnr)
+        if vim.bo[bufnr].filetype == "make" then return {} end
+        return { "shfmt" }
+      end,
       sql = { "sqlfluff" },
       python = { "ruff_organize_imports", "ruff_format" },
+      make = { "bake" },
       ["_"] = function(bufnr)
         if #vim.lsp.get_clients { bufnr = bufnr, method = "textDocument/formatting" } then
           return { lsp_format = "last" }
