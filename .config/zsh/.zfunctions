@@ -111,3 +111,26 @@ load_keychain_cached() {
     source "$cache_file"
   fi
 }
+
+pbcopyfile() {
+  if [ -z "$1" ]; then
+    echo "Usage: pbcopyfile <filepath>"
+    return 1
+  fi
+
+  local filepath="$1"
+
+  # Convert to absolute path if not already
+  if [[ "$filepath" != /* ]]; then
+    filepath="$(pwd)/$filepath"
+  fi
+
+  # Check if file exists
+  if [ ! -e "$filepath" ]; then
+    echo "Error: File does not exist: $filepath"
+    return 1
+  fi
+
+  osascript -e "set the clipboard to (POSIX file \"$filepath\")" &&
+    echo "✓ Copied to clipboard: $filepath"
+}
