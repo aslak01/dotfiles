@@ -41,14 +41,15 @@ alias ll='eza -lA --icons --group-directories-first --color=auto'
 alias lnew='eza -lA --icons --group-directories-first --color=auto -snew | tail'
 
 # fix gnu sed vs bsd sed file extension issue in pass
-# only pipe through sed for non-interactive commands
+# only pipe through sed for list commands (piping breaks pinentry tty for decryption)
+# TERM override needed for pinentry in kitty
 pass() {
   case "$1" in
-    edit|insert|generate|init|git)
-      /opt/homebrew/bin/pass "$@"
+    ls|list|find|"")
+      /opt/homebrew/bin/pass "$@" | sed 's/\.gpg\([^/]*\)$/\1/'
       ;;
     *)
-      /opt/homebrew/bin/pass "$@" | sed 's/\.gpg\([^/]*\)$/\1/'
+      TERM=xterm-256color /opt/homebrew/bin/pass "$@"
       ;;
   esac
 }
