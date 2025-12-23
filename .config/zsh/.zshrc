@@ -10,6 +10,10 @@ export SHELL_SESSIONS_DISABLE=1
 
 eval "$(brew shellenv)"
 
+# macos cli app completions
+fpath=(${ZDOTDIR:-$HOME}/mac-zsh-completions/completions $fpath)
+
+
 autoload -Uz compinit
 
 _comp_files="(${ZDOTDIR:-$HOME}/.zcompdump(Nm-20))"
@@ -23,7 +27,17 @@ else
     compinit -i -d "${ZDOTDIR:-$HOME}/.zcompdump"
 fi
 
+# bash based apple completions
+autoload -Uz bashcompinit
+bashcompinit
+
+# Source all apple_complete scripts
+for cmd in diskutil hdiutil launchctl networksetup pkgutil installer log; do
+[[ -f ${ZDOTDIR:-$HOME}/apple_complete/$cmd ]] && source ~/.config/zsh/apple_complete/$cmd
+done
+
 unset _comp_files
+
 
 # promptinit  # Disabled since using Starship
 
