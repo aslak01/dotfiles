@@ -14,3 +14,4 @@ node_modules
 *.pem
 **/medusa/config.json
 uv-receipt.json
+.config/ttypr/config
