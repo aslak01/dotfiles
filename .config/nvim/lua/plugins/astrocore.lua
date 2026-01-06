@@ -68,6 +68,17 @@ return {
         function() vim.cmd "redir @+ | messages | redir END" end,
         desc = "Copy messages to clipboard",
       },
+      AlignColumns = {
+        function(opts)
+          local range = opts.range > 0 and opts.line1 .. "," .. opts.line2 or "%"
+          local foldmethod = vim.wo.foldmethod
+          vim.wo.foldmethod = "manual"
+          vim.cmd("silent " .. range .. [=[!awk '/^[[:space:]]*\#/{print"@@"$0;next}1' | column -t | sed 's/^@@//']=])
+          vim.schedule(function() vim.wo.foldmethod = foldmethod end)
+        end,
+        range = true,
+        desc = "Align columns preserving comments",
+      },
     },
     autocmds = {
       auto_spell = {
@@ -111,6 +122,16 @@ return {
           desc = "Close buffer from tabline",
         },
         ["<Leader>mc"] = { "<cmd>MessagesCopy<cr>", desc = "Copy messages to clipboard" },
+        ["<Leader>aa"] = {
+          "<cmd>AlignColumns<cr>",
+          desc = "Align columns",
+        },
+      },
+      x = {
+        ["<Leader>aa"] = {
+          ":'<,'>AlignColumns<cr>",
+          desc = "Align columns",
+        },
       },
     },
   },
