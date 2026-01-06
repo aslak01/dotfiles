@@ -68,13 +68,66 @@ return {
         function() vim.cmd "redir @+ | messages | redir END" end,
         desc = "Copy messages to clipboard",
       },
+      -- AlignColumns = {
+      --   function(opts)
+      --     local range = opts.range > 0 and opts.line1 .. "," .. opts.line2 or "%"
+      --     local foldmethod = vim.wo.foldmethod
+      --     vim.wo.foldmethod = "manual"
+      --     vim.cmd("silent " .. range .. [=[!awk '/^[[:space:]]*[#]/{print"@@"$0;next}1' | column -t | sed 's/^@@//']=])
+      --     vim.schedule(function() vim.wo.foldmethod = foldmethod end)
+      --   end,
+      --   range = true,
+      --   desc = "Align columns preserving comments",
+      -- },
       AlignColumns = {
         function(opts)
-          local range = opts.range > 0 and opts.line1 .. "," .. opts.line2 or "%"
-          local foldmethod = vim.wo.foldmethod
-          vim.wo.foldmethod = "manual"
-          vim.cmd("silent " .. range .. [=[!awk '/^[[:space:]]*\#/{print"@@"$0;next}1' | column -t | sed 's/^@@//']=])
-          vim.schedule(function() vim.wo.foldmethod = foldmethod end)
+          local start_line = opts.range > 0 and opts.line1 or 1
+          local end_line = opts.range > 0 and opts.line2 or vim.api.nvim_buf_line_count(0)
+
+          local lines = vim.api.nvim_buf_get_lines(0, start_line - 1, end_line, false)
+
+          -- Get comment prefix from commentstring (e.g., "# %s" -> "#", "// %s" -> "//")
+          local cs = vim.bo.commentstring
+          local prefix = cs:match "^(.-)%%s" or "#"
+          prefix = vim.trim(prefix)
+          -- Escape Lua pattern special characters
+          local escaped_prefix = prefix:gsub("([%^%$%(%)%%%.%[%]%*%+%-%?])", "%%%1")
+
+          -- Separate data lines from comments/empty lines
+          local data_lines = {}
+          local is_data = {}
+
+          for i, line in ipairs(lines) do
+            if line:match("^%s*" .. escaped_prefix) or line:match "^%s*$" then
+              is_data[i] = false
+            else
+              is_data[i] = true
+              table.insert(data_lines, line)
+            end
+          end
+
+          -- Run column -t on all data lines together
+          local aligned_lines = {}
+          if #data_lines > 0 then
+            local input = table.concat(data_lines, "\n") .. "\n"
+            local output = vim.fn.system("column -t 2>/dev/null", input)
+            output = output:gsub("\n$", "")
+            aligned_lines = vim.split(output, "\n", { plain = true })
+          end
+
+          -- Reassemble with comments/empty lines in original positions
+          local result = {}
+          local aligned_idx = 1
+          for i, line in ipairs(lines) do
+            if is_data[i] then
+              table.insert(result, aligned_lines[aligned_idx] or line)
+              aligned_idx = aligned_idx + 1
+            else
+              table.insert(result, line)
+            end
+          end
+
+          vim.api.nvim_buf_set_lines(0, start_line - 1, end_line, false, result)
         end,
         range = true,
         desc = "Align columns preserving comments",
