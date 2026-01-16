@@ -26,3 +26,6 @@ export TERMINAL="kitty"
 export BROWSER="open"
 export EDITOR="nvim"
 export GIT_EDITOR="nvim"
+
+# opencode
+export PATH=/Users/t991563/.opencode/bin:$PATH

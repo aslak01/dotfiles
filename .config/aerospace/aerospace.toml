@@ -77,14 +77,14 @@ alt-comma = 'layout accordion horizontal vertical'
 alt-space = 'layout accordion tiles'
 
 alt-h = 'focus left'
-alt-j = 'focus down'
-alt-k = 'focus up'
 alt-l = 'focus right'
+#alt-k = 'focus up'
+#alt-j = 'focus down'
 
 alt-shift-h = 'move left'
-alt-shift-j = 'move down'
-alt-shift-k = 'move up'
 alt-shift-l = 'move right'
+#alt-shift-k = 'move up'
+#alt-shift-j = 'move down'
 
 alt-ctrl-h = 'resize smart +50'
 alt-ctrl-l = 'resize smart -50'
@@ -156,6 +156,18 @@ run = ["layout floating"]
 
 [[on-window-detected]]
 if.app-name-regex-substring = 'mpv'
+run = ["layout floating"]
+
+[[on-window-detected]]
+if.app-id = "com.valvesoftware.steam"
+run = ["layout floating"]
+
+[[on-window-detected]]
+if.app-name-regex-substring = "com.valvesoftware.steam"
+run = ["layout floating"]
+
+[[on-window-detected]]
+if.app-id = "com.valvesoftware.steam.helper"
 run = ["layout floating"]
 
 
