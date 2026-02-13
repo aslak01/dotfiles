@@ -88,14 +88,16 @@ if command -v sheldon >/dev/null 2>&1; then
     zsh-defer eval "$(sheldon source)"
 fi
 
-if command -v mise >/dev/null; then
+if command -v mise >/dev/null && (( $+functions[zsh-defer] )); then
     zsh-defer eval "$(mise activate zsh)"
+elif command -v mise >/dev/null; then
+    eval "$(mise activate zsh)"
 fi
 
-_zsh_files=("$ZDOTDIR/.zshrc" "$ZDOTDIR/.zstyle" "$ZDOTDIR/.zaliases" "$ZDOTDIR/.zfunctions" "$ZDOTDIR/.zmise")
+_zsh_files=("$ZDOTDIR/.zshrc" "$ZDOTDIR/.zstyle" "$ZDOTDIR/.zaliases" "$ZDOTDIR/.zfunctions")
 
 for file in "${_zsh_files[@]}"; do
-    if [[ ! -f "${file}.zwc" || "${file}" -nt "${file}.zwc" ]]; then
+    if [[ -f "${file}" && ( ! -f "${file}.zwc" || "${file}" -nt "${file}.zwc" ) ]]; then
         zcompile "${file}"
     fi
 done
@@ -142,18 +144,30 @@ for comp in "${completions[@]}"; do
     source_if_present "$comp"
 done
 
-zsh-defer configure_themes
+if (( $+functions[zsh-defer] )); then
+    zsh-defer configure_themes
+else
+    configure_themes
+fi
 
 export STARSHIP_SHELL="zsh"
 
 load_keychain_cached
 
 if command -v opam >/dev/null; then
-    zsh-defer eval "$(opam env --switch=default --set-switch 2>/dev/null)"
+    if (( $+functions[zsh-defer] )); then
+        zsh-defer eval "$(opam env --switch=default --set-switch 2>/dev/null)"
+    else
+        eval "$(opam env --switch=default --set-switch 2>/dev/null)"
+    fi
 fi
 
 if command -v tv >/dev/null; then
-    zsh-defer eval "$(tv init zsh)"
+    if (( $+functions[zsh-defer] )); then
+        zsh-defer eval "$(tv init zsh)"
+    else
+        eval "$(tv init zsh)"
+    fi
 fi
 
 if command -v starship >/dev/null; then
@@ -164,5 +178,9 @@ if command -v starship >/dev/null; then
     eval "$(starship init zsh)"
 fi
 
-zsh-defer source "$HOME/.local/bin/env"
+if (( $+functions[zsh-defer] )); then
+    zsh-defer source "$HOME/.local/bin/env"
+else
+    source_if_exists "$HOME/.local/bin/env"
+fi
 # zprof

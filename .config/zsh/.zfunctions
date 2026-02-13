@@ -133,6 +133,8 @@ pbcopyfile() {
 
   osascript -e "set the clipboard to (POSIX file \"$filepath\")" &&
     echo "✓ Copied to clipboard: $filepath"
+}
+
 find_vids() {
   if command -v fd >/dev/null 2>&1; then
     fd -e mp4 -e avi -e mkv -e mov -e wmv -e flv -e webm -e m4v -e mpg -e mpeg -e 3gp -e ogv -e asf -e rm -e rmvb -e vob -e ts -e mts -e m2ts -e f4v
