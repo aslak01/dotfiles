@@ -20,11 +20,11 @@ _comp_files="(${ZDOTDIR:-$HOME}/.zcompdump(Nm-20))"
 
 # Optimize compinit with better caching logic
 if [[ ${ZDOTDIR:-$HOME}/.zcompdump(#qNmh+24) ]]; then
-    # Completion dump is fresh (< 24h old), load without security checks for speed
-    compinit -C -d "${ZDOTDIR:-$HOME}/.zcompdump"
-else
-    # Completion dump is stale or missing, rebuild with security checks
+    # Completion dump is stale (> 24h old), rebuild with security checks
     compinit -i -d "${ZDOTDIR:-$HOME}/.zcompdump"
+else
+    # Completion dump is fresh or missing, load without security checks for speed
+    compinit -C -d "${ZDOTDIR:-$HOME}/.zcompdump"
 fi
 
 # bash based apple completions
