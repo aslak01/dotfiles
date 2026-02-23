@@ -15,6 +15,20 @@ alt - f : yabai -m window --toggle zoom-fullscreen
 # toggle window native fullscreen
 alt + shift - f : yabai -m window --toggle native-fullscreen
 
+# stack up
+# alt + space : yabai -m space --layout stack
+# alt - space : yabai -m config --space $(yabai -m query --spaces --space | jq '.index') layout stack
+
+# alt + shift - space : yabai -m config --space $(yabai -m query --spaces --space | jq '.index') layout bsp
+
+alt - space : cur=$(yabai -m query --spaces --space | jq -r '.type'); \
+            idx=$(yabai -m query --spaces --space | jq '.index'); \
+            if [ "$cur" = "bsp" ]; then \
+              yabai -m config --space $idx layout stack; \
+            else \
+              yabai -m config --space $idx layout bsp; \
+            fi
+
 # toggle v/h split
 alt - e : yabai -m window --toggle split
 
@@ -22,10 +36,15 @@ alt - e : yabai -m window --toggle split
 alt + shift - 0x2F : yabai -m window --toggle float
 
 # change focused window
-alt - h : yabai3 focus west
-alt - j : yabai3 focus south
-alt - k : yabai3 focus north
-alt - l : yabai3 focus east
+# alt - h : yabai3 focus west
+# alt - j : yabai3 focus south
+# alt - k : yabai3 focus north
+# alt - l : yabai3 focus east
+
+alt - h : yabai3 focus west || yabai -m window --focus stack.prev
+  alt - j : yabai3 focus south || yabai -m window --focus stack.prev
+  alt - k : yabai3 focus north || yabai -m window --focus stack.next
+  alt - l : yabai3 focus east || yabai -m window --focus stack.next
 
 # change focused workspace
 alt - 1 : yabai -m space --focus 1
