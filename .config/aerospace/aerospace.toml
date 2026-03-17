@@ -38,6 +38,7 @@ cmd-h = []     # Disable "hide application"
 cmd-alt-h = [] # Disable "hide others"
 
 alt-t = 'exec-and-forget open -n /Applications/kitty.app'
+alt-n = 'exec-and-forget open -n /Applications/kitty.app'
 
 # alt-t = 'exec-and-forget open -n /Applications/WezTerm.app'
 # alt-t = 'exec-and-forget open -n /Applications/Ghostty.app'
@@ -115,7 +116,7 @@ alt-tab = 'workspace-back-and-forth'
 # See: https://nikitabobko.github.io/AeroSpace/commands#mode
 alt-shift-semicolon = 'mode service'
 alt-shift-slash = 'mode join'
-alt-p = 'mode passthrough'  # toggle passthrough for games
+alt-p = 'mode passthrough'           # keybind ignore mode
 
 # 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -139,9 +140,9 @@ alt-shift-k = ['join-with up', 'mode main']
 alt-shift-l = ['join-with right', 'mode main']
 esc = 'mode main'
 
-# 'passthrough' mode - disables workspace switching for games
+# 'passthrough' mode - disables hotkeys
 [mode.passthrough.binding]
-alt-p = 'mode main'  # escape hatch to return to normal
+alt-p = 'mode main' # escape hatch to return to normal
 
 
 # Qutebrowser hack rule
