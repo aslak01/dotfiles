@@ -18,7 +18,11 @@ return {
 
     opts.formatters_by_ft = {
       ["*"] = function(bufnr)
-        return buf_utils.is_valid(bufnr) and buf_utils.has_filetype(bufnr) and { "injected" } or {}
+        if not buf_utils.is_valid(bufnr) or not buf_utils.has_filetype(bufnr) then return {} end
+        -- Exclude filetypes where injected formatting breaks template expressions
+        local dominated_fts = { svelte = true }
+        if dominated_fts[vim.bo[bufnr].filetype] then return {} end
+        return { "injected" }
       end,
       packer = { "packer_fmt" },
       toml = { "taplo" },
@@ -63,6 +67,7 @@ return {
       "markdown.mdx",
       "graphql",
       "handlebars",
+      "svelte",
     }
 
     vim.tbl_map(function(ft)
