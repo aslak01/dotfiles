@@ -16,9 +16,8 @@ github = "zsh-users/zsh-autosuggestions"
 apply = ["defer"]
 hooks.init = "zsh-defer \"bindkey '^f' autosuggest-accept\""
 
-[plugins.fast-syntax-highlighting]
-github = "zdharma-continuum/fast-syntax-highlighting"
-apply = ["defer"]
+[plugins.zsh-patina]
+inline = 'zsh-defer eval "$(zsh-patina activate)"'
 
 [plugins.fzf-tab]
 github = "Aloxaf/fzf-tab"

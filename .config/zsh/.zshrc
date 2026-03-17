@@ -88,6 +88,10 @@ if command -v sheldon >/dev/null 2>&1; then
     zsh-defer eval "$(sheldon source)"
 fi
 
+if command -v bob >/dev/null && ! command -v nvim >/dev/null; then
+    bob install stable && bob use stable
+fi
+
 if command -v mise >/dev/null && (( $+functions[zsh-defer] )); then
     zsh-defer eval "$(mise activate zsh)"
 elif command -v mise >/dev/null; then
