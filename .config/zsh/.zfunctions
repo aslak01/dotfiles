@@ -150,3 +150,15 @@ find_imgs() {
     find . -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" -o -iname "*.gif" -o -iname "*.bmp" -o -iname "*.tiff" -o -iname "*.tif" -o -iname "*.webp" -o -iname "*.svg" -o -iname "*.ico" -o -iname "*.heic" -o -iname "*.heif" -o -iname "*.raw" -o -iname "*.cr2" -o -iname "*.nef" -o -iname "*.arw" -o -iname "*.dng" -o -iname "*.psd" -o -iname "*.xcf" \) 2>/dev/null
   fi
 }
+
+curlbig() {
+  curl -L -C - -O --retry 5 --retry-delay 10 --progress-bar "$1"
+}
+
+syncdir() {
+  if [[ -z "$1" ]]; then
+    echo "Usage: gsync <destination>" >&2
+    return 1
+  fi
+  rsync -avz --rsync-path="mkdir -p ${1#*:} && rsync" --files-from=<(git ls-files) ./ "$1"
+}

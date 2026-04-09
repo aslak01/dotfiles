@@ -57,7 +57,3 @@ alias c="cd $HOME/w/pers/claud && claude"
 # copy terminfo on ssh connect
 # "i'm helping"
 [ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
-
-curlbig() {
-  curl -L -C - -O --retry 5 --retry-delay 10 --progress-bar "$1"
-}
