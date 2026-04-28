@@ -148,13 +148,15 @@ for comp in "${completions[@]}"; do
     source_if_present "$comp"
 done
 
-if (( $+functions[zsh-defer] )); then
-    zsh-defer configure_themes
-else
-    configure_themes
-fi
+# Dropped vivid; default 16-ANSI LS_COLORS follows kitty's palette.
+# if (( $+functions[zsh-defer] )); then
+#     zsh-defer configure_themes
+# else
+#     configure_themes
+# fi
 
 export STARSHIP_SHELL="zsh"
+export BAT_THEME="ansi"
 
 load_keychain_cached
 

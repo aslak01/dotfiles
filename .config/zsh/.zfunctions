@@ -3,53 +3,44 @@ tldrf() {
   tldr --list | fzf --preview "tldr {1}" --preview-window=right,70% | xargs tldr
 }
 
-is_dark_mode() {
-  local cache_file="$ZDOTDIR/.theme_cache"
-  local pref_file="$HOME/Library/Preferences/.GlobalPreferences.plist"
-
-  # Check if cache exists and is newer than prefs
-  if [[ -f "$cache_file" && "$cache_file" -nt "$pref_file" ]]; then
-    cat "$cache_file"
-    return
-  fi
-
-  # Cache miss - check system and update cache
-  local mode
-  mode=$(defaults read -g AppleInterfaceStyle 2>/dev/null)
-  local result
-  [[ "$mode" == "Dark" ]] && result="dark" || result="light"
-  echo "$result" >"$cache_file"
-  echo "$result"
-}
-
-configure_themes() {
-  local mode
-  mode=$(is_dark_mode)
-
-  local vivid_scheme bat_theme lazygit_theme
-  case $mode in
-  dark)
-    vivid_scheme="dracula"
-    bat_theme="Dracula"
-    lazygit_theme="dracula"
-    ;;
-  light)
-    vivid_scheme="ayu"
-    bat_theme="Solarized (light)"
-    lazygit_theme="solarized-light"
-    ;;
-  esac
-
-  local vivid_cache="$ZDOTDIR/.vivid_${vivid_scheme}_cache"
-
-  if [[ ! -f "$vivid_cache" || "$vivid_cache" -ot "$(command -v vivid)" ]]; then
-    vivid generate "$vivid_scheme" >"$vivid_cache"
-  fi
-
-  export LS_COLORS="$(cat "$vivid_cache")"
-  export BAT_THEME="$bat_theme"
-  export LAZYGIT_THEME="$lazygit_theme"
-}
+# Dropped vivid in favor of default 16-ANSI LS_COLORS, which follows kitty's
+# auto dark mode for free. Kept commented in case the rich extension palette
+# is missed.
+# is_dark_mode() {
+#   local cache_file="$ZDOTDIR/.theme_cache"
+#   local pref_file="$HOME/Library/Preferences/.GlobalPreferences.plist"
+#
+#   if [[ -f "$cache_file" && "$cache_file" -nt "$pref_file" ]]; then
+#     cat "$cache_file"
+#     return
+#   fi
+#
+#   local mode
+#   mode=$(defaults read -g AppleInterfaceStyle 2>/dev/null)
+#   local result
+#   [[ "$mode" == "Dark" ]] && result="dark" || result="light"
+#   echo "$result" >"$cache_file"
+#   echo "$result"
+# }
+#
+# configure_themes() {
+#   local mode
+#   mode=$(is_dark_mode)
+#
+#   local vivid_scheme
+#   case $mode in
+#   dark)  vivid_scheme="dracula" ;;
+#   light) vivid_scheme="ayu" ;;
+#   esac
+#
+#   local vivid_cache="$ZDOTDIR/.vivid_${vivid_scheme}_cache"
+#
+#   if [[ ! -f "$vivid_cache" || "$vivid_cache" -ot "$(command -v vivid)" ]]; then
+#     vivid generate "$vivid_scheme" >"$vivid_cache"
+#   fi
+#
+#   export LS_COLORS="$(cat "$vivid_cache")"
+# }
 
 add_to_path_if_present() {
   if [[ -d "$1" && ":${PATH}:" != *":$1:"* ]]; then
