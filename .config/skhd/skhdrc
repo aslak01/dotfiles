@@ -86,7 +86,7 @@ alt + shift - 0 : yabai -m window --space 10
 # alt + shift - v : yabai -m window --insert east && alacritty-new
 # alt - t : ghostty-new 
 alt - t : /Applications/kitty.app/Contents/MacOS/kitty --single-instance --directory=~
-alt - b : osascript -e 'tell application "Safari" to make new document'
+alt - b : osascript -e 'tell application "Safari" to activate' -e 'tell application "System Events" to tell process "Safari" to click menu item "New Window" of menu "File" of menu bar 1'
 
 # stack window movement mode
 :: stack
