@@ -51,25 +51,6 @@ configure_themes() {
   export LAZYGIT_THEME="$lazygit_theme"
 }
 
-lshosts() {
-  config_dir=~/.ssh/config.d
-
-  if [[ -d "$config_dir" ]]; then
-    for file in "$config_dir"/*; do
-      if [[ -f "$file" ]]; then
-        while IFS= read -r line; do
-          if [[ "$line" =~ ^Host\ +([^[:space:]]+) ]]; then
-            alias="${match[1]}"
-            echo "$alias"
-          fi
-        done <"$file"
-      fi
-    done
-  else
-    echo "Directory $config_dir does not exist."
-  fi
-}
-
 add_to_path_if_present() {
   if [[ -d "$1" && ":${PATH}:" != *":$1:"* ]]; then
     export PATH="$1:$PATH"
@@ -80,17 +61,6 @@ source_if_present() {
   if [[ -d "$1" && -s "$1" ]]; then
     source "$1"
   fi
-}
-
-imgcopy() {
-  if [[ ! -f "$1" ]]; then
-    echo "Error: File '$1' not found"
-    return 1
-  fi
-
-  local filepath
-  filepath=$(realpath "$1")
-  osascript -e "set the clipboard to (read (POSIX file \"$filepath\") as picture)"
 }
 
 load_keychain_cached() {
@@ -112,53 +82,6 @@ load_keychain_cached() {
   fi
 }
 
-pbcopyfile() {
-  if [ -z "$1" ]; then
-    echo "Usage: pbcopyfile <filepath>"
-    return 1
-  fi
-
-  local filepath="$1"
-
-  # Convert to absolute path if not already
-  if [[ "$filepath" != /* ]]; then
-    filepath="$(pwd)/$filepath"
-  fi
-
-  # Check if file exists
-  if [ ! -e "$filepath" ]; then
-    echo "Error: File does not exist: $filepath"
-    return 1
-  fi
-
-  osascript -e "set the clipboard to (POSIX file \"$filepath\")" &&
-    echo "✓ Copied to clipboard: $filepath"
-}
-
-find_vids() {
-  if command -v fd >/dev/null 2>&1; then
-    fd -e mp4 -e avi -e mkv -e mov -e wmv -e flv -e webm -e m4v -e mpg -e mpeg -e 3gp -e ogv -e asf -e rm -e rmvb -e vob -e ts -e mts -e m2ts -e f4v
-  else
-    find . -type f \( -iname "*.mp4" -o -iname "*.avi" -o -iname "*.mkv" -o -iname "*.mov" -o -iname "*.wmv" -o -iname "*.flv" -o -iname "*.webm" -o -iname "*.m4v" -o -iname "*.mpg" -o -iname "*.mpeg" -o -iname "*.3gp" -o -iname "*.ogv" -o -iname "*.asf" -o -iname "*.rm" -o -iname "*.rmvb" -o -iname "*.vob" -o -iname "*.ts" -o -iname "*.mts" -o -iname "*.m2ts" -o -iname "*.f4v" \) 2>/dev/null
-  fi
-}
-
-find_imgs() {
-  if command -v fd >/dev/null 2>&1; then
-    fd -e jpg -e jpeg -e png -e gif -e bmp -e tiff -e tif -e webp -e svg -e ico -e heic -e heif -e raw -e cr2 -e nef -e arw -e dng -e psd -e xcf
-  else
-    find . -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" -o -iname "*.gif" -o -iname "*.bmp" -o -iname "*.tiff" -o -iname "*.tif" -o -iname "*.webp" -o -iname "*.svg" -o -iname "*.ico" -o -iname "*.heic" -o -iname "*.heif" -o -iname "*.raw" -o -iname "*.cr2" -o -iname "*.nef" -o -iname "*.arw" -o -iname "*.dng" -o -iname "*.psd" -o -iname "*.xcf" \) 2>/dev/null
-  fi
-}
-
 curlbig() {
   curl -L -C - -O --retry 5 --retry-delay 10 --progress-bar "$1"
-}
-
-syncdir() {
-  if [[ -z "$1" ]]; then
-    echo "Usage: gsync <destination>" >&2
-    return 1
-  fi
-  rsync -avz --rsync-path="mkdir -p ${1#*:} && rsync" --files-from=<(git ls-files) ./ "$1"
 }
