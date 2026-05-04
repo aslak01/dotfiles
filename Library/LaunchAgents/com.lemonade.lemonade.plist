@@ -21,6 +21,10 @@
 
     <key>StandardErrorPath</key>
     <string>/tmp/com.lemonade.lemonade.stderr</string>
-
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>PATH</key>
+        <string>/Users/t991563/.lemonadebin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+    </dict>
 </dict>
 </plist>
