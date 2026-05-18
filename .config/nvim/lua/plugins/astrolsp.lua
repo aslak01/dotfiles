@@ -25,7 +25,7 @@ return {
       },
       disabled = {
         -- disable lua_ls formatting capability if you want to use StyLua to format your lua code
-        -- "lua_ls",
+        "lua_ls",
       },
       timeout_ms = 1000,
       -- filter = function(client) -- fully override the default formatting function
@@ -43,12 +43,12 @@ return {
     },
     -- customize how language servers are attached
     handlers = {
-      -- a function without a key is simply the default handler, functions take two parameters, the server name and the configured options table for that server
-      -- function(server, opts) require("lspconfig")[server].setup(opts) end
+      -- the default handler uses the `"*"` key; it receives only the server name. Access config via `vim.lsp.config[server]`
+      -- ["*"] = function(server) vim.lsp.enable(server) end,
 
-      -- the key is the server that is being setup with `lspconfig`
+      -- the key is the server that is being set up
       -- rust_analyzer = false, -- setting a handler to false will disable the set up of that language server
-      -- pyright = function(_, opts) require("lspconfig").pyright.setup(opts) end -- or a custom handler function can be passed
+      -- pyright = function(server) vim.lsp.enable(server) end, -- or a custom handler function can be passed
     },
     -- Configure buffer local auto commands to add when attaching a language server
     autocmds = {

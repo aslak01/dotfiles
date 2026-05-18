@@ -7,7 +7,9 @@ return {
   { import = "astrocommunity.pack.lua" },
   { import = "astrocommunity.pack.go", ft = "go" },
   { import = "astrocommunity.pack.bash", ft = { "bash", "sh", "zsh" } },
-  { import = "astrocommunity.pack.python-ruff", ft = "python" },
+  { import = "astrocommunity.pack.python.base", ft = "python" },
+  { import = "astrocommunity.pack.python.basedpyright", ft = "python" },
+  { import = "astrocommunity.pack.python.ruff", ft = "python" },
   { import = "astrocommunity.pack.yaml", ft = { "yaml", "yml" } },
   { import = "astrocommunity.pack.markdown", ft = "markdown" },
   {
