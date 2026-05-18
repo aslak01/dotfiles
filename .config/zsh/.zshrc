@@ -189,4 +189,8 @@ if (( $+functions[zsh-defer] )); then
 else
     source_if_exists "$HOME/.local/bin/env"
 fi
+
+if command -v zsh-patina >/dev/null; then
+    eval "$(zsh-patina activate)"
+fi
 # zprof
