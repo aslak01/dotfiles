@@ -23,20 +23,12 @@ require("lazy").setup({
       -- disable some rtp plugins, add more to your liking
       disabled_plugins = {
         "gzip",
+        "matchit",
+        "matchparen",
         "netrwPlugin",
         "tarPlugin",
         "tohtml",
         "zipPlugin",
-        "matchit",
-        "matchparen",
-        "2html_plugin",
-        "getscript",
-        "getscriptPlugin",
-        "logipat",
-        "rrhelper",
-        "spellfile_plugin",
-        "vimball",
-        "vimballPlugin",
       },
     },
     cache = {

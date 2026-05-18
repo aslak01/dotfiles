@@ -49,7 +49,7 @@ return {
       is_hidden_file = function(name, bufnr)
         local dir = require("oil").get_current_dir(bufnr)
         local is_hidden = vim.startswith(name, ".") and name ~= ".."
-        if not vim.fn.executable "git" == 1 or not dir then return is_hidden end
+        if vim.fn.executable "git" ~= 1 or not dir then return is_hidden end
         local status = get_git_status(dir)
         if is_hidden then
           return not status.tracked[name]
