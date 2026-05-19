@@ -68,17 +68,6 @@ return {
         function() vim.cmd "redir @+ | messages | redir END" end,
         desc = "Copy messages to clipboard",
       },
-      -- AlignColumns = {
-      --   function(opts)
-      --     local range = opts.range > 0 and opts.line1 .. "," .. opts.line2 or "%"
-      --     local foldmethod = vim.wo.foldmethod
-      --     vim.wo.foldmethod = "manual"
-      --     vim.cmd("silent " .. range .. [=[!awk '/^[[:space:]]*[#]/{print"@@"$0;next}1' | column -t | sed 's/^@@//']=])
-      --     vim.schedule(function() vim.wo.foldmethod = foldmethod end)
-      --   end,
-      --   range = true,
-      --   desc = "Align columns preserving comments",
-      -- },
       AlignColumns = {
         function(opts)
           local start_line = opts.range > 0 and opts.line1 or 1
@@ -145,21 +134,6 @@ return {
           end,
         },
       },
-      -- auto_background_switch = {
-      --   {
-      --     event = "OptionSet",
-      --     pattern = "background",
-      --     desc = "Switch colorscheme based on terminal background",
-      --     callback = function()
-      --       local bg = vim.o.background
-      --       if bg == "dark" then
-      --         vim.cmd.colorscheme("lackluster-hack")
-      --       else
-      --         vim.cmd.colorscheme("grey")
-      --       end
-      --     end,
-      --   },
-      -- },
     },
     mappings = {
       n = {
