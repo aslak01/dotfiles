@@ -3,10 +3,12 @@ tldrf() {
   tldr --list | fzf --preview "tldr {1}" --preview-window=right,70% | xargs tldr
 }
 
-add_to_path_if_present() {
-  if [[ -d "$1" && ":${PATH}:" != *":$1:"* ]]; then
-    export PATH="$1:$PATH"
-  fi
+OBSVAULT="$HOME/Library/Mobile Documents/iCloud~md~obsidian/Documents/obsidian-vault"
+obs() {
+  cd "$OBSVAULT" && nvim . || return
+}
+note() {
+  nvim "$OBSVAULT/daily/$(date +%F).md"
 }
 
 load_keychain_cached() {

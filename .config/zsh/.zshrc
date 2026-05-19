@@ -17,10 +17,18 @@ defer_or_eval() {
 
 export SHELL_SESSIONS_DISABLE=1
 
-eval "$(brew shellenv)"
+# Static equivalent of `eval "$(brew shellenv)"` minus path_helper (already run
+# by /etc/zprofile on macOS) and PATH (built in the explicit path=() below).
+export HOMEBREW_PREFIX="/opt/homebrew"
+export HOMEBREW_CELLAR="/opt/homebrew/Cellar"
+export HOMEBREW_REPOSITORY="/opt/homebrew"
+export INFOPATH="/opt/homebrew/share/info${INFOPATH:+:$INFOPATH}"
 
-# macos cli app completions
-fpath=(${ZDOTDIR:-$HOME}/mac-zsh-completions/completions $fpath)
+fpath=(
+    /opt/homebrew/share/zsh/site-functions
+    ${ZDOTDIR:-$HOME}/mac-zsh-completions/completions
+    $fpath
+)
 
 
 autoload -Uz compinit
@@ -34,16 +42,15 @@ else
     compinit -C -d "${ZDOTDIR:-$HOME}/.zcompdump"
 fi
 
-# bash based apple completions
-autoload -Uz bashcompinit
-bashcompinit
-
-# Source all apple_complete scripts
-_apple_complete_dir="${ZDOTDIR:-$HOME/.config/zsh}/apple_complete"
-for cmd in diskutil hdiutil launchctl networksetup pkgutil installer log; do
-    source_if_exists "$_apple_complete_dir/$cmd"
-done
-unset _apple_complete_dir
+# Apple completions are bash-based and rarely used interactively — defer them
+# (below, once zsh-defer is loaded) so bashcompinit doesn't block the prompt.
+_load_apple_completions() {
+    local dir="${ZDOTDIR:-$HOME/.config/zsh}/apple_complete"
+    autoload -Uz bashcompinit && bashcompinit
+    for cmd in diskutil hdiutil launchctl networksetup pkgutil installer log; do
+        [[ -r "$dir/$cmd" ]] && source "$dir/$cmd"
+    done
+}
 
 autoload -U colors && colors
 
@@ -92,6 +99,9 @@ if command -v sheldon >/dev/null 2>&1; then
     zsh-defer eval "$(sheldon source)"
     # Re-run compinit after plugins load so their fpath additions register.
     zsh-defer compinit -C -d "${ZDOTDIR:-$HOME}/.zcompdump"
+    zsh-defer _load_apple_completions
+else
+    _load_apple_completions
 fi
 
 if command -v bob >/dev/null && ! command -v nvim >/dev/null; then
@@ -104,7 +114,7 @@ if command -v bob >/dev/null && ! command -v nvim >/dev/null; then
 fi
 
 if command -v mise >/dev/null; then
-    defer_or_eval "$(mise activate zsh)"
+    defer_or_eval 'eval "$(mise activate zsh)"'
 fi
 
 _zsh_files=("$ZDOTDIR/.zshrc" "$ZDOTDIR/.zstyle" "$ZDOTDIR/.zaliases" "$ZDOTDIR/.zfunctions")
@@ -118,14 +128,8 @@ unset _zsh_files
 
 source_if_exists "$ZDOTDIR/.zstyle"
 source_if_exists "$ZDOTDIR/.zfunctions"
-source_if_exists "$ZDOTDIR/functions/compressions.zsh"
 source_if_exists "$ZDOTDIR/private_api_keys"
 source_if_exists "$ZDOTDIR/.zaliases"
-
-# default to using gnu find for linux compatibility (when installed)
-if command -v gfind >/dev/null 2>&1; then
-    PATH=$(brew --prefix)/opt/findutils/libexec/gnubin:$PATH
-fi
 
 # this auto dedupes
 typeset -U path
@@ -146,10 +150,6 @@ path=(
     $path
 )
 
-# for dir in "${paths[@]}"; do
-#     add_to_path_if_present "$dir"
-# done
-
 completions=(
     "$HOME/.bun/_bun"
 )
@@ -158,24 +158,20 @@ for comp in "${completions[@]}"; do
     source_if_exists "$comp"
 done
 
-# Dropped vivid; default 16-ANSI LS_COLORS follows kitty's palette.
-# if (( $+functions[zsh-defer] )); then
-#     zsh-defer configure_themes
-# else
-#     configure_themes
-# fi
-
 export STARSHIP_SHELL="zsh"
-export BAT_THEME="ansi"
+# Follow macOS dark/light appearance; LS_COLORS still rides the terminal ANSI palette.
+export BAT_THEME="auto:system"
+export BAT_THEME_DARK="Catppuccin Mocha"
+export BAT_THEME_LIGHT="Catppuccin Latte"
 
 load_keychain_cached
 
 if command -v opam >/dev/null; then
-    defer_or_eval "$(opam env --switch=default --set-switch 2>/dev/null)"
+    defer_or_eval 'eval "$(opam env --switch=default --set-switch 2>/dev/null)"'
 fi
 
 if command -v tv >/dev/null; then
-    defer_or_eval "$(tv init zsh)"
+    defer_or_eval 'eval "$(tv init zsh)"'
 fi
 
 if command -v starship >/dev/null; then

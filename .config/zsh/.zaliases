@@ -7,7 +7,6 @@ alias v='nvim .'
 alias kvim='NVIM_APPNAME="kickstart.nvim" nvim'
 alias kv='NVIM_APPNAME="kickstart.nvim" nvim .'
 
-alias cat='bat --style=plain'
 alias lsnew='eza --sort=modified --reverse | tail'
 alias df='df -h'
 alias du='du -h'
@@ -23,13 +22,6 @@ alias cd..='cd ..'
 alias nocorschrome='open -a "Google Chrome" --args --disable-web-security --user-data-dir="/tmp/"'
 alias nrs='open -a Numbers'
 alias icat="kitten icat"
-OBSVAULT="$HOME/Library/Mobile Documents/iCloud~md~obsidian/Documents/obsidian-vault"
-obs() {
-  cd "$OBSVAULT" && nvim . || return
-}
-note() {
-  nvim "$OBSVAULT/daily/$(date +%F).md"
-}
 
 # ghostty support
 # alias pass="TERM=xterm-256color pass"
