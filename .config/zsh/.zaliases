@@ -20,7 +20,7 @@ alias .....='cd ../../../..'
 alias cd..='cd ..'
 
 # Applications
-alias nocorschrome='open -a Google Chrome --args --disable-web-security --user-data-dir="/tmp/"'
+alias nocorschrome='open -a "Google Chrome" --args --disable-web-security --user-data-dir="/tmp/"'
 alias nrs='open -a Numbers'
 alias icat="kitten icat"
 OBSVAULT="$HOME/Library/Mobile Documents/iCloud~md~obsidian/Documents/obsidian-vault"
@@ -56,4 +56,4 @@ alias c="cd $HOME/w/pers/claud && claude"
 
 # copy terminfo on ssh connect
 # "i'm helping"
-[ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
+[[ "$TERM" == "xterm-kitty" ]] && alias ssh="kitty +kitten ssh"

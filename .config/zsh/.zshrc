@@ -6,6 +6,15 @@ source_if_exists() {
     [[ -r "$1" ]] && source "$1"
 }
 
+defer_or_eval() {
+    # Eval $1 via zsh-defer if available, else inline.
+    if (( $+functions[zsh-defer] )); then
+        zsh-defer eval "$1"
+    else
+        eval "$1"
+    fi
+}
+
 export SHELL_SESSIONS_DISABLE=1
 
 eval "$(brew shellenv)"
@@ -15,8 +24,6 @@ fpath=(${ZDOTDIR:-$HOME}/mac-zsh-completions/completions $fpath)
 
 
 autoload -Uz compinit
-
-_comp_files="(${ZDOTDIR:-$HOME}/.zcompdump(Nm-20))"
 
 # Optimize compinit with better caching logic
 if [[ ${ZDOTDIR:-$HOME}/.zcompdump(#qNmh+24) ]]; then
@@ -32,14 +39,11 @@ autoload -Uz bashcompinit
 bashcompinit
 
 # Source all apple_complete scripts
+_apple_complete_dir="${ZDOTDIR:-$HOME/.config/zsh}/apple_complete"
 for cmd in diskutil hdiutil launchctl networksetup pkgutil installer log; do
-[[ -f ${ZDOTDIR:-$HOME}/apple_complete/$cmd ]] && source ~/.config/zsh/apple_complete/$cmd
+    source_if_exists "$_apple_complete_dir/$cmd"
 done
-
-unset _comp_files
-
-
-# promptinit  # Disabled since using Starship
+unset _apple_complete_dir
 
 autoload -U colors && colors
 
@@ -73,7 +77,7 @@ HISTORY_IGNORE="(ls|pwd|cd(| *)|yt-dlp *|nvim .|n *|g|v|z|..*|...*|....*)"
 HISTSIZE=10000
 SAVEHIST=5000
 setopt hist_ignore_all_dups hist_expire_dups_first hist_save_no_dups
-setopt appendhistory notify
+setopt appendhistory
 setopt bang_hist
 setopt inc_append_history
 setopt share_history
@@ -86,16 +90,21 @@ setopt hist_reduce_blanks
 if command -v sheldon >/dev/null 2>&1; then
     source "$HOME/.local/share/sheldon/repos/github.com/romkatv/zsh-defer/zsh-defer.plugin.zsh"
     zsh-defer eval "$(sheldon source)"
+    # Re-run compinit after plugins load so their fpath additions register.
+    zsh-defer compinit -C -d "${ZDOTDIR:-$HOME}/.zcompdump"
 fi
 
 if command -v bob >/dev/null && ! command -v nvim >/dev/null; then
-    bob install stable && bob use stable
+    # Defer so a fresh machine doesn't block the prompt on first launch.
+    if (( $+functions[zsh-defer] )); then
+        zsh-defer eval 'bob install stable && bob use stable'
+    else
+        bob install stable && bob use stable
+    fi
 fi
 
-if command -v mise >/dev/null && (( $+functions[zsh-defer] )); then
-    zsh-defer eval "$(mise activate zsh)"
-elif command -v mise >/dev/null; then
-    eval "$(mise activate zsh)"
+if command -v mise >/dev/null; then
+    defer_or_eval "$(mise activate zsh)"
 fi
 
 _zsh_files=("$ZDOTDIR/.zshrc" "$ZDOTDIR/.zstyle" "$ZDOTDIR/.zaliases" "$ZDOTDIR/.zfunctions")
@@ -109,6 +118,7 @@ unset _zsh_files
 
 source_if_exists "$ZDOTDIR/.zstyle"
 source_if_exists "$ZDOTDIR/.zfunctions"
+source_if_exists "$ZDOTDIR/functions/compressions.zsh"
 source_if_exists "$ZDOTDIR/private_api_keys"
 source_if_exists "$ZDOTDIR/.zaliases"
 
@@ -121,18 +131,18 @@ fi
 typeset -U path
 
 path=(
-    "/opt/homebrew/bin"                # Homebrew binaries
-    "/opt/homebrew/sbin"               # Homebrew system binaries
-    "$HOME/.local/bin"                 # homebrewed scripts
-    "$HOME/go/bin"                     # Go
-    "/opt/homebrew/opt/go/libexec/bin" # Go root
-    "$PNPM_HOME"                       # PNPM
-    "$HOME/.bun/bin"                   # Bun
-    "$HOME/.deno/bin"                  # Deno
-    "$HOME/.cargo/bin"                 # Rust
-    "$HOME/.local/share/bob/nvim-bin"  # Bob (Neovim)
-    "$HOME/bin"                        # Custom bin
-    "$HOME/.dprint/bin"                # Dprint
+    "/opt/homebrew/bin"                  # Homebrew binaries
+    "/opt/homebrew/sbin"                 # Homebrew system binaries
+    "$HOME/.local/bin"                   # homebrewed scripts
+    "$HOME/go/bin"                       # Go
+    "/opt/homebrew/opt/go/libexec/bin"   # Go root
+    ${PNPM_HOME:+"$PNPM_HOME"}           # PNPM (skip if unset)
+    "$HOME/.bun/bin"                     # Bun
+    "$HOME/.deno/bin"                    # Deno
+    "$HOME/.cargo/bin"                   # Rust
+    "$HOME/.local/share/bob/nvim-bin"    # Bob (Neovim)
+    "$HOME/bin"                          # Custom bin
+    "$HOME/.dprint/bin"                  # Dprint
     $path
 )
 
@@ -145,7 +155,7 @@ completions=(
 )
 
 for comp in "${completions[@]}"; do
-    source_if_present "$comp"
+    source_if_exists "$comp"
 done
 
 # Dropped vivid; default 16-ANSI LS_COLORS follows kitty's palette.
@@ -161,22 +171,16 @@ export BAT_THEME="ansi"
 load_keychain_cached
 
 if command -v opam >/dev/null; then
-    if (( $+functions[zsh-defer] )); then
-        zsh-defer eval "$(opam env --switch=default --set-switch 2>/dev/null)"
-    else
-        eval "$(opam env --switch=default --set-switch 2>/dev/null)"
-    fi
+    defer_or_eval "$(opam env --switch=default --set-switch 2>/dev/null)"
 fi
 
 if command -v tv >/dev/null; then
-    if (( $+functions[zsh-defer] )); then
-        zsh-defer eval "$(tv init zsh)"
-    else
-        eval "$(tv init zsh)"
-    fi
+    defer_or_eval "$(tv init zsh)"
 fi
 
 if command -v starship >/dev/null; then
+    # Re-source guard: starship wraps zle-keymap-select on init, so when this
+    # rc is re-sourced we strip the previous wrapper to avoid stacking.
     if [[ "${widgets[zle-keymap-select]#user:}" == "starship_zle-keymap-select" ||
           "${widgets[zle-keymap-select]#user:}" == "starship_zle-keymap-select-wrapped" ]]; then
         zle -N zle-keymap-select ""
