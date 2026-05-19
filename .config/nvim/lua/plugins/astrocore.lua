@@ -1,6 +1,3 @@
--- if true then return {} end -- WARN: REMOVE THIS LINE TO ACTIVATE THIS FILE
--- Configuration documentation can be found with `:h astrocore`
-
 ---@type LazySpec
 return {
   "AstroNvim/astrocore",
@@ -12,10 +9,6 @@ return {
     diagnostics = {
       update_in_insert = false,
       virtual_text = { severity = { min = vim.diagnostic.severity.WARN } },
-      virtual_lines = {
-        current_line = true,
-        severity = { min = vim.diagnostic.severity.WARN },
-      },
     },
     filetypes = {
       -- see `:h vim.filetype.add` for usage
@@ -45,8 +38,8 @@ return {
         scrolloff = 8,
         wrap = false,
         showtabline = 0,
+        cmdheight = 1,
         colorcolumn = "80",
-        swapfile = false,
         tabstop = 2,
         shiftwidth = 2,
         expandtab = true,

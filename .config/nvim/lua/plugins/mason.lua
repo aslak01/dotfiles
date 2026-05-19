@@ -8,15 +8,20 @@ local function ensure_opam_fresh()
   local age_days = (os.time() - stat.mtime.sec) / 86400
   if age_days < OPAM_MAX_AGE_DAYS then return end
   vim.notify(
-    string.format("opam repo is %.0f days old; running `opam update`...", age_days),
+    string.format("opam repo is %.0f days old; running `opam update` in background...", age_days),
     vim.log.levels.INFO
   )
-  local out = vim.fn.system { "opam", "update" }
-  if vim.v.shell_error ~= 0 then
-    vim.notify("opam update failed:\n" .. out, vim.log.levels.WARN)
-  else
-    vim.notify("opam update complete", vim.log.levels.INFO)
-  end
+  -- async so mason installs and the UI aren't blocked. Mason may proceed with
+  -- slightly stale opam metadata; user can retry an opam-backed install after.
+  vim.system({ "opam", "update" }, { text = true }, function(out)
+    vim.schedule(function()
+      if out.code ~= 0 then
+        vim.notify("opam update failed:\n" .. (out.stderr or out.stdout or ""), vim.log.levels.WARN)
+      else
+        vim.notify("opam update complete", vim.log.levels.INFO)
+      end
+    end)
+  end)
 end
 
 ---@type LazySpec

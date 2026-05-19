@@ -1,4 +1,11 @@
 local lint -- cache for the nvim-lint package
+
+-- Extend nvim-lint's Linter type with our custom `condition` field, used by
+-- the patched `_resolve_linter_by_ft` below to skip linters whose project
+-- root is missing the relevant config file.
+---@class lint.Linter
+---@field condition? fun(ctx: { filename: string, dirname: string }): boolean
+
 ---@type LazySpec
 return {
   "mfussenegger/nvim-lint",
@@ -10,7 +17,7 @@ return {
       "AstroNvim/astrocore",
       ---@param opts AstroCoreOpts
       opts = function(_, opts)
-        local timer = (vim.uv or vim.loop).new_timer()
+        local timer = assert((vim.uv or vim.loop).new_timer())
         if not opts.autocmds then opts.autocmds = {} end
         opts.autocmds.auto_lint = {
           {
@@ -117,6 +124,9 @@ return {
       end, linters)
     end
 
+    -- Patches nvim-lint's internal `_resolve_linter_by_ft` (private API) so we can
+    -- filter linters by executable + per-linter `condition`. Revisit if nvim-lint
+    -- exposes a public hook or renames this function.
     lint._resolve_linter_by_ft = astrocore.patch_func(lint._resolve_linter_by_ft, function(orig, ...)
       local ctx = { filename = vim.api.nvim_buf_get_name(0) }
       ctx.dirname = vim.fn.fnamemodify(ctx.filename, ":h")

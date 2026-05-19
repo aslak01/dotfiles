@@ -1,17 +1,20 @@
+local git_status_cache = {}
+
+local function clear_git_status_cache(dir)
+  if dir then
+    git_status_cache[dir] = nil
+  else
+    for k in pairs(git_status_cache) do
+      git_status_cache[k] = nil
+    end
+  end
+end
+
 ---@type LazySpec
 return {
   "stevearc/oil.nvim",
   cmd = "Oil",
   lazy = false,
-  init = function() -- start oil on startup lazily if necessary
-    if vim.fn.argc() == 1 then
-      local arg = vim.fn.argv(0)
-      ---@cast arg string
-      local stat = (vim.uv or vim.loop).fs_stat(arg)
-      local adapter = string.match(arg, "^([%l-]*)://")
-      if (stat and stat.type == "directory") or adapter == "oil-ssh" then require "oil" end
-    end
-  end,
   opts = function(_, opts)
     local astrocore, get_icon = require "astrocore", require("astroui").get_icon
 
@@ -24,8 +27,6 @@ return {
       end
       return ret
     end
-
-    local git_status_cache = {}
 
     local function get_git_status(dir)
       if not git_status_cache[dir] then
@@ -82,7 +83,13 @@ return {
           desc = "Toggle detailed file view",
           callback = function() require("oil").set_columns(#require("oil.config").columns == 1 and detailed or simple) end,
         },
-        R = "actions.refresh",
+        R = {
+          desc = "Refresh (also clears git status cache)",
+          callback = function()
+            clear_git_status_cache(require("oil").get_current_dir())
+            require("oil.actions").refresh.callback()
+          end,
+        },
         H = "actions.toggle_hidden",
         -- Disable all default Ctrl keybindings to prevent conflicts with split navigation
         ["<C-s>"] = false,
@@ -110,26 +117,19 @@ return {
       opts = {
         autocmds = {
           neotree_start = false,
-          oil_start = {
-            {
-              event = "BufNew",
-              desc = "start oil when editing a directory",
-              callback = function()
-                if package.loaded["oil"] then
-                  vim.api.nvim_del_augroup_by_name "oil_start"
-                elseif vim.fn.isdirectory(vim.fn.expand "<afile>") == 1 then
-                  require "oil"
-                  vim.api.nvim_del_augroup_by_name "oil_start"
-                end
-              end,
-            },
-          },
           oil_settings = {
             {
               event = "FileType",
               desc = "Disable view saving for oil buffers",
               pattern = "oil",
               callback = function(args) vim.b[args.buf].view_activated = false end,
+            },
+          },
+          oil_invalidate_git_cache = {
+            {
+              event = "FocusGained",
+              desc = "Invalidate oil git status cache when returning to nvim",
+              callback = function() clear_git_status_cache() end,
             },
           },
         },

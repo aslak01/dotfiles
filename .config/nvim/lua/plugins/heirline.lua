@@ -24,7 +24,7 @@ return {
       update = "BufEnter",
     }
     opts.winbar[1][1] = file_info
-    opts.winbar[1][2] = nil
+    table.remove(opts.winbar[1], 2)
     opts.winbar[2] = { file_info }
   end,
 }
