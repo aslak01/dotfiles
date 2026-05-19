@@ -176,6 +176,11 @@ run = ["layout floating"]
 if.app-id = "com.valvesoftware.steam.helper"
 run = ["layout floating"]
 
+# Float Spotify to avoid the macOS maximise-style animation on workspace switch
+[[on-window-detected]]
+if.app-id = 'com.spotify.client'
+run = ['layout floating']
+
 # Disable workspace switching for games
 [[on-window-detected]]
 if.app-id = 'com.larian.bg3'
