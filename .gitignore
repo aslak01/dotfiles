@@ -11,6 +11,7 @@ zsh_api_keys.zsh
 **/podman-connections.*
 node_modules
 **/configstore/update-notifier-@google
+**/karabiner/automatic_backups/
 *.pem
 **/medusa/config.json
 uv-receipt.json
