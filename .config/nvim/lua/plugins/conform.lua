@@ -29,10 +29,7 @@ return {
       lua = { "stylua" },
       puppet = { "puppet-lint" },
       rego = { "opa_fmt" },
-      sh = function(bufnr)
-        if vim.bo[bufnr].filetype == "make" then return {} end
-        return { "shfmt" }
-      end,
+      sh = { "shfmt" },
       sql = { "sqlfluff" },
       python = { "ruff_organize_imports", "ruff_format" },
       make = { "bake" },

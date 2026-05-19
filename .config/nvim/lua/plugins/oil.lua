@@ -14,7 +14,12 @@ end
 return {
   "stevearc/oil.nvim",
   cmd = "Oil",
-  lazy = false,
+  init = function()
+    if vim.fn.argc(-1) == 1 then
+      local stat = vim.uv.fs_stat(vim.fn.argv(0) --[[@as string]])
+      if stat and stat.type == "directory" then require("lazy").load { plugins = { "oil.nvim" } } end
+    end
+  end,
   opts = function(_, opts)
     local astrocore, get_icon = require "astrocore", require("astroui").get_icon
 

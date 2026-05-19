@@ -53,8 +53,6 @@ return {
         },
         showbreak = "↪ ",
       },
-      g = { -- vim.g.<key>
-      },
     },
     commands = {
       MessagesCopy = {
