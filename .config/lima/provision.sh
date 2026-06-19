@@ -10,11 +10,13 @@ set -euo pipefail
 INSTANCE="cvm"
 YAML="${HOME}/.config/lima/claude-vm.yaml"
 
-# Cross-compile lemonade for the guest and forward link-opens to the host.
-# Opening a URL inside the VM (xdg-open / $BROWSER) hands it to the macOS host's
-# lemonade server (com.lemonade.lemonade LaunchAgent) via host.lima.internal,
-# so it pops the host browser. vz NAT makes guest->host traffic appear as
-# 127.0.0.1 on the host, which the server's `--allow 127.0.0.1` already permits.
+# Cross-compile lemonade for the guest and forward link-opens onward to the
+# work Mac's Safari daemon. Path:
+#   cvm xdg-open -> personal Mac :2490 (host.lima.internal)
+#                -> ssh -R 2490 reverse tunnel -> work Mac :2490 -> Safari
+# Port 2489 is reserved for the work Mac's Firefox daemon (SSH work hosts), so
+# the cvm uses 2490 to keep its opens in Safari instead. The work→personal SSH
+# must carry `RemoteForward 2490 localhost:2490` for this to reach anything.
 # Idempotent: safe to re-run on an existing instance.
 sync_lemonade() {
   if ! command -v go >/dev/null 2>&1; then
@@ -40,8 +42,9 @@ set -e
 chmod +x ~/.local/bin/lemonade
 cat > ~/.local/bin/xdg-open <<'EOF'
 #!/bin/bash
-# Forward URL/file opens to the macOS host's lemonade server.
-exec lemonade --host host.lima.internal open "$@"
+# Forward URL/file opens to the work Mac's Safari lemonade daemon (port 2490)
+# via the personal Mac and the ssh -R 2490 reverse tunnel.
+exec lemonade --host host.lima.internal --port 2490 open "$@"
 EOF
 chmod +x ~/.local/bin/xdg-open
 if ! grep -q 'lemonade: open links on the host' ~/.bashrc 2>/dev/null; then

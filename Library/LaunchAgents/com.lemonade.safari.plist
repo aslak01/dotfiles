@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.lemonade.safari</string>
+
+    <!-- Second lemonade daemon, port 2490, opens links in Safari (via the
+         ~/.lemonadebin-safari/open shim ahead of PATH). The cvm VM routes here
+         so its links open in Safari, while port 2489 (com.lemonade.lemonade)
+         keeps SSH work hosts in Firefox. Run via `sh -c` so $HOME expands
+         per-machine. --allow 127.0.0.1 covers the ssh -R 2490 reverse tunnel. -->
+    <key>ProgramArguments</key>
+    <array>
+        <string>/bin/sh</string>
+        <string>-c</string>
+        <string>exec env PATH="$HOME/.lemonadebin-safari:/usr/bin:/bin:/usr/sbin:/sbin" "$HOME/go/bin/lemonade" --port 2490 server --allow 127.0.0.1</string>
+    </array>
+    <key>KeepAlive</key>
+    <true/>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>StandardOutPath</key>
+    <string>/tmp/com.lemonade.safari.stdout</string>
+
+    <key>StandardErrorPath</key>
+    <string>/tmp/com.lemonade.safari.stderr</string>
+</dict>
+</plist>
