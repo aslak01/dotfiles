@@ -5,12 +5,16 @@
     <key>Label</key>
     <string>com.lemonade.lemonade</string>
 
+    <!-- Run via `sh -c` so $HOME expands per-machine (this repo is shared across
+         hosts with different usernames). PATH keeps an optional ~/.lemonadebin
+         override (used to shim `open` on some machines) ahead of the system path.
+         --allow 127.0.0.1 covers the Lima VM too: vz NAT rewrites guest->host
+         traffic to 127.0.0.1, so links opened inside the VM reach this server. -->
     <key>ProgramArguments</key>
-    <array> 
-        <string>/Users/t991563/go/bin/lemonade</string>
-        <string>server</string>
-        <string>--allow</string>
-        <string>127.0.0.1</string>
+    <array>
+        <string>/bin/sh</string>
+        <string>-c</string>
+        <string>exec env PATH="$HOME/.lemonadebin:/usr/bin:/bin:/usr/sbin:/sbin" "$HOME/go/bin/lemonade" server --allow 127.0.0.1</string>
     </array>
     <key>KeepAlive</key>
     <true/>
@@ -21,10 +25,5 @@
 
     <key>StandardErrorPath</key>
     <string>/tmp/com.lemonade.lemonade.stderr</string>
-    <key>EnvironmentVariables</key>
-    <dict>
-        <key>PATH</key>
-        <string>/Users/t991563/.lemonadebin:/usr/bin:/bin:/usr/sbin:/sbin</string>
-    </dict>
 </dict>
 </plist>

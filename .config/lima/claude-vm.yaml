@@ -1,0 +1,43 @@
+images:
+  - location: "https://repo.almalinux.org/almalinux/9/cloud/x86_64/images/AlmaLinux-9-GenericCloud-latest.x86_64.qcow2"
+    arch: "x86_64"
+  - location: "https://repo.almalinux.org/almalinux/9/cloud/aarch64/images/AlmaLinux-9-GenericCloud-latest.aarch64.qcow2"
+    arch: "aarch64"
+# vz = Apple Virtualization.framework (lightest on Apple Silicon)
+vmType: "vz"
+cpus: 8 # all host cores
+memory: "12GiB" # near-full of host's 16GiB, leaving headroom for macOS
+disk: "11GiB" # sparse — only grows as used; kept low on purpose
+
+mountType: "virtiofs"
+mounts: [] # no host mounts → real isolation for yolo mode
+
+# Lima auto-forwards ALL guest ports to the host's 127.0.0.1 by default.
+# This block also exposes them on the host's LAN IP if you want.
+portForwards:
+  - guestIP: "0.0.0.0"
+    hostIP: "0.0.0.0"
+
+provision:
+  - mode: system
+    script: |
+      #!/bin/bash
+      set -eux
+      dnf install -y --setopt=install_weak_deps=False epel-release
+      dnf config-manager --set-enabled epel crb
+      dnf makecache
+      dnf install -y --setopt=install_weak_deps=False git neovim make podman lsof
+  - mode: user
+    script: |
+      #!/bin/bash
+      set -eux
+      # native installer = no Node.js, smaller footprint
+      curl -fsSL https://claude.ai/install.sh | bash
+      echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
+      curl https://mise.run | sh
+      eval "$(mise activate bash)"
+      # tlrc (tldr client) — not in EPEL; pull the prebuilt binary from GitHub releases
+      mise use -g "github:tldr-pages/tlrc[exe=tldr]"
+      # lazygit — not in EPEL; mise pulls the prebuilt binary from GitHub releases
+      mise use -g lazygit
+      echo "alias g=lazygit" >> ~/.bashrc
