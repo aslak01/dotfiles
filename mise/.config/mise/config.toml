@@ -3,6 +3,8 @@ node = "latest"
 opam = "latest"
 python = "latest"
 uv = "latest"
+lazygit = "latest"
+"ubi:tldr-pages/tlrc" = { version = "latest", exe = "tldr" }
 
 [settings]
 idiomatic_version_file_enable_tools = ["node"]
