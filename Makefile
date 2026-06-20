@@ -16,21 +16,19 @@
 # ---- package groups -------------------------------------------------------
 
 # Cross-platform CLI: safe on macOS, Linux servers, and Raspberry Pis.
-COMMON := nvim zsh git bat btop mise sheldon gh lazygit yt-dlp \
-          sshsync starship television neomutt aerc configstore gnupg
-
-# Container / VM tooling: macOS + servers (Pis usually skip lima).
-DEV    := docker lazydocker containers
+COMMON := nvim git bat btop mise lazygit gnupg lemonade 
 
 # macOS-only: window managers, GUI apps, launch agents, hardware configs.
 MACGUI := aerospace amethyst yabai skhd borders karabiner finicky \
           launchagents smartset qutebrowser mpv kitty ghostty wezterm \
-          lemonade tigervnc silicon svgo kickstart.nvim
+          tigervnc silicon svgo lima containers \
+	  docker lazydocker \
+	  zsh sheldon yt-dlp gh starship television neomutt aerc 
 
 # ---- profiles -------------------------------------------------------------
 
-MAC    := $(COMMON) $(DEV) lima $(MACGUI)
-SERVER := $(COMMON) $(DEV)
+MAC    := $(COMMON) $(MACGUI)
+SERVER := $(COMMON)
 PI     := $(COMMON)
 
 # ---- mechanics ------------------------------------------------------------
