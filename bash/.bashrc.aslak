@@ -1,0 +1,98 @@
+# Bail out if not running interactively (e.g. scp/rsync sourcing .bashrc).
+case $- in
+  *i*) ;;
+  *) return ;;
+esac
+
+# ── Editor ──────────────────────────────────────────────────────────────────
+# Prefer nvim, fall back to vim, then vi — so $EDITOR is always sane.
+if command -v nvim >/dev/null 2>&1; then
+  export EDITOR=nvim VISUAL=nvim
+  alias vim=nvim
+elif command -v vim >/dev/null 2>&1; then
+  export EDITOR=vim VISUAL=vim
+else
+  export EDITOR=vi VISUAL=vi
+fi
+
+# ── Aliases ─────────────────────────────────────────────────────────────────
+# Editor / git shortcuts
+alias v='${EDITOR} .'           # v  -> open cwd in editor
+# g -> lazygit if installed, else fall back to plain `git status`.
+if command -v lazygit >/dev/null 2>&1; then
+  alias g='lazygit'
+else
+  alias g='git status'
+fi
+
+# Navigation
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+alias cd..='cd ..'
+
+alias df='df -h'
+alias du='du -h'
+alias mkdir='mkdir -p'
+
+# Listing: use eza if present, else plain ls with color.
+if command -v eza >/dev/null 2>&1; then
+  alias ls='eza -A --icons --group-directories-first --color=auto'
+  alias ll='eza -lA --icons --group-directories-first --color=auto'
+  alias lnew='eza -lA --icons --group-directories-first --color=auto -snew | tail'
+else
+  # --color=auto works on GNU ls; harmless to most BSD ls via alias guard below.
+  if ls --color=auto >/dev/null 2>&1; then
+    alias ls='ls --color=auto'
+  fi
+  alias ll='ls -lAh'
+  alias la='ls -A'
+  alias lnew='ls -lAht | head'
+fi
+
+# ── History (mirrors zsh hist_* options) ────────────────────────────────────
+HISTFILE="$HOME/.bash_history"
+HISTSIZE=10000                  # commands kept in memory
+HISTFILESIZE=20000              # lines kept on disk
+HISTCONTROL=ignoreboth          # ignore dups + lines starting with a space
+HISTIGNORE='ls:ll:la:pwd:cd:cd ..:..:...:....:g:v:clear:exit:history'
+HISTTIMEFORMAT='%F %T '         # timestamps, like zsh extended_history
+
+shopt -s histappend             # append instead of overwriting on exit
+shopt -s cmdhist                # multi-line commands stored as one entry
+shopt -s autocd 2>/dev/null     # `somedir` == `cd somedir` (bash >= 4)
+shopt -s cdspell 2>/dev/null    # autocorrect minor cd typos
+shopt -s checkwinsize           # keep $LINES/$COLUMNS correct after resize
+shopt -s globstar 2>/dev/null   # ** recursive globbing
+
+# Flush history after every command and reload from other sessions,
+# approximating zsh's share_history / inc_append_history.
+case "$PROMPT_COMMAND" in
+  *history\ -a*) ;;             # already set, don't double-up
+  *) PROMPT_COMMAND="history -a; history -n${PROMPT_COMMAND:+; $PROMPT_COMMAND}" ;;
+esac
+
+# ── Completion ──────────────────────────────────────────────────────────────
+# Load bash-completion if available (case-insensitive, partial matching, etc.).
+if ! shopt -oq posix; then
+  if [ -r /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+  elif [ -r /etc/bash_completion ]; then
+    . /etc/bash_completion
+  fi
+fi
+
+# ── PATH ────────────────────────────────────────────────────────────────────
+# Add common user bin dirs if they exist (no duplicates).
+for _dir in "$HOME/.local/bin" "$HOME/bin" "$HOME/go/bin" "$HOME/.cargo/bin"; do
+  case ":$PATH:" in
+    *":$_dir:"*) ;;
+    *) [ -d "$_dir" ] && PATH="$_dir:$PATH" ;;
+  esac
+done
+unset _dir
+
+# ── Machine-local overrides ─────────────────────────────────────────────────
+# Keep host-specific tweaks out of version control.
+[ -r "$HOME/.bashrc.local" ] && . "$HOME/.bashrc.local"

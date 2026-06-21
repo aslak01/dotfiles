@@ -26,7 +26,12 @@ provision:
       dnf install -y --setopt=install_weak_deps=False epel-release
       dnf config-manager --set-enabled epel crb
       dnf makecache
-      dnf install -y --setopt=install_weak_deps=False git make podman lsof stow gh
+      # gcc + gcc-c++: nvim-treesitter compiles each parser from C/C++ source,
+      # so a compiler must be present or every parser build fails.
+      # unzip: Mason extracts several tools (e.g. stylua) from GitHub release zips.
+      # bubblewrap/patch/bzip2: opam needs these to init and build OCaml packages
+      # (ocaml-lsp-server is installed via `opam install`).
+      dnf install -y --setopt=install_weak_deps=False git make gcc gcc-c++ unzip bubblewrap patch bzip2 podman lsof stow gh
   - mode: user
     script: |
       #!/bin/bash
