@@ -1,14 +1,12 @@
 #!/usr/bin/env bash
-# Start the Claude VM and sync host config into it.
+# Configure lemonade in an already-provisioned Claude VM.
 #
-# The VM runs with `mounts: []` (full isolation), so files are pushed in with
-# `limactl copy` AFTER boot rather than mounted. Git config is read live from
-# the host at setup time — its content is never embedded in this repo, only the
-# copy command below lives in git.
+# Provision the VM however you like (e.g. `limactl start ~/.config/lima/cvm.yaml`).
+# Then run this to wire up link-opening — it does NOT create or start the VM.
+# Idempotent: safe to re-run.
 set -euo pipefail
 
-INSTANCE="cvm"
-YAML="${HOME}/.config/lima/claude-vm.yaml"
+INSTANCE="${1:-cvm}"
 
 # Cross-compile lemonade for the guest and forward link-opens onward to the
 # work Mac's Safari daemon. Path:
@@ -17,19 +15,21 @@ YAML="${HOME}/.config/lima/claude-vm.yaml"
 # Port 2489 is reserved for the work Mac's Firefox daemon (SSH work hosts), so
 # the cvm uses 2490 to keep its opens in Safari instead. The work→personal SSH
 # must carry `RemoteForward 2490 localhost:2490` for this to reach anything.
-# Idempotent: safe to re-run on an existing instance.
 sync_lemonade() {
   if ! command -v go >/dev/null 2>&1; then
-    echo "go not found on host — skipping lemonade sync into VM." >&2
-    return 0
+    echo "go not found on host — cannot build lemonade." >&2
+    return 1
   fi
   # Match the guest architecture (aarch64 -> arm64, x86_64 -> amd64).
   local guest_arch goarch
   guest_arch="$(limactl shell "$INSTANCE" uname -m)"
   case "$guest_arch" in
-    aarch64|arm64) goarch="arm64" ;;
-    x86_64|amd64)  goarch="amd64" ;;
-    *) echo "unknown guest arch '$guest_arch' — skipping lemonade sync." >&2; return 0 ;;
+  aarch64 | arm64) goarch="arm64" ;;
+  x86_64 | amd64) goarch="amd64" ;;
+  *)
+    echo "unknown guest arch '$guest_arch' — cannot build lemonade." >&2
+    return 1
+    ;;
   esac
 
   GOOS=linux GOARCH="$goarch" go install github.com/lemonade-command/lemonade@latest
@@ -59,17 +59,12 @@ GUEST
   echo "lemonade synced into VM — links open on the host."
 }
 
-# Existing instance: just (re)start it — config is already in place.
-if limactl list --quiet | grep -qx "$INSTANCE"; then
-  limactl start "$INSTANCE"
-  sync_lemonade
-  echo "VM '$INSTANCE' is up."
-  exit 0
+# Require an existing instance — this script configures, it does not provision.
+if ! limactl list --quiet | grep -qx "$INSTANCE"; then
+  echo "instance '$INSTANCE' not found. Provision it first, e.g.:" >&2
+  echo "  limactl start ~/.config/lima/cvm.yaml" >&2
+  echo "then re-run: $0 [instance-name]" >&2
+  exit 1
 fi
 
-# Fresh instance: provision it, then sync host git config in once.
-limactl start --name "$INSTANCE" "$YAML"
-limactl shell "$INSTANCE" mkdir -p .config
-limactl copy --recursive "${HOME}/.config/git" "${INSTANCE}:.config/"
 sync_lemonade
-echo "VM '$INSTANCE' provisioned and git config synced."
