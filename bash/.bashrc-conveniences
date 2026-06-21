@@ -93,6 +93,14 @@ for _dir in "$HOME/.local/bin" "$HOME/bin" "$HOME/go/bin" "$HOME/.cargo/bin"; do
 done
 unset _dir
 
+# ── lemonade: open links on the host instead of inside the VM ────────────────
+# Active only when the xdg-open shim exists (installed by `make server` /
+# setup-lemonade.sh on the lima guest); a harmless no-op everywhere else.
+if [ -x "$HOME/.local/bin/xdg-open" ]; then
+  export BROWSER="$HOME/.local/bin/xdg-open"
+  alias open='xdg-open'
+fi
+
 # ── Machine-local overrides ─────────────────────────────────────────────────
 # Keep host-specific tweaks out of version control.
 [ -r "$HOME/.bashrc.local" ] && . "$HOME/.bashrc.local"
