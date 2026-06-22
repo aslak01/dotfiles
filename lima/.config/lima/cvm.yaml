@@ -47,6 +47,7 @@ provision:
       mise use -g "github:tldr-pages/tlrc[exe=tldr]"
       # lazygit — not in EPEL; mise pulls the prebuilt binary from GitHub releases
       mise use -g lazygit
+      mise use -g delta
       echo "alias g=lazygit" >> ~/.bashrc
       # neovim from mise (newer than the EPEL build)
       mise use -g neovim
