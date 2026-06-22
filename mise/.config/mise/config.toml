@@ -7,6 +7,7 @@ uv = "latest"
 lazygit = "latest"
 "ubi:tldr-pages/tlrc" = { version = "latest", exe = "tldr" }
 neovim = "latest"
+delta = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = ["node"]
