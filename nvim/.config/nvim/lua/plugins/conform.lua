@@ -19,8 +19,12 @@ return {
     opts.formatters_by_ft = {
       ["*"] = function(bufnr)
         if not buf_utils.is_valid(bufnr) or not buf_utils.has_filetype(bufnr) then return {} end
-        -- Exclude filetypes where injected formatting breaks template expressions
-        local dominated_fts = { svelte = true }
+        -- Exclude filetypes where injected formatting corrupts the file:
+        --   svelte -> breaks template expressions
+        --   make   -> reformats recipe bash and drops the leading tabs / `\`
+        --             line-continuations that Makefiles require, so the file
+        --             no longer parses
+        local dominated_fts = { svelte = true, make = true }
         if dominated_fts[vim.bo[bufnr].filetype] then return {} end
         return { "injected" }
       end,
