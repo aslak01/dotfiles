@@ -111,4 +111,16 @@ claude-yolo:
 	    "alias claude='claude --dangerously-skip-permissions'" \
 	    >>"$$HOME/.bashrc"; \
 	  echo "added 'claude --dangerously-skip-permissions' alias to ~/.bashrc"; \
+	fi; \
+	claude_md="$$HOME/.claude/CLAUDE.md"; \
+	if [ -f "$$claude_md" ]; then \
+	  echo "$$claude_md already exists"; \
+	else \
+	  install -d "$$HOME/.claude"; \
+	  printf '%s\n' \
+	    '# Claude Code notes' \
+	    '' \
+	    '- Do not co-sign Claude as a co-author on commits.' \
+	    >"$$claude_md"; \
+	  echo "wrote $$claude_md"; \
 	fi
