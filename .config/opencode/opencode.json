@@ -1,0 +1,23 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "provider": {
+    "internal-qwen": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "inernal qwen",
+      "options": {
+        "baseURL": "https://localhost:8443/v1"
+      },
+      "models": {
+        "qwen3.6-27b": {
+          "name": "qwen3.6-27b",
+          "reasoning": true,
+          "tool_call": true,
+          "limit": {
+            "context": 262144,
+            "output": 8192
+          }
+        }
+      }
+    }
+  }
+}

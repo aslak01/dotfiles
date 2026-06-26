@@ -193,3 +193,5 @@ if command -v zsh-patina >/dev/null; then
     eval "$(zsh-patina activate)"
 fi
 # zprof
+
+alias oc='NODE_TLS_REJECT_UNAUTHORIZED=0 opencode'
