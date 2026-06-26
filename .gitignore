@@ -17,3 +17,4 @@ node_modules
 uv-receipt.json
 **/ttypr/config
 **/configstore
+**/gh/hosts.yml
