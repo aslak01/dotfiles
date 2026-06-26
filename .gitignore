@@ -18,3 +18,9 @@ uv-receipt.json
 **/ttypr/config
 **/configstore
 **/gh/hosts.yml
+
+# The global git ignore (~/.config/git/ignore) hides all .claude/ dirs — that's
+# right for the stray per-project settings Claude Code drops everywhere. But we
+# DO want to version the one global CLAUDE.md, so re-include just its dir + file.
+!claude/.claude/
+!claude/.claude/CLAUDE.md

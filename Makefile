@@ -14,7 +14,7 @@
 # ---- package groups -------------------------------------------------------
 
 # Cross-platform
-COMMON := nvim git bat btop mise lazygit gnupg lemonade gh kitty ghostty wezterm
+COMMON := nvim git bat btop mise lazygit gnupg lemonade gh kitty ghostty wezterm claude
 
 # macOS-only
 MACGUI := aerospace amethyst yabai skhd borders karabiner finicky \
@@ -29,10 +29,15 @@ SERVER := $(COMMON) bash
 
 # ---- mechanics ------------------------------------------------------------
 
-STOW       := stow --target=$(HOME) --dir=$(CURDIR)
+# --ignore 'settings\.local\.json': Claude Code drops a per-directory
+# .claude/settings.local.json into whatever dir it runs in, which lands inside
+# packages. Without this, stow maps every stray one onto ~/.claude/settings.local.json
+# and aborts with "stowed to a different package". We ignore that filename rather
+# than all of .claude/ so the tracked claude package CAN stow ~/.claude/CLAUDE.md.
+STOW       := stow --target=$(HOME) --dir=$(CURDIR) --ignore='settings\.local\.json'
 STOW_FLAGS ?=
 
-.PHONY: help mac server pi common bashrc-conveniences lemonade-guest YOLOVM yolovm claude-yolo
+.PHONY: help mac server pi common bashrc-conveniences lemonade-guest YOLOVM yolovm claude-yolo gpg-agent-conf
 
 help:
 	@echo "Profiles:  make mac | server | pi | common | YOLOVM"
@@ -43,18 +48,22 @@ help:
 	@echo "  pi     -> $(PI)"
 	@echo "  YOLOVM -> server + 'claude --dangerously-skip-permissions' alias (sandboxed VMs only)"
 
+# mac also writes the bits stow can't link: gpg-agent.conf carries a mac-only
+# pinentry-program line (pinentry-mac), so it's generated rather than stowed.
 mac:
 	$(STOW) $(STOW_FLAGS) $(MAC)
+	@$(MAKE) --no-print-directory gpg-agent-conf PINENTRY_MAC=1 STOW_FLAGS='$(STOW_FLAGS)'
 
 # The server profile also configures the bits stow can't link: it sources the
 # shared bash config from the real (non-symlinked) ~/.bashrc and provisions
 # lemonade so links open on the host. Skipped on dry-run (-n) and unlink (-D).
 server:
 	$(STOW) $(STOW_FLAGS) $(SERVER)
-	@$(MAKE) --no-print-directory bashrc-conveniences lemonade-guest STOW_FLAGS='$(STOW_FLAGS)'
+	@$(MAKE) --no-print-directory bashrc-conveniences lemonade-guest gpg-agent-conf STOW_FLAGS='$(STOW_FLAGS)'
 
 common:
 	$(STOW) $(STOW_FLAGS) $(COMMON)
+	@$(MAKE) --no-print-directory gpg-agent-conf STOW_FLAGS='$(STOW_FLAGS)'
 
 YOLOVM yolovm: server
 	@$(MAKE) --no-print-directory claude-yolo STOW_FLAGS='$(STOW_FLAGS)'
@@ -99,7 +108,8 @@ lemonade-guest:
 	  echo "~/.local/bin/xdg-open already installed"; \
 	fi
 
-# Append the YOLO claude alias to the real ~/.bashrc. Idempotent.
+# Append the YOLO claude alias to the real ~/.bashrc. Idempotent. The global
+# ~/.claude/CLAUDE.md is handled by the stowed `claude` package, not here.
 claude-yolo:
 	@case " $(STOW_FLAGS) " in *" -n "* | *" -D "*) exit 0 ;; esac; \
 	if grep -q 'alias claude=' "$$HOME/.bashrc" 2>/dev/null; then \
@@ -111,16 +121,30 @@ claude-yolo:
 	    "alias claude='claude --dangerously-skip-permissions'" \
 	    >>"$$HOME/.bashrc"; \
 	  echo "added 'claude --dangerously-skip-permissions' alias to ~/.bashrc"; \
-	fi; \
-	claude_md="$$HOME/.claude/CLAUDE.md"; \
-	if [ -f "$$claude_md" ]; then \
-	  echo "$$claude_md already exists"; \
-	else \
-	  install -d "$$HOME/.claude"; \
+	fi
+
+# Generate ~/.gnupg/gpg-agent.conf as a REAL file (not a stow symlink) so the
+# mac-only pinentry-program line can be appended without leaking onto the other
+# hosts. Base cache settings everywhere; the pinentry-mac line only when called
+# with PINENTRY_MAC=1 (the mac profile). Idempotent; skipped on -n/-D. Replaces
+# any stale stow symlink left over from when this file was a stow package member.
+gpg-agent-conf:
+	@case " $(STOW_FLAGS) " in *" -n "* | *" -D "*) exit 0 ;; esac; \
+	conf="$$HOME/.gnupg/gpg-agent.conf"; \
+	install -d -m 700 "$$HOME/.gnupg"; \
+	if [ -L "$$conf" ]; then rm "$$conf"; fi; \
+	if [ ! -f "$$conf" ]; then \
 	  printf '%s\n' \
-	    '# Claude Code notes' \
-	    '' \
-	    '- Do not co-sign Claude as a co-author on commits.' \
-	    >"$$claude_md"; \
-	  echo "wrote $$claude_md"; \
+	    'default-cache-ttl 28800 # A workday' \
+	    'max-cache-ttl 86400     # A day' \
+	    >"$$conf"; \
+	  echo "wrote $$conf"; \
+	fi; \
+	if [ -n "$(PINENTRY_MAC)" ]; then \
+	  if grep -q 'pinentry-program' "$$conf" 2>/dev/null; then \
+	    echo "gpg-agent.conf already sets pinentry-program"; \
+	  else \
+	    printf 'pinentry-program /opt/homebrew/bin/pinentry-mac\n' >>"$$conf"; \
+	    echo "added pinentry-mac to $$conf"; \
+	  fi; \
 	fi
