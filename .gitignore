@@ -16,3 +16,6 @@ node_modules
 **/medusa/config.json
 uv-receipt.json
 .config/ttypr/config
+**/ngrok/ngrok.yml
+**/pulse/*
+**/homebrew/trust*
