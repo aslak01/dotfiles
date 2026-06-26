@@ -6,7 +6,7 @@ python = "latest"
 uv = "latest"
 lazygit = "latest"
 "ubi:tldr-pages/tlrc" = { version = "latest", exe = "tldr" }
-neovim = "latest"
+neovim = "0.12.3"
 delta = "latest"
 
 [settings]
