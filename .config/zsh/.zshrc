@@ -8,7 +8,7 @@ source_if_exists() {
 
 defer_or_eval() {
     # Eval $1 via zsh-defer if available, else inline.
-    if (( $+functions[zsh-defer] )); then
+    if (($+functions[zsh - defer])); then
         zsh-defer eval "$1"
     else
         eval "$1"
@@ -29,7 +29,6 @@ fpath=(
     ${ZDOTDIR:-$HOME}/mac-zsh-completions/completions
     $fpath
 )
-
 
 autoload -Uz compinit
 
@@ -106,7 +105,7 @@ fi
 
 if command -v bob >/dev/null && ! command -v nvim >/dev/null; then
     # Defer so a fresh machine doesn't block the prompt on first launch.
-    if (( $+functions[zsh-defer] )); then
+    if (($+functions[zsh - defer])); then
         zsh-defer eval 'bob install stable && bob use stable'
     else
         bob install stable && bob use stable
@@ -120,7 +119,7 @@ fi
 _zsh_files=("$ZDOTDIR/.zshrc" "$ZDOTDIR/.zstyle" "$ZDOTDIR/.zaliases" "$ZDOTDIR/.zfunctions")
 
 for file in "${_zsh_files[@]}"; do
-    if [[ -f "${file}" && ( ! -f "${file}.zwc" || "${file}" -nt "${file}.zwc" ) ]]; then
+    if [[ -f "${file}" && (! -f "${file}.zwc" || "${file}" -nt "${file}.zwc") ]]; then
         zcompile "${file}"
     fi
 done
@@ -135,18 +134,18 @@ source_if_exists "$ZDOTDIR/.zaliases"
 typeset -U path
 
 path=(
-    "/opt/homebrew/bin"                  # Homebrew binaries
-    "/opt/homebrew/sbin"                 # Homebrew system binaries
-    "$HOME/.local/bin"                   # homebrewed scripts
-    "$HOME/go/bin"                       # Go
-    "/opt/homebrew/opt/go/libexec/bin"   # Go root
-    ${PNPM_HOME:+"$PNPM_HOME"}           # PNPM (skip if unset)
-    "$HOME/.bun/bin"                     # Bun
-    "$HOME/.deno/bin"                    # Deno
-    "$HOME/.cargo/bin"                   # Rust
-    "$HOME/.local/share/bob/nvim-bin"    # Bob (Neovim)
-    "$HOME/bin"                          # Custom bin
-    "$HOME/.dprint/bin"                  # Dprint
+    "/opt/homebrew/bin"                # Homebrew binaries
+    "/opt/homebrew/sbin"               # Homebrew system binaries
+    "$HOME/.local/bin"                 # homebrewed scripts
+    "$HOME/go/bin"                     # Go
+    "/opt/homebrew/opt/go/libexec/bin" # Go root
+    ${PNPM_HOME:+"$PNPM_HOME"}         # PNPM (skip if unset)
+    "$HOME/.bun/bin"                   # Bun
+    "$HOME/.deno/bin"                  # Deno
+    "$HOME/.cargo/bin"                 # Rust
+    "$HOME/.local/share/bob/nvim-bin"  # Bob (Neovim)
+    "$HOME/bin"                        # Custom bin
+    "$HOME/.dprint/bin"                # Dprint
     $path
 )
 
@@ -177,14 +176,14 @@ fi
 if command -v starship >/dev/null; then
     # Re-source guard: starship wraps zle-keymap-select on init, so when this
     # rc is re-sourced we strip the previous wrapper to avoid stacking.
-    if [[ "${widgets[zle-keymap-select]#user:}" == "starship_zle-keymap-select" ||
-          "${widgets[zle-keymap-select]#user:}" == "starship_zle-keymap-select-wrapped" ]]; then
+    if [[ "${widgets[zle - keymap - select]#user:}" == "starship_zle-keymap-select" ||
+        "${widgets[zle - keymap - select]#user:}" == "starship_zle-keymap-select-wrapped" ]]; then
         zle -N zle-keymap-select ""
     fi
     eval "$(starship init zsh)"
 fi
 
-if (( $+functions[zsh-defer] )); then
+if (($+functions[zsh - defer])); then
     zsh-defer source "$HOME/.local/bin/env"
 else
     source_if_exists "$HOME/.local/bin/env"
