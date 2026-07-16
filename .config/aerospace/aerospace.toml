@@ -149,6 +149,7 @@ alt-p = 'mode main' # escape hatch to return to normal
 # https://github.com/nikitabobko/AeroSpace/issues/166
 [[on-window-detected]]
 if.app-id = 'org.qutebrowser.qutebrowser'
+check-further-callbacks = true
 run = 'layout tiling'
 
 # ghostty tab hack
@@ -193,6 +194,7 @@ run = ['layout floating', 'mode passthrough']
 # split direction down the tree.
 # Must stay last — earlier rules short-circuit on match.
 [[on-window-detected]]
+if = 'true'
 run = ['exec-and-forget /Users/t991563/dotfiles/.config/aerospace/autonest.sh']
 
 
