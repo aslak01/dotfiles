@@ -16,6 +16,13 @@ gui:
 git:
   pagers:
     - colorArg: always
+  diffRenderers:
+    - name: delta
+      type: pager
+      colorArg: always
+    - name: raw
+      type: rawGit
+      colorArg: always
   commit:
     signOff: false
   merging:
