@@ -14,8 +14,14 @@ gui:
     unstagedChangesColor: [red]
     defaultFgColor: [default]
 git:
-  pagers:
-    - colorArg: always
+  diffRenderers:
+    - name: delta
+      type: stdinFilter
+      colorArg: always
+      command: delta-lazygit
+    - name: raw
+      colorArg: always
+      type: rawGit
   commit:
     signOff: false
   merging:

@@ -33,3 +33,5 @@ load_keychain_cached() {
 curlbig() {
   curl -L -C - -O --retry 5 --retry-delay 10 --progress-bar "$1"
 }
+
+lazygit() { LAZYGIT_DELTA_MODE=$(term-bg-mode) command lazygit "$@" }
