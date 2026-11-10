@@ -1,4 +1,9 @@
 # defaults
+services:
+  git.h.asla.cc: gitea:git.h.asla.cc # forgejo, uses the same urls as gitea
+os:
+  # over ssh, open links on the machine we connected from (via the forwarded lemonade port)
+  openLink: 'if [ -n "$SSH_CONNECTION" ]; then lemonade open {{link}}; else open {{link}}; fi'
 gui:
   timeFormat: 02 Jan 06 # https://pkg.go.dev/time#Time.Format
   shortTimeFormat: 15:04
